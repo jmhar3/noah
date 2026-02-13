@@ -13,6 +13,7 @@ import WorkingWithMe from "./pages/WorkingWithMe.tsx";
 import FAQ from "./pages/FAQ.tsx";
 
 import "./index.css";
+import PasswordProtected from "./pages/PasswordProtected.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -29,6 +30,69 @@ createRoot(document.getElementById("root")!).render(
           <Route path="portfolio">
             <Route index element={<Portfolio />} />
             <Route path=":gallery" element={<Gallery />} />
+          </Route>
+
+          <Route path="secret">
+            <Route index element={<Home />} />
+            <Route
+              path="about-me"
+              element={
+                <PasswordProtected>
+                  <AboutMe />
+                </PasswordProtected>
+              }
+            />
+            <Route
+              path="working-with-me"
+              element={
+                <PasswordProtected>
+                  <WorkingWithMe />
+                </PasswordProtected>
+              }
+            />
+            <Route
+              path="packages"
+              element={
+                <PasswordProtected>
+                  <Packages />
+                </PasswordProtected>
+              }
+            />
+            <Route
+              path="contact"
+              element={
+                <PasswordProtected>
+                  <Contact />
+                </PasswordProtected>
+              }
+            />
+            <Route
+              path="faq"
+              element={
+                <PasswordProtected>
+                  <FAQ />
+                </PasswordProtected>
+              }
+            />
+
+            <Route path="portfolio">
+              <Route
+                index
+                element={
+                  <PasswordProtected>
+                    <Portfolio />
+                  </PasswordProtected>
+                }
+              />
+              <Route
+                path=":gallery"
+                element={
+                  <PasswordProtected>
+                    <Gallery />
+                  </PasswordProtected>
+                }
+              />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
