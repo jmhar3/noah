@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
-import { MantineProvider } from "@mantine/core";
+import { Button, createTheme, MantineProvider, TextInput } from "@mantine/core";
 
 import Home from "./pages/Home.tsx";
 import Gallery from "./pages/Gallery.tsx";
@@ -10,14 +10,27 @@ import Contact from "./pages/Contact.tsx";
 import Packages from "./pages/Packages.tsx";
 import Portfolio from "./pages/Portfolio.tsx";
 import WorkingWithMe from "./pages/WorkingWithMe.tsx";
+import PasswordProtected from "./pages/PasswordProtected.tsx";
 import FAQ from "./pages/FAQ.tsx";
 
+import "@mantine/core/styles.css";
 import "./index.css";
-import PasswordProtected from "./pages/PasswordProtected.tsx";
+
+const theme = createTheme({
+  fontFamily: "Cormorant Infant, serif",
+  headings: { fontFamily: "Kapakana, cursive" },
+  components: {
+    Button: Button.extend({
+      defaultProps: {
+        color: "cadetblue",
+      },
+    }),
+  },
+});
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <MantineProvider>
+    <MantineProvider theme={theme}>
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
