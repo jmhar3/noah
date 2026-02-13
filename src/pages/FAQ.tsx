@@ -1,7 +1,12 @@
 import { Text } from "@mantine/core";
+import PageLayout from "./PageLayout";
 
 function FAQ() {
-  return <Text>Frequently Asked Questions</Text>;
+  return (
+    <PageLayout>
+      <Text>Frequently Asked Questions</Text>
+    </PageLayout>
+  );
 }
 
 export default FAQ;

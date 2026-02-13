@@ -1,7 +1,12 @@
 import { Text } from "@mantine/core";
+import PageLayout from "./PageLayout";
 
 function Packages() {
-  return <Text>Packages</Text>;
+  return (
+    <PageLayout>
+      <Text>Packages</Text>
+    </PageLayout>
+  );
 }
 
 export default Packages;
