@@ -3,8 +3,8 @@ import PageLayout from "./PageLayout";
 
 function WorkingWithMe() {
   return (
-    <PageLayout>
-      <Text>Working With Me</Text>
+    <PageLayout label="Working With Me">
+      <Text></Text>
     </PageLayout>
   );
 }

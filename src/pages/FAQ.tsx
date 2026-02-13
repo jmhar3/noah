@@ -3,7 +3,7 @@ import PageLayout from "./PageLayout";
 
 function FAQ() {
   return (
-    <PageLayout>
+    <PageLayout label="Frequently Asked Questions">
       <Text>Frequently Asked Questions</Text>
     </PageLayout>
   );
