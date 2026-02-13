@@ -1,4 +1,4 @@
-import { Box, Button, Stack, Text, Title } from "@mantine/core";
+import { Button, Stack, Text, Title } from "@mantine/core";
 import { useLocation, useNavigate } from "react-router";
 import Cookies from "js-cookie";
 
@@ -14,25 +14,39 @@ function Home() {
   const secretPassword = isSecret && Cookies.get("secretPassword");
 
   return (
-    <Box>
-      <Stack>
-        <Title>Melbourne Art Natural</Title>
-        <Text>PROFESSIONAL PORTRAIT PHOTOGRAPHER</Text>
-        {isSecret && secretPassword !== correctPassword ? (
+    <Stack align="center">
+      <Title size="6em">Melbourne Art Natural</Title>
+
+      <Text size="xl" fw="500">
+        PROFESSIONAL PORTRAIT PHOTOGRAPHER
+      </Text>
+
+      {isSecret && secretPassword !== correctPassword ? (
+        <>
           <PasswordInput />
-        ) : (
+
           <Button
+            variant="transparent"
+            w="fit-content"
             justify="center"
-            rightSection={<RightArrowIcon />}
             onClick={() =>
               navigate(isSecret ? "/secret/about-me" : "/about-me")
             }
           >
-            Enter
+            BACK TO MAIN
           </Button>
-        )}
-      </Stack>
-    </Box>
+        </>
+      ) : (
+        <Button
+          w="fit-content"
+          justify="center"
+          rightSection={<RightArrowIcon />}
+          onClick={() => navigate(isSecret ? "/secret/about-me" : "/about-me")}
+        >
+          ENTER
+        </Button>
+      )}
+    </Stack>
   );
 }
 
