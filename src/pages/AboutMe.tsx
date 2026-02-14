@@ -20,7 +20,8 @@ function AboutMe() {
         and this film made the top 3 of its category nationwide. This was my
         first attempt at delving into the moving image, and not long after this
         I began my career in Film and Television.
-        <br />
+      </Text>
+      <Text size="lg">
         This career would take me through many pathways and allow me to wear
         many hats on set. During my 10 years of Film Industry experience I was a
         Location Scout/Manager, 1st and 2nd AC, Camera Operator, 1st and 2nd
@@ -30,7 +31,8 @@ function AboutMe() {
         to spend my time working on advertising selling products and companies I
         didn’t believe in. I wanted to use my time and my skills to make a
         bigger difference to individuals in their daily lives.
-        <br />
+      </Text>
+      <Text size="lg">
         So this is where the journey of M.A.N begins. At the end of 2019 I began
         this adventure with the idea that taking portraits in a realistic and
         grounded way would be my way to contribute to peoples positive self
@@ -47,8 +49,10 @@ function AboutMe() {
         anyone else who sees this content to understand that this is a real
         human being with flaws and imperfections; but that these are not things
         to hide or to cover up. Rather these are things to be celebrated and to
-        be proud of the body that has carried us to this point in our lives.{" "}
-        <br />
+        be proud of the body that has carried us to this point in our
+        lives.{" "}
+      </Text>
+      <Text size="lg">
         If you’ve made it this far, I deeply implore you to contact me so that
         we can celebrate you and the physical embodiment of you that has brought
         you here.
