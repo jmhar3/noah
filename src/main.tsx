@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
-import { Button, createTheme, MantineProvider, TextInput } from "@mantine/core";
+import { Button, createTheme, MantineProvider } from "@mantine/core";
 
 import Home from "./pages/Home.tsx";
 import Gallery from "./pages/Gallery.tsx";
@@ -14,6 +14,8 @@ import PasswordProtected from "./pages/PasswordProtected.tsx";
 import FAQ from "./pages/FAQ.tsx";
 
 import "@mantine/core/styles.css";
+import "@mantine/core/styles.css";
+import "@mantine/dropzone/styles.css";
 import "./index.css";
 
 const theme = createTheme({
