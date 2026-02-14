@@ -2,8 +2,9 @@ import { Button, Stack, Text, Title } from "@mantine/core";
 import { useLocation, useNavigate } from "react-router";
 import Cookies from "js-cookie";
 
-import RightArrowIcon from "../assets/icons/RightArrowIcon";
 import PasswordInput from "../components/PasswordInput";
+
+import RightArrowIcon from "../assets/icons/RightArrowIcon";
 
 function Home() {
   const navigate = useNavigate();
@@ -26,9 +27,9 @@ function Home() {
           <PasswordInput />
 
           <Button
-            variant="transparent"
             w="fit-content"
             justify="center"
+            variant="transparent"
             onClick={() =>
               navigate(isSecret ? "/secret/about-me" : "/about-me")
             }
