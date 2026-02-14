@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useLocation } from "react-router";
+import type { FileWithPath } from "@mantine/dropzone";
 
 import {
   Text,
@@ -16,14 +18,12 @@ import {
 } from "@mantine/core";
 
 import PageLayout from "./PageLayout";
+import ImageDropzone from "../components/ImageDropzone";
 
-import contactImage from "../assets/images/m.a.n.png";
 import AtIcon from "../assets/icons/AtIcon";
-import { ImageDropzone } from "../components/ImageDropzone";
-import type { FileWithPath } from "@mantine/dropzone";
-import { useLocation } from "react-router";
-import InfoCircleIcon from "../assets/icons/InfoCircleIcon";
 import MailFastIcon from "../assets/icons/MailFastIcon";
+import contactImage from "../assets/images/m.a.n.png";
+import InfoCircleIcon from "../assets/icons/InfoCircleIcon";
 
 function Contact() {
   const { pathname } = useLocation();

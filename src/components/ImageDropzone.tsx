@@ -22,7 +22,7 @@ interface ImageDropzoneProps extends Partial<DropzoneProps> {
   onDrop: (files: FileWithPath[]) => void;
 }
 
-export function ImageDropzone(props: ImageDropzoneProps) {
+function ImageDropzone(props: ImageDropzoneProps) {
   const [onHover, setOnHover] = useState(false);
 
   const onDeleteImage = (image: FileWithPath) => {
@@ -101,3 +101,5 @@ export function ImageDropzone(props: ImageDropzoneProps) {
     </Stack>
   );
 }
+
+export default ImageDropzone;
