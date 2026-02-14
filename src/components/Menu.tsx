@@ -1,5 +1,5 @@
 import { useDisclosure } from "@mantine/hooks";
-import { Modal, Button, Stack, Title } from "@mantine/core";
+import { Modal, Button, Stack, Title, ActionIcon } from "@mantine/core";
 
 import MenuIcon from "../assets/icons/MenuIcon";
 
@@ -30,11 +30,11 @@ function Menu() {
 
           {menu.map(({ label, path, isExternal }) => (
             <Button
-              variant="transparent"
               key="label"
               component="a"
-              href={path}
+              variant="transparent"
               target={isExternal ? "_blank" : undefined}
+              href={path}
             >
               {label.toUpperCase()}
             </Button>
@@ -42,14 +42,9 @@ function Menu() {
         </Stack>
       </Modal>
 
-      <Button
-        leftSection={<MenuIcon />}
-        justify="center"
-        variant="filled"
-        onClick={open}
-      >
-        MENU
-      </Button>
+      <ActionIcon size="lg" color="cadetblue" variant="filled" onClick={open}>
+        <MenuIcon />
+      </ActionIcon>
     </>
   );
 }
