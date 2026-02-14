@@ -1,4 +1,12 @@
-import { Box, Flex, Image, ScrollArea, Stack, Title } from "@mantine/core";
+import {
+  Box,
+  Flex,
+  Group,
+  Image,
+  ScrollArea,
+  Stack,
+  Title,
+} from "@mantine/core";
 
 import type { PropsWithChildren } from "react";
 
@@ -16,23 +24,27 @@ function PageLayout({ label, image, children }: PageLayoutProps) {
         <Menu />
       </Box>
 
-      <Flex pr="10em" pl="10em" justify="flex-start" gap="lg">
-        {label && (
-          <Title pb="1.5em" size="4.5em" style={{ writingMode: "sideways-lr" }}>
-            {label}
-          </Title>
-        )}
+      <Group grow>
+        <Flex pl="6em" justify="flex-start" gap="lg" pr="lg">
+          {label && (
+            <Title
+              pb="1.5em"
+              size="4.5em"
+              style={{ writingMode: "sideways-lr" }}
+            >
+              {label}
+            </Title>
+          )}
 
-        <ScrollArea scrollbars="y" h="100vh" w="100%" scrollbarSize="none">
-          <Stack gap="md" py="4em">
-            {children}
-          </Stack>
-        </ScrollArea>
+          <ScrollArea scrollbars="y" h="100vh" w="100%" scrollbarSize="none">
+            <Stack gap="md" py="4em">
+              {children}
+            </Stack>
+          </ScrollArea>
+        </Flex>
 
-        {image && (
-          <Image pt="4em" h="calc(100vh - 4em)" fit="contain" src={image} />
-        )}
-      </Flex>
+        {image && <Image h="100vh" fit="cover" src={image} />}
+      </Group>
     </>
   );
 }
