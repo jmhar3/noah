@@ -14,8 +14,8 @@ import PasswordProtected from "./pages/PasswordProtected.tsx";
 import FAQ from "./pages/FAQ.tsx";
 
 import "@mantine/core/styles.css";
-import "@mantine/core/styles.css";
 import "@mantine/dropzone/styles.css";
+import "@mantine/carousel/styles.css";
 import "./index.css";
 
 const theme = createTheme({
