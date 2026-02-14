@@ -20,7 +20,7 @@ interface PageLayoutProps extends PropsWithChildren {
 function PageLayout({ label, image, children }: PageLayoutProps) {
   return (
     <>
-      <Box pos="fixed" top="1em" left="1em">
+      <Box pos="fixed" top="4.2em" left="8em">
         <Menu />
       </Box>
 
