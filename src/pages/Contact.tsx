@@ -33,6 +33,8 @@ function Contact() {
 
   const [files, setFiles] = useState<FileWithPath[]>([]);
 
+  // const [form, setForm] = useState();
+
   const handleContactFormSubmission = () => {};
 
   return (
@@ -133,6 +135,16 @@ function Contact() {
                 />
 
                 <ImageDropzone files={files} onDrop={setFiles} />
+              </Stack>
+            </Accordion.Panel>
+          </Accordion.Item>
+
+          <Accordion.Item value="4" w="100%">
+            <Title>Summary</Title>
+
+            <Accordion.Panel>
+              <Stack gap="sm" py="sm">
+                <Text>Display contact form info here</Text>
               </Stack>
             </Accordion.Panel>
           </Accordion.Item>
