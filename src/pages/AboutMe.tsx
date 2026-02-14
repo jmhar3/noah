@@ -7,7 +7,7 @@ import aboutImage from "../assets/images/m.a.n.png";
 function AboutMe() {
   return (
     <PageLayout label="Who am I?" image={aboutImage}>
-      <Text py="4em" size="lg">
+      <Text size="lg">
         So who is M.A.N? Prior to working under the branding of M.A.N I had many
         years experience in both photography and film+tv. I picked up a camera
         around 13yrs old when my dad got me into it as a hobby, just as his dad
