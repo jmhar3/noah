@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import { Button, createTheme, MantineProvider } from "@mantine/core";
 
 import Home from "./pages/Home.tsx";
-import Gallery from "./pages/Gallery.tsx";
 import AboutMe from "./pages/AboutMe.tsx";
 import Contact from "./pages/Contact.tsx";
 import Packages from "./pages/Packages.tsx";
@@ -38,13 +37,17 @@ createRoot(document.getElementById("root")!).render(
           <Route index element={<Home />} />
           <Route path="about-me" element={<AboutMe />} />
           <Route path="working-with-me" element={<WorkingWithMe />} />
-          <Route path="packages" element={<Packages />} />
           <Route path="contact" element={<Contact />} />
           <Route path="faq" element={<FAQ />} />
 
+          <Route path="packages">
+            <Route index element={<Packages />} />
+            <Route path=":rate" element={<Packages />} />
+          </Route>
+
           <Route path="portfolio">
             <Route index element={<Portfolio />} />
-            <Route path=":gallery" element={<Gallery />} />
+            <Route path=":gallery" element={<Portfolio />} />
           </Route>
 
           <Route path="secret">
@@ -66,14 +69,6 @@ createRoot(document.getElementById("root")!).render(
               }
             />
             <Route
-              path="packages"
-              element={
-                <PasswordProtected>
-                  <Packages />
-                </PasswordProtected>
-              }
-            />
-            <Route
               path="contact"
               element={
                 <PasswordProtected>
@@ -90,6 +85,25 @@ createRoot(document.getElementById("root")!).render(
               }
             />
 
+            <Route path="packages">
+              <Route
+                index
+                element={
+                  <PasswordProtected>
+                    <Packages />
+                  </PasswordProtected>
+                }
+              />
+              <Route
+                path=":rate"
+                element={
+                  <PasswordProtected>
+                    <Packages />
+                  </PasswordProtected>
+                }
+              />
+            </Route>
+
             <Route path="portfolio">
               <Route
                 index
@@ -103,7 +117,7 @@ createRoot(document.getElementById("root")!).render(
                 path=":gallery"
                 element={
                   <PasswordProtected>
-                    <Gallery />
+                    <Portfolio />
                   </PasswordProtected>
                 }
               />
