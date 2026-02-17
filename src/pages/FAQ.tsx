@@ -73,7 +73,9 @@ function FAQ() {
       <Accordion defaultValue="Apples">
         {questions.map(({ question, answer, images }) => (
           <Accordion.Item key={question} value={question}>
-            <Accordion.Control>{question.toUpperCase()}</Accordion.Control>
+            <Accordion.Control>
+              <Text size="1.4em">{question.toUpperCase()}</Text>
+            </Accordion.Control>
             <Accordion.Panel>
               <Stack>
                 {answer.map((string) => (
