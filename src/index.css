@@ -53,20 +53,6 @@ button {
     transition: color 0.25s;
     background-color: floralwhite;
 }
-button:hover {
-    color: firebrick;
-}
-button:focus,
-button:focus-visible {
-    outline: 0px;
-}
-
-a {
-    text-decoration: inherit;
-}
-a:hover {
-    color: firebrick;
-}
 
 .input {
     outline: 0px;
