@@ -1,4 +1,4 @@
-import { Stack, Text, Title } from "@mantine/core";
+import { Divider, Stack, Text } from "@mantine/core";
 
 import PageLayout from "./PageLayout";
 
@@ -39,17 +39,20 @@ const info = [
 function WorkingWithMe() {
   return (
     <PageLayout label="Working With Me" image={aboutImage}>
-      {info.map(({ title, text }) => (
-        <Stack key={title} gap="0">
-          <Title>{title}</Title>
-          <Stack>
-            {text.map((string) => (
-              <Text size="lg" key={string}>
-                {string}
-              </Text>
-            ))}
+      {info.map(({ title, text }, index) => (
+        <>
+          {index !== 0 && <Divider />}
+          <Stack key={title} gap="sm">
+            <Text size="1.4em">{title.toUpperCase()}</Text>
+            <Stack>
+              {text.map((string) => (
+                <Text size="lg" key={string}>
+                  {string}
+                </Text>
+              ))}
+            </Stack>
           </Stack>
-        </Stack>
+        </>
       ))}
     </PageLayout>
   );
