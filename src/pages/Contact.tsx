@@ -1,41 +1,69 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useLocation } from "react-router";
-import type { FileWithPath } from "@mantine/dropzone";
-
-import {
-  Text,
-  Flex,
-  Button,
-  Accordion,
-  TextInput,
-  Stack,
-  Textarea,
-  Group,
-  Title,
-  SegmentedControl,
-  MultiSelect,
-  Divider,
-} from "@mantine/core";
+import { Text, Stack, Divider, Accordion, Button, Flex } from "@mantine/core";
 
 import PageLayout from "./PageLayout";
-import ImageDropzone from "../components/ImageDropzone";
+import StepButtons from "../components/ContactForm/StepButtons";
+import AccordianItem from "../components/ContactForm/AccordionItem";
+import ContactInfo from "../components/ContactForm/ContactInfo";
+import InquiryDetails from "../components/ContactForm/InquiryDetails";
+import Inspiration from "../components/ContactForm/Inspiration";
+import Summary from "../components/ContactForm/Summary";
 
-import AtIcon from "../assets/icons/AtIcon";
-import MailFastIcon from "../assets/icons/MailFastIcon";
 import contactImage from "../assets/images/m.a.n.png";
 import InfoCircleIcon from "../assets/icons/InfoCircleIcon";
+
+import { PreferredContactMethod } from "../helpers/contact";
+
+import type { ContactFormType } from "../helpers/contact";
 
 function Contact() {
   const { pathname } = useLocation();
   const isSecret = pathname.includes("secret");
 
-  const [accordiantState, setAccordiantState] = useState<string | null>("1");
+  const [accordionState, setAccordionState] = useState<string | null>("1");
 
-  const [files, setFiles] = useState<FileWithPath[]>([]);
-
-  // const [form, setForm] = useState();
+  const [contactForm, setContactForm] = useState<ContactFormType>({
+    name: "",
+    preferredContactMethod: PreferredContactMethod.email,
+    message: "",
+    customPackage: {
+      duration: "2 Hours",
+      edits: "10 Edits",
+      video: 0,
+      film: 0,
+      raws: false,
+      rate: 0,
+    },
+  });
 
   const handleContactFormSubmission = () => {};
+
+  const includesPreferredContactMethod = () => {
+    switch (contactForm.preferredContactMethod) {
+      case "EMAIL":
+        return !!contactForm.email && contactForm.email.length > 0;
+      case "TEXT":
+        return !!contactForm.phone && contactForm.phone.length > 0;
+      case "CALL":
+        return !!contactForm.phone && contactForm.phone.length > 0;
+      case "INSTAGRAM":
+        return !!contactForm.instagram && contactForm.instagram.length > 0;
+      default:
+        return false;
+    }
+  };
+
+  const includesContactDetails =
+    contactForm.name.length > 0 && includesPreferredContactMethod();
+
+  const includesAllRequiredDetails =
+    includesContactDetails && contactForm.message.length > 0;
+
+  const isNextButtonDisabled = useMemo(() => {
+    if (accordionState === "1" && !includesContactDetails) return true;
+    if (accordionState !== "1" && !includesAllRequiredDetails) return true;
+  }, [accordionState, includesContactDetails, includesAllRequiredDetails]);
 
   return (
     <PageLayout label="Get in touch" image={contactImage}>
@@ -47,107 +75,51 @@ function Contact() {
 
       <Stack gap="0">
         <Divider />
-        <Accordion
-          w="100%"
-          value={accordiantState}
-          onChange={setAccordiantState}
-        >
-          <Accordion.Item value="1" w="100%">
-            <Title>Contact Info</Title>
 
-            <Accordion.Panel>
-              <Stack gap="sm" py="sm">
-                <Group gap="sm" grow>
-                  <TextInput
-                    size="md"
-                    radius="md"
-                    label="PREFERRED NAME"
-                    withAsterisk
-                  />
-                  <TextInput
-                    size="md"
-                    radius="md"
-                    label="INSTAGRAM"
-                    leftSection={<AtIcon />}
-                  />
-                </Group>
+        <Accordion w="100%" value={accordionState} onChange={setAccordionState}>
+          <AccordianItem
+            panelNum="1"
+            label="Contact Info"
+            setAccordionState={setAccordionState}
+          >
+            <ContactInfo
+              contactForm={contactForm}
+              setContactForm={setContactForm}
+            />
+          </AccordianItem>
 
-                <TextInput size="md" radius="md" label="EMAIL" withAsterisk />
-                <TextInput size="md" radius="md" label="PHONE" />
+          <AccordianItem
+            panelNum="2"
+            label="Inquiry Details"
+            setAccordionState={setAccordionState}
+            isAccordionItemClickable={includesContactDetails}
+          >
+            <InquiryDetails
+              contactForm={contactForm}
+              setContactForm={setContactForm}
+            />
+          </AccordianItem>
 
-                <Stack gap="0">
-                  <Text>PREFERRED CONTACT METHOD</Text>
-                  <SegmentedControl
-                    size="md"
-                    fullWidth
-                    radius="md"
-                    data={["EMAIL", "TEXT", "CALL", "INSTAGRAM"]}
-                  />
-                </Stack>
-              </Stack>
-            </Accordion.Panel>
-          </Accordion.Item>
+          <AccordianItem
+            panelNum="3"
+            label="Inspiration"
+            setAccordionState={setAccordionState}
+            isAccordionItemClickable={includesAllRequiredDetails}
+          >
+            <Inspiration
+              contactForm={contactForm}
+              setContactForm={setContactForm}
+            />
+          </AccordianItem>
 
-          <Accordion.Item value="2">
-            <Title>Inquiry Details</Title>
-
-            <Accordion.Panel>
-              <Stack gap="sm" py="sm">
-                <Stack gap="0">
-                  <Text>PREFERRED PACKAGES</Text>
-                  <SegmentedControl
-                    size="md"
-                    fullWidth
-                    radius="md"
-                    data={["DIGITAL", "FILM", "COMPLETE"]}
-                  />
-                </Stack>
-
-                <MultiSelect
-                  size="md"
-                  radius="md"
-                  label="ADD-ONS"
-                  variant="filled"
-                  data={[
-                    "ALL RAWS",
-                    "ROLL OF FILM",
-                    "30 MINS EXTENSION",
-                    "ADDITIONAL EDITS",
-                    "SOCIAL MEDIA VIDEO",
-                  ]}
-                />
-
-                <Textarea size="md" radius="md" label="MESSAGE" withAsterisk />
-              </Stack>
-            </Accordion.Panel>
-          </Accordion.Item>
-
-          <Accordion.Item value="3">
-            <Title>Inspiration</Title>
-
-            <Accordion.Panel>
-              <Stack gap="sm" py="sm">
-                <TextInput
-                  size="md"
-                  radius="md"
-                  label="MOOD BOARD"
-                  placeholder="eg. www.pinterest.com/moodboard"
-                />
-
-                <ImageDropzone files={files} onDrop={setFiles} />
-              </Stack>
-            </Accordion.Panel>
-          </Accordion.Item>
-
-          <Accordion.Item value="4" w="100%">
-            <Title>Summary</Title>
-
-            <Accordion.Panel>
-              <Stack gap="sm" py="sm">
-                <Text>Display contact form info here</Text>
-              </Stack>
-            </Accordion.Panel>
-          </Accordion.Item>
+          <AccordianItem
+            panelNum="4"
+            label="Summary"
+            setAccordionState={setAccordionState}
+            isAccordionItemClickable={includesAllRequiredDetails}
+          >
+            <Summary contactForm={contactForm} />
+          </AccordianItem>
         </Accordion>
       </Stack>
 
@@ -162,37 +134,12 @@ function Contact() {
           BOOKING POLICY
         </Button>
 
-        <Flex gap="sm">
-          {accordiantState !== "1" && (
-            <Button
-              size="sm"
-              onClick={() =>
-                setAccordiantState(accordiantState === "2" ? "1" : "2")
-              }
-            >
-              PREV
-            </Button>
-          )}
-          {accordiantState !== "3" && (
-            <Button
-              size="sm"
-              onClick={() =>
-                setAccordiantState(accordiantState === "2" ? "3" : "2")
-              }
-            >
-              NEXT
-            </Button>
-          )}
-          {accordiantState === "3" && (
-            <Button
-              size="sm"
-              leftSection={<MailFastIcon />}
-              onClick={handleContactFormSubmission}
-            >
-              SEND INQUIRY
-            </Button>
-          )}
-        </Flex>
+        <StepButtons
+          accordionState={accordionState}
+          setAccordionState={setAccordionState}
+          onSubmit={handleContactFormSubmission}
+          isNextButtonDisabled={isNextButtonDisabled}
+        />
       </Flex>
     </PageLayout>
   );
