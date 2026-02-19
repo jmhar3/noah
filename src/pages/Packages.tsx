@@ -3,10 +3,12 @@ import { useLocation, useNavigate } from "react-router";
 
 import {
   Flex,
+  Text,
   Group,
   Stack,
   Title,
   Button,
+  Transition,
   BackgroundImage,
 } from "@mantine/core";
 
@@ -37,7 +39,7 @@ const myth = {
   label: "Myth",
   image:
     "https://www.adobe.com/la/creativecloud/file-types/image/raster/media_13f659e708c031c519b546ba716f2cdc0d34c90ec.jpeg?width=1200&format=pjpg&optimize=medium",
-  title: "35mm Film + Reel for socials",
+  title: "35mm Film + Social Reel",
   subtitle: "My personal favourite",
   description:
     "This package is my absolute favourite. It might take a little longer for you to receive your content, but isn’t the antici…pation half the fun? This package blends classical 35mm photography(the film stock will be tailored to you and your vision) with high quality 4k video to make something really special for you to cherish.",
@@ -60,6 +62,7 @@ const legend = {
   inclusions: [
     "4 hours",
     "20 high resolution digital edits",
+    "+ 20 digital edits OR 20 35mm film scans",
     "2 x 10-30 second 4k reels for social media",
   ],
   rate: 1200,
@@ -94,40 +97,90 @@ function Packages() {
 
   return (
     <PageLayout label="Packages">
-      <Group grow w="100%">
-        {packages.map((rate) => {
-          if (expandPackage && rate !== focusedPackage) {
-            return undefined;
-          }
-
-          return (
+      <Group grow w="100%" gap="0" h="100vh" pos="fixed" top="0" left="0">
+        {packages.map((rate) => (
+          <BackgroundImage
+            h="100%"
+            src={rate.image}
+            key={rate.label}
+            style={{
+              cursor: expandPackage ? undefined : "pointer",
+              maxWidth: expandPackage
+                ? focusedPackage === rate
+                  ? "100vw"
+                  : 0
+                : "auto",
+              transition: expandPackage
+                ? focusedPackage === rate
+                  ? "max-width 0.2s ease-in"
+                  : "max-width 0.2s ease-out"
+                : "max-width 0.2s ease-out",
+              overflow: "hidden",
+            }}
+          >
             <Stack
-              h="100vh"
+              h="100%"
+              py="4em"
               align="center"
-              justify="space-around"
-              key={rate.label}
+              justify="flex-start"
               onClick={() => !expandPackage && onSelectPackage(rate)}
               onMouseOver={() => setFocusedPackage(rate)}
             >
-              <Title>{rate.label}</Title>
+              <Title size="4em">{rate.label}</Title>
 
-              {expandPackage && rate === focusedPackage && (
-                <Flex w="100%" justify="space-between">
-                  {rate.label === "Man" && <PackageNavButton rate={legend} />}
-                  {rate.label === "Man" && <PackageNavButton rate={myth} />}
+              <Transition
+                mounted={focusedPackage === rate}
+                transition="fade"
+                duration={400}
+                timingFunction="ease"
+              >
+                {(styles) => (
+                  <Stack gap="0" align="center" style={styles}>
+                    <Text size="1.6em">{rate.title}</Text>
+                    <Text size="1.4em" fs="italic">
+                      {rate.subtitle}
+                    </Text>
+                  </Stack>
+                )}
+              </Transition>
 
-                  {rate.label === "Myth" && <PackageNavButton rate={man} />}
-                  {rate.label === "Myth" && <PackageNavButton rate={legend} />}
+              {expandPackage && focusedPackage && (
+                <Stack justify="space-around" h="100%" px="6em">
+                  <Text size="1.4em" ta="center">
+                    {focusedPackage.description}
+                  </Text>
 
-                  {rate.label === "Legend" && <PackageNavButton rate={myth} />}
-                  {rate.label === "Legend" && <PackageNavButton rate={man} />}
-                </Flex>
+                  <Stack gap="0" align="center">
+                    <Text size="1.4em" fs="italic">
+                      Choose this package is you want:
+                    </Text>
+                    {focusedPackage.inclusions.map((inclusion) => (
+                      <Text key={inclusion} size="1.4em">
+                        {inclusion}
+                      </Text>
+                    ))}
+                  </Stack>
+
+                  <Flex w="100%" justify="space-between">
+                    {rate.label === "Man" && <PackageNavButton rate={legend} />}
+                    {rate.label === "Myth" && <PackageNavButton rate={man} />}
+                    {rate.label === "Legend" && (
+                      <PackageNavButton rate={myth} />
+                    )}
+
+                    <Title>${focusedPackage.rate}</Title>
+
+                    {rate.label === "Man" && <PackageNavButton rate={myth} />}
+                    {rate.label === "Myth" && (
+                      <PackageNavButton rate={legend} />
+                    )}
+                    {rate.label === "Legend" && <PackageNavButton rate={man} />}
+                  </Flex>
+                </Stack>
               )}
-
-              <BackgroundImage src={rate.image} />
             </Stack>
-          );
-        })}
+          </BackgroundImage>
+        ))}
       </Group>
     </PageLayout>
   );
