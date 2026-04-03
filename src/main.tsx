@@ -37,7 +37,7 @@ createRoot(document.getElementById("root")!).render(
         <Routes>
           <Route path="man-kind" element={<ManKind />} />
 
-          <Route index element={<Home />} />
+          {/*<Route index element={<Home />} />
           <Route path="about-me" element={<AboutMe />} />
           <Route path="working-with-me" element={<WorkingWithMe />} />
           <Route path="contact" element={<Contact />} />
@@ -125,7 +125,7 @@ createRoot(document.getElementById("root")!).render(
                 }
               />
             </Route>
-          </Route>
+          </Route>*/}
         </Routes>
       </BrowserRouter>
     </MantineProvider>
