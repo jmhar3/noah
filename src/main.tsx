@@ -16,6 +16,7 @@ import "@mantine/core/styles.css";
 import "@mantine/dropzone/styles.css";
 import "@mantine/carousel/styles.css";
 import "./index.css";
+import ManKind from "./pages/ManKind.tsx";
 
 const theme = createTheme({
   fontFamily: "Cormorant Infant, serif",
@@ -34,6 +35,8 @@ createRoot(document.getElementById("root")!).render(
     <MantineProvider theme={theme}>
       <BrowserRouter>
         <Routes>
+          <Route path="man-kind" element={<ManKind />} />
+
           <Route index element={<Home />} />
           <Route path="about-me" element={<AboutMe />} />
           <Route path="working-with-me" element={<WorkingWithMe />} />
