@@ -1,4 +1,9 @@
-import { useDisclosure, useOrientation, useTimeout } from "@mantine/hooks";
+import {
+  useDisclosure,
+  useMediaQuery,
+  useOrientation,
+  useTimeout,
+} from "@mantine/hooks";
 import Countdown from "react-countdown";
 
 import {
@@ -9,6 +14,7 @@ import {
   Center,
   BackgroundImage,
   TextInput,
+  em,
 } from "@mantine/core";
 
 import image from "../assets/images/m.a.n.png";
@@ -30,6 +36,7 @@ const randomTaglineNumber = Math.floor(Math.random() * taglines.length);
 const countdownDate = new Date("2026-05-06T18:00:00");
 
 function ManKind() {
+  const isMobile = useMediaQuery(`(max-width: ${em(750)})`);
   const portraitImage = portraitImages[randomPortraitImageNumber];
   const landscapeImage = landscapeImages[randomLandscapeImageNumber];
   const tagline = taglines[randomTaglineNumber];
@@ -101,21 +108,30 @@ function ManKind() {
         h="100vh"
         src={type.includes("landscape") ? landscapeImage : portraitImage}
       >
-        <Stack align="center" p="9em" gap="4em">
+        <Stack align="center" py="9em" gap={isMobile ? "3em" : "4em"}>
           <Flex align="center">
-            <Text lh="0" size="8em" ff="Cormorant Infant">
+            <Text lh="0" size={isMobile ? "4em" : "8em"} ff="Cormorant Infant">
               M.A.N-
             </Text>
-            <Text lh="0" pt=".2em" size="9em" ff="Kapakana">
+            <Text
+              lh="0"
+              pt=".2em"
+              size={isMobile ? "4.8em" : "9em"}
+              ff="Kapakana"
+            >
               Kind
             </Text>
           </Flex>
-          <Text lh="1" size="2.1em" fs="italic">
+          <Text
+            lh={isMobile ? "0" : "1"}
+            size={isMobile ? "1.8em" : "2.1em"}
+            fs="italic"
+          >
             {tagline}
           </Text>
         </Stack>
         <Stack align="center" p="6em" gap="3em">
-          <Text size="3em" lh="0">
+          <Text size={isMobile ? "2.4em" : "3em"} lh="0">
             <Countdown date={countdownDate} />
           </Text>
 
@@ -123,7 +139,7 @@ function ManKind() {
             successMessage && <Text pl="13px">{successMessage}</Text>
           ) : showMailingListModal ? (
             <Stack gap="3" align="center">
-              <Flex gap="sm">
+              <Flex gap="sm" direction={isMobile ? "column" : "row"}>
                 <TextInput
                   bdrs="md"
                   size="md"
