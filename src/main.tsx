@@ -3,14 +3,14 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 import { Button, createTheme, MantineProvider } from "@mantine/core";
 
-import Home from "./pages/Home.tsx";
-import AboutMe from "./pages/AboutMe.tsx";
-import Contact from "./pages/Contact.tsx";
-import Packages from "./pages/Packages.tsx";
-import Portfolio from "./pages/Portfolio.tsx";
-import WorkingWithMe from "./pages/WorkingWithMe.tsx";
-import PasswordProtected from "./pages/PasswordProtected.tsx";
-import FAQ from "./pages/FAQ.tsx";
+// import Home from "./pages/Home.tsx";
+// import AboutMe from "./pages/AboutMe.tsx";
+// import Contact from "./pages/Contact.tsx";
+// import Packages from "./pages/Packages.tsx";
+// import Portfolio from "./pages/Portfolio.tsx";
+// import WorkingWithMe from "./pages/WorkingWithMe.tsx";
+// import PasswordProtected from "./pages/PasswordProtected.tsx";
+// import FAQ from "./pages/FAQ.tsx";
 
 import "@mantine/core/styles.css";
 import "@mantine/dropzone/styles.css";
