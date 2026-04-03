@@ -50,16 +50,16 @@ function CustomPackage(props: CustomPackageProps) {
         withAsterisk
         value={contactForm.customPackage.edits}
         data={edits.map(({ name }) => name)}
-        // onChange={(value) =>
-        //   setContactForm((prevForm) => ({
-        //     ...prevForm,
-        //     customPackage: {
-        //       ...prevForm.customPackage,
-        //       rate: 300,
-        //       edits: value
-        //     },
-        //   }))
-        // }
+        onChange={(value) =>
+          setContactForm((prevForm) => ({
+            ...prevForm,
+            customPackage: {
+              ...prevForm.customPackage,
+              rate: 300,
+              edits: value || "",
+            },
+          }))
+        }
       />
       <Group grow>
         <NumberInput
