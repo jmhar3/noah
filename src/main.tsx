@@ -2,7 +2,6 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 import { Button, createTheme, MantineProvider } from "@mantine/core";
-import { Analytics } from "@vercel/analytics/react";
 
 import ManKind from "./pages/ManKind.tsx";
 import Portal from "./pages/Portal.tsx";
@@ -34,8 +33,6 @@ const theme = createTheme({
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Analytics />
-
     <MantineProvider theme={theme}>
       <BrowserRouter>
         <Routes>
