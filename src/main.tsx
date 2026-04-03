@@ -2,8 +2,10 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 import { Button, createTheme, MantineProvider } from "@mantine/core";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
 
+import ManKind from "./pages/ManKind.tsx";
+import Portal from "./pages/Portal.tsx";
 // import Home from "./pages/Home.tsx";
 // import AboutMe from "./pages/AboutMe.tsx";
 // import Contact from "./pages/Contact.tsx";
@@ -17,7 +19,6 @@ import "@mantine/core/styles.css";
 import "@mantine/dropzone/styles.css";
 import "@mantine/carousel/styles.css";
 import "./index.css";
-import ManKind from "./pages/ManKind.tsx";
 
 const theme = createTheme({
   fontFamily: "Cormorant Infant, serif",
@@ -39,6 +40,7 @@ createRoot(document.getElementById("root")!).render(
       <BrowserRouter>
         <Routes>
           <Route path="man-kind" element={<ManKind />} />
+          <Route path="portal" element={<Portal />} />
 
           {/*<Route index element={<Home />} />
           <Route path="about-me" element={<AboutMe />} />
