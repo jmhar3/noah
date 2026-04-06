@@ -17,36 +17,48 @@ import {
   em,
 } from "@mantine/core";
 
-import image from "../assets/images/m.a.n.png";
 import { useState } from "react";
 import { supabase } from "../supabase";
 
-const landscapeImages = [image];
-const portraitImages = [image];
+const images = [
+  {
+    landscape:
+      "https://fmntylmftjjngcjtjbfa.supabase.co/storage/v1/object/public/images/landscape1.webp",
+    portrait:
+      "https://fmntylmftjjngcjtjbfa.supabase.co/storage/v1/object/public/images/portrait1.webp",
+  },
+  {
+    landscape:
+      "https://fmntylmftjjngcjtjbfa.supabase.co/storage/v1/object/public/images/landscape2.webp",
+    portrait:
+      "https://fmntylmftjjngcjtjbfa.supabase.co/storage/v1/object/public/images/portrait2.webp",
+  },
+  {
+    landscape:
+      "https://fmntylmftjjngcjtjbfa.supabase.co/storage/v1/object/public/images/landscape3.webp",
+    portrait:
+      "https://fmntylmftjjngcjtjbfa.supabase.co/storage/v1/object/public/images/portrait3.webp",
+  },
+];
 const taglines = ["Is this the end for M.A.N-Kind?", "M.A.N-Kind evolved"];
 
-const randomLandscapeImageNumber = Math.floor(
-  Math.random() * landscapeImages.length,
-);
-const randomPortraitImageNumber = Math.floor(
-  Math.random() * landscapeImages.length,
-);
+const randomImageNumber = Math.floor(Math.random() * images.length);
 const randomTaglineNumber = Math.floor(Math.random() * taglines.length);
 
 const countdownDate = new Date("2026-05-06T18:00:00");
 
 function ManKind() {
+  const { type } = useOrientation();
   const isMobile = useMediaQuery(`(max-width: ${em(750)})`);
-  const portraitImage = portraitImages[randomPortraitImageNumber];
-  const landscapeImage = landscapeImages[randomLandscapeImageNumber];
+
   const tagline = taglines[randomTaglineNumber];
+  const { portrait: portraitImage, landscape: landscapeImage } =
+    images[randomImageNumber];
 
   const [
     showMailingListModal,
     { open: openMailingListModal, close: closeMailingListModal },
   ] = useDisclosure(false);
-
-  const { type } = useOrientation();
 
   const [email, setEmail] = useState<string>();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -101,36 +113,43 @@ function ManKind() {
     }
   };
 
-  return (
+  return isMobile ? (
     <Center h="100vh" c="floralwhite">
       <BackgroundImage
         h="100vh"
         src={type.includes("landscape") ? landscapeImage : portraitImage}
       >
-        <Stack align="center" py="9em" gap={isMobile ? "3em" : "4em"}>
+        <Stack
+          w="100%"
+          gap="3em"
+          top="3.3em"
+          pos="fixed"
+          align="center"
+          justify="center"
+        >
           <Flex align="center">
-            <Text lh="0" size={isMobile ? "4em" : "8em"} ff="Cormorant Infant">
+            <Text lh="0" size="4em" ff="Cormorant Infant">
               M.A.N-
             </Text>
-            <Text
-              lh="0"
-              pt=".2em"
-              size={isMobile ? "4.8em" : "9em"}
-              ff="Kapakana"
-            >
+            <Text lh="0" pt=".2em" size="4.8em" ff="Kapakana">
               Kind
             </Text>
           </Flex>
-          <Text
-            lh={isMobile ? "0" : "1"}
-            size={isMobile ? "1.8em" : "2.1em"}
-            fs="italic"
-          >
+
+          <Text lh="0" size="1.8em" fs="italic">
             {tagline}
           </Text>
         </Stack>
-        <Stack align="center" p="6em" gap="3em">
-          <Text size={isMobile ? "2.4em" : "3em"} lh="0">
+
+        <Stack
+          w="100%"
+          gap="2.4em"
+          pos="fixed"
+          bottom="2.7em"
+          align="center"
+          justify="center"
+        >
+          <Text size="2.4em" lh="0">
             <Countdown date={countdownDate} />
           </Text>
 
@@ -138,7 +157,7 @@ function ManKind() {
             successMessage && <Text pl="13px">{successMessage}</Text>
           ) : showMailingListModal ? (
             <Stack gap="3" align="center">
-              <Flex gap="sm" direction={isMobile ? "column" : "row"}>
+              <Flex gap="sm" direction="column">
                 <TextInput
                   bdrs="md"
                   size="md"
@@ -157,6 +176,7 @@ function ManKind() {
                     },
                   }}
                 />
+
                 <Button
                   size="md"
                   radius="md"
@@ -168,6 +188,87 @@ function ManKind() {
                   SIGN UP
                 </Button>
               </Flex>
+
+              <Text pl="13px" c="red">
+                {errorMessage}
+              </Text>
+            </Stack>
+          ) : (
+            <Button
+              size="md"
+              radius="md"
+              variant="outline"
+              color="floralwhite"
+              onClick={openMailingListModal}
+            >
+              JOIN MAILING LIST
+            </Button>
+          )}
+        </Stack>
+      </BackgroundImage>
+    </Center>
+  ) : (
+    <Center h="100vh" c="floralwhite">
+      <BackgroundImage
+        h="100vh"
+        src={type.includes("landscape") ? landscapeImage : portraitImage}
+      >
+        <Stack align="center" py="9em" gap="4em">
+          <Flex align="center">
+            <Text lh="0" size="8em" ff="Cormorant Infant">
+              M.A.N-
+            </Text>
+            <Text lh="0" pt=".2em" size="9em" ff="Kapakana">
+              Kind
+            </Text>
+          </Flex>
+
+          <Text lh="1" size="2.1em" fs="italic">
+            {tagline}
+          </Text>
+        </Stack>
+
+        <Stack align="center" p="6em" gap="3em">
+          <Text size="3em" lh="0">
+            <Countdown date={countdownDate} />
+          </Text>
+
+          {submissionSuccess ? (
+            successMessage && <Text pl="13px">{successMessage}</Text>
+          ) : showMailingListModal ? (
+            <Stack gap="3" align="center">
+              <Flex gap="sm" direction="row">
+                <TextInput
+                  bdrs="md"
+                  size="md"
+                  type="email"
+                  value={email}
+                  variant="unstyled"
+                  placeholder="YOUR EMAIL"
+                  bd="1px solid floralwhite"
+                  onChange={(event) => setEmail(event.target.value)}
+                  styles={{
+                    input: {
+                      paddingLeft: "12px",
+                      paddingRight: "12px",
+                      color: "floralwhite",
+                      backgroundColor: "none",
+                    },
+                  }}
+                />
+
+                <Button
+                  size="md"
+                  radius="md"
+                  variant="outline"
+                  color="floralwhite"
+                  onClick={onJoinMailingList}
+                  loading={isSubmitting}
+                >
+                  SIGN UP
+                </Button>
+              </Flex>
+
               <Text pl="13px" c="red">
                 {errorMessage}
               </Text>
