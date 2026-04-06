@@ -115,10 +115,7 @@ function ManKind() {
 
   return isMobile ? (
     <Center h={window.innerHeight} c="floralwhite">
-      <BackgroundImage
-        h={window.innerHeight}
-        src={type.includes("landscape") ? landscapeImage : portraitImage}
-      >
+      <BackgroundImage h={window.innerHeight} src={portraitImage}>
         <Stack
           w="100%"
           gap="3em"
