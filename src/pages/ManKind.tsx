@@ -1,9 +1,4 @@
-import {
-  useDisclosure,
-  useMediaQuery,
-  useOrientation,
-  useTimeout,
-} from "@mantine/hooks";
+import { useDisclosure, useMediaQuery, useTimeout } from "@mantine/hooks";
 import Countdown from "react-countdown";
 
 import {
@@ -40,7 +35,11 @@ const images = [
       "https://fmntylmftjjngcjtjbfa.supabase.co/storage/v1/object/public/images/portrait3.webp",
   },
 ];
-const taglines = ["Is this the end for M.A.N-Kind?", "M.A.N-Kind evolved"];
+const taglines = [
+  "Is this the end for mankind?",
+  "Mankind's revolution",
+  "A new beginning for mankind",
+];
 
 const randomImageNumber = Math.floor(Math.random() * images.length);
 const randomTaglineNumber = Math.floor(Math.random() * taglines.length);
@@ -48,7 +47,6 @@ const randomTaglineNumber = Math.floor(Math.random() * taglines.length);
 const countdownDate = new Date("2026-05-06T18:00:00");
 
 function ManKind() {
-  const { type } = useOrientation();
   const isMobile = useMediaQuery(`(max-width: ${em(750)})`);
 
   const tagline = taglines[randomTaglineNumber];
