@@ -206,10 +206,7 @@ function ManKind() {
     </Center>
   ) : (
     <Center h="100vh" c="floralwhite">
-      <BackgroundImage
-        h="100vh"
-        src={type.includes("landscape") ? landscapeImage : portraitImage}
-      >
+      <BackgroundImage h="100vh" src={landscapeImage}>
         <Stack align="center" py="9em" gap="4em">
           <Flex align="center">
             <Text lh="0" size="8em" ff="Cormorant Infant">
