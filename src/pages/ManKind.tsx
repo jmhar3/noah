@@ -78,11 +78,10 @@ function ManKind() {
           .from("mailing_list")
           .insert({ email: email });
 
-        if (status === 201) {
+        if (status === 201 || status === 409) {
           showSuccessMessage();
           setSubmissionSuccess(true);
           onCloseJoinMailingList();
-          setErrorMessage(null);
         }
 
         if (status === 400) {
