@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router";
 import { Button, createTheme, MantineProvider } from "@mantine/core";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -38,6 +38,8 @@ createRoot(document.getElementById("root")!).render(
       <Analytics />
       <BrowserRouter>
         <Routes>
+          <Route path="*" element={<Navigate to="/man-kind" replace />} />
+
           <Route path="man-kind" element={<ManKind />} />
           <Route path="portal" element={<Portal />} />
 
