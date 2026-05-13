@@ -5,14 +5,15 @@ import { Button, createTheme, MantineProvider } from "@mantine/core";
 import { Analytics } from "@vercel/analytics/react";
 
 import ManKind from "./pages/ManKind.tsx";
-// import Home from "./pages/Home.tsx";
-// import AboutMe from "./pages/AboutMe.tsx";
-// import Contact from "./pages/Contact.tsx";
-// import Packages from "./pages/Packages.tsx";
-// import Portfolio from "./pages/Portfolio.tsx";
-// import WorkingWithMe from "./pages/WorkingWithMe.tsx";
-// import PasswordProtected from "./pages/PasswordProtected.tsx";
-// import FAQ from "./pages/FAQ.tsx";
+import Portal from "./pages/Portal.tsx";
+import Home from "./pages/Home.tsx";
+import AboutMe from "./pages/AboutMe.tsx";
+import Contact from "./pages/Contact.tsx";
+import Packages from "./pages/Packages.tsx";
+import Portfolio from "./pages/Portfolio.tsx";
+import WorkingWithMe from "./pages/WorkingWithMe.tsx";
+import PasswordProtected from "./pages/PasswordProtected.tsx";
+import FAQ from "./pages/FAQ.tsx";
 
 import "@mantine/core/styles.css";
 import "@mantine/dropzone/styles.css";
@@ -25,7 +26,7 @@ const theme = createTheme({
   components: {
     Button: Button.extend({
       defaultProps: {
-        color: "cadetblue",
+        color: "steelblue",
       },
     }),
   },
@@ -37,11 +38,11 @@ createRoot(document.getElementById("root")!).render(
       <Analytics />
       <BrowserRouter>
         <Routes>
-          <Route path="*" element={<Navigate to="/man-kind" replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
 
           <Route path="man-kind" element={<ManKind />} />
 
-          {/*<Route index element={<Home />} />
+          <Route index element={<Home />} />
           <Route path="about-me" element={<AboutMe />} />
           <Route path="working-with-me" element={<WorkingWithMe />} />
           <Route path="contact" element={<Contact />} />
@@ -129,7 +130,7 @@ createRoot(document.getElementById("root")!).render(
                 }
               />
             </Route>
-          </Route>*/}
+          </Route>
         </Routes>
       </BrowserRouter>
     </MantineProvider>
