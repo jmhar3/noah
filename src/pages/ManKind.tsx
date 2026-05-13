@@ -9,6 +9,7 @@ import {
   Stack,
   Button,
   Center,
+  TextInput,
   BackgroundImage,
 } from "@mantine/core";
 
