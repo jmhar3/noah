@@ -1,7 +1,8 @@
 import { useDisclosure } from "@mantine/hooks";
-import { Modal, Button, Stack, Title, ActionIcon } from "@mantine/core";
+import { Modal, Stack, Title, ActionIcon, Center } from "@mantine/core";
 
 import MenuIcon from "../assets/icons/MenuIcon";
+import MenuButton from "./MenuButton";
 
 interface MenuItem {
   label: string;
@@ -24,25 +25,40 @@ function Menu() {
 
   return (
     <>
-      <Modal fullScreen opened={opened} onClose={close} withCloseButton={false}>
-        <Stack align="center">
-          <Title size="6em">Melbourne Art Natural</Title>
+      <Modal
+        fullScreen
+        opened={opened}
+        onClose={close}
+        withCloseButton={false}
+        styles={{
+          content: { background: "floralwhite" },
+        }}
+      >
+        <Center h="100vh">
+          <Stack
+            pt="4.5em"
+            pb="8em"
+            h="100%"
+            align="center"
+            justify="space-around"
+          >
+            <Title size="6em" h="1.5em">
+              Melbourne Art Natural
+            </Title>
 
-          {menu.map(({ label, path, isExternal }) => (
-            <Button
-              key="label"
-              component="a"
-              variant="transparent"
-              target={isExternal ? "_blank" : undefined}
-              href={path}
-            >
-              {label.toUpperCase()}
-            </Button>
-          ))}
-        </Stack>
+            {menu.map((buttonProps) => (
+              <MenuButton key={buttonProps.label} {...buttonProps} />
+            ))}
+          </Stack>
+        </Center>
       </Modal>
 
-      <ActionIcon size="lg" color="cadetblue" variant="filled" onClick={open}>
+      <ActionIcon
+        size="lg"
+        color="steelblue"
+        variant="transparent"
+        onClick={open}
+      >
         <MenuIcon />
       </ActionIcon>
     </>
