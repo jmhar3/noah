@@ -1,187 +1,156 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
-
-import {
-  Flex,
-  Text,
-  Group,
-  Stack,
-  Title,
-  Button,
-  Transition,
-  BackgroundImage,
-} from "@mantine/core";
+import { Stack, Divider, UnstyledButton } from "@mantine/core";
+import { preload } from "react-dom";
 
 import PageLayout from "./PageLayout";
+import Package from "../components/Package";
 
-interface Package {
-  rate: number;
-  image: string;
-  label: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  inclusions: string[];
-}
+import type { PackageType } from "../components/Package";
+
+import image from "../assets/images/m.a.n.png";
 
 const man = {
   label: "Man",
-  image: "https://i.sstatic.net/3xDTD.jpg",
+  image:
+    "https://fmntylmftjjngcjtjbfa.supabase.co/storage/v1/object/public/images/portrait1.webp",
   title: "Digital Photography",
   subtitle: "My best seller",
   description:
     "This package is for you if you need some high quality portraits looking your absolute best. Good for content creators, people wanting their first ever photoshoot, a fun and different present for your partner or just something to celebrate how amazing you look!",
-  inclusions: ["1.5 hours", "25 high resolution edits"],
+  inclusions: [
+    { icon: "", label: "1.5 hours", description: "" },
+    {
+      icon: "",
+      label: "Digital Photography",
+      description: "25 high resolution photos edits",
+    },
+  ],
   rate: 500,
 };
 
 const myth = {
   label: "Myth",
   image:
-    "https://www.adobe.com/la/creativecloud/file-types/image/raster/media_13f659e708c031c519b546ba716f2cdc0d34c90ec.jpeg?width=1200&format=pjpg&optimize=medium",
+    "https://fmntylmftjjngcjtjbfa.supabase.co/storage/v1/object/public/images/portrait2.webp",
   title: "35mm Film + Social Reel",
   subtitle: "My personal favourite",
   description:
-    "This package is my absolute favourite. It might take a little longer for you to receive your content, but isn’t the antici…pation half the fun? This package blends classical 35mm photography(the film stock will be tailored to you and your vision) with high quality 4k video to make something really special for you to cherish.",
+    "This package is my absolute favourite. It might take a little longer for you to receive your content, but isn’t the antici…pation half the fun? This package blends classical 35mm photography (the film stock will be tailored to you and your vision) with high quality 4k video to make something really special for you to cherish.",
   inclusions: [
-    "2 hours",
-    "20 high res film scans",
-    "1 x 10-20 second 4k reel for social media",
+    {
+      icon: "",
+      label: "2 hours",
+      description: "Enough time for a 2 - 3 outfits",
+    },
+    {
+      icon: "",
+      label: "Film Photography",
+      description: "includes 20 high res film scans",
+    },
+    {
+      icon: "",
+      label: "Social Reel",
+      description: "1 x 10-20 second 4k reel for social media",
+    },
   ],
   rate: 650,
 };
 
 const legend = {
   label: "Legend",
-  image: "https://kenchris.github.io/wasm-webp/test3.webp",
+  image:
+    "https://fmntylmftjjngcjtjbfa.supabase.co/storage/v1/object/public/images/portrait3.webp",
   title: "Complete package",
-  subtitle:
-    "The ultimate brand booster or a really special treat yourself moment",
+  subtitle: "The ultimate treat yourself moment",
   description:
-    "This package is half a day worth of shooting for you, and extra time dedicated to you in post production for me. This package has all the bells and whistles, the classical and almost impossible to replicate look and feel of 35mm film if you want it combined with digital images for the more immediate and flexible purposes with a splash of video thrown in for good measure.",
+    "This package is half a day worth of shooting for you, and extra time dedicated to you in post production by me. This package has all the bells and whistles. The classical and almost impossible to replicate look and feel of 35mm film, combined with digital images for the more immediate and flexible purposes with a splash of video thrown in for good measure.",
   inclusions: [
-    "4 hours",
-    "20 high resolution digital edits",
-    "+ 20 digital edits OR 20 35mm film scans",
-    "2 x 10-30 second 4k reels for social media",
+    {
+      icon: "",
+      label: "4 hours",
+      description: "Plenty of time for an outdoor shoot",
+    },
+    {
+      icon: "",
+      label: "Digital Photography",
+      description: "20 high resolution photos edits",
+    },
+    {
+      icon: "",
+      label: "Additional Images",
+      description:
+        "Your choice of either 20 digital edits or 20 35mm film scans",
+    },
+    {
+      icon: "",
+      label: "Social Reels",
+      description: "2 x 10-30 second 4k reels for social media",
+    },
   ],
   rate: 1200,
 };
 
-const packages: Package[] = [{ ...man }, { ...myth }, { ...legend }];
+const packages: PackageType[] = [{ ...man }, { ...myth }, { ...legend }];
 
 function Packages() {
-  const navigate = useNavigate();
   const { pathname } = useLocation();
-  const isSecret = pathname.includes("secret");
+  const navigate = useNavigate();
 
-  const findPackage = packages.find((rate) =>
-    pathname.includes(rate.label.toLowerCase()),
-  );
+  preload("https://example.com", { as: "image" });
 
-  const [focusedPackage, setFocusedPackage] = useState(findPackage);
+  const isNotFocused =
+    pathname === "/packages" || pathname === "/secret/packages";
 
-  const [expandPackage, setExpandPackage] = useState(!!findPackage);
+  const [highlightedPackage, setHighlightedPackage] =
+    useState<PackageType | null>(null);
 
-  const onSelectPackage = (rate: Package) => {
-    setFocusedPackage(rate);
-    setExpandPackage(true);
-    navigate(
-      `${isSecret ? "/secret" : ""}/packages/${rate.label.toLowerCase()}`,
+  if (pathname.includes("man") && highlightedPackage !== man)
+    setHighlightedPackage(man);
+  if (pathname.includes("myth") && highlightedPackage !== myth)
+    setHighlightedPackage(myth);
+  if (pathname.includes("legend") && highlightedPackage !== legend)
+    setHighlightedPackage(legend);
+
+  useEffect(() => {
+    preload(
+      "https://fmntylmftjjngcjtjbfa.supabase.co/storage/v1/object/public/images/portrait1.webp",
+      { as: "image" },
     );
-  };
-
-  const PackageNavButton = ({ rate }: { rate: Package }) => {
-    return <Button onClick={() => onSelectPackage(rate)}>{rate.label}</Button>;
-  };
+    preload(
+      "https://fmntylmftjjngcjtjbfa.supabase.co/storage/v1/object/public/images/portrait2.webp",
+      { as: "image" },
+    );
+    preload(
+      "https://fmntylmftjjngcjtjbfa.supabase.co/storage/v1/object/public/images/portrait3.webp",
+      { as: "image" },
+    );
+  }, []);
 
   return (
-    <PageLayout label="Packages">
-      <Group grow w="100%" gap="0" h="100vh" pos="fixed" top="0" left="0">
-        {packages.map((rate) => (
-          <BackgroundImage
-            h="100%"
-            src={rate.image}
-            key={rate.label}
-            style={{
-              cursor: expandPackage ? undefined : "pointer",
-              maxWidth: expandPackage
-                ? focusedPackage === rate
-                  ? "100vw"
-                  : 0
-                : "auto",
-              transition: expandPackage
-                ? focusedPackage === rate
-                  ? "max-width 0.2s ease-in"
-                  : "max-width 0.2s ease-out"
-                : "max-width 0.2s ease-out",
-              overflow: "hidden",
-            }}
-          >
-            <Stack
-              h="100%"
-              py="4em"
-              align="center"
-              justify="flex-start"
-              onClick={() => !expandPackage && onSelectPackage(rate)}
-              onMouseOver={() => setFocusedPackage(rate)}
-            >
-              <Title size="4em">{rate.label}</Title>
+    <PageLayout
+      label={isNotFocused ? "Packages*" : "Packages"}
+      image={highlightedPackage?.image || image}
+    >
+      <Stack h="calc(100vh - 8em)" justify="space-between">
+        {packages.map((rate, index) => (
+          <>
+            {index !== 0 && isNotFocused && <Divider w="100%" />}
 
-              <Transition
-                mounted={focusedPackage === rate}
-                transition="fade"
-                duration={400}
-                timingFunction="ease"
-              >
-                {(styles) => (
-                  <Stack gap="0" align="center" style={styles}>
-                    <Text size="1.6em">{rate.title}</Text>
-                    <Text size="1.4em" fs="italic">
-                      {rate.subtitle}
-                    </Text>
-                  </Stack>
-                )}
-              </Transition>
-
-              {expandPackage && focusedPackage && (
-                <Stack justify="space-around" h="100%" px="6em">
-                  <Text size="1.4em" ta="center">
-                    {focusedPackage.description}
-                  </Text>
-
-                  <Stack gap="0" align="center">
-                    <Text size="1.4em" fs="italic">
-                      Choose this package is you want:
-                    </Text>
-                    {focusedPackage.inclusions.map((inclusion) => (
-                      <Text key={inclusion} size="1.4em">
-                        {inclusion}
-                      </Text>
-                    ))}
-                  </Stack>
-
-                  <Flex w="100%" justify="space-between">
-                    {rate.label === "Man" && <PackageNavButton rate={legend} />}
-                    {rate.label === "Myth" && <PackageNavButton rate={man} />}
-                    {rate.label === "Legend" && (
-                      <PackageNavButton rate={myth} />
-                    )}
-
-                    <Title>${focusedPackage.rate}</Title>
-
-                    {rate.label === "Man" && <PackageNavButton rate={myth} />}
-                    {rate.label === "Myth" && (
-                      <PackageNavButton rate={legend} />
-                    )}
-                    {rate.label === "Legend" && <PackageNavButton rate={man} />}
-                  </Flex>
-                </Stack>
-              )}
-            </Stack>
-          </BackgroundImage>
+            <Package
+              key={rate.title}
+              {...rate}
+              setHighlightedPackage={setHighlightedPackage}
+            />
+          </>
         ))}
-      </Group>
+
+        {isNotFocused && (
+          <UnstyledButton onClick={() => navigate("/contact")} td="underline">
+            * Custom packages also available. Inquire for more info.
+          </UnstyledButton>
+        )}
+      </Stack>
     </PageLayout>
   );
 }
