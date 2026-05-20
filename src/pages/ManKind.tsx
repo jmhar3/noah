@@ -44,7 +44,7 @@ const taglines = [
 const randomImageNumber = Math.floor(Math.random() * images.length);
 const randomTaglineNumber = Math.floor(Math.random() * taglines.length);
 
-const countdownDate = new Date("2026-05-20T19:00:00");
+const countdownDate = new Date("2026-05-21T19:00:00");
 
 function ManKind() {
   const isMobile = useMediaQuery(`(max-width: ${em(750)})`);
