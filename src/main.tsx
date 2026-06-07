@@ -5,7 +5,6 @@ import { Button, createTheme, MantineProvider } from "@mantine/core";
 import { Analytics } from "@vercel/analytics/react";
 
 import ManKind from "./pages/ManKind.tsx";
-import Portal from "./pages/Portal.tsx";
 // import Home from "./pages/Home.tsx";
 // import AboutMe from "./pages/AboutMe.tsx";
 // import Contact from "./pages/Contact.tsx";
@@ -41,7 +40,6 @@ createRoot(document.getElementById("root")!).render(
           <Route path="*" element={<Navigate to="/man-kind" replace />} />
 
           <Route path="man-kind" element={<ManKind />} />
-          <Route path="portal" element={<Portal />} />
 
           {/*<Route index element={<Home />} />
           <Route path="about-me" element={<AboutMe />} />
