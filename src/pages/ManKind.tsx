@@ -200,8 +200,8 @@ function ManKind() {
           style={{ overflow: "scroll" }}
         >
           <Center bg="rgba(0, 0, 0, .2)">
-            <Stack align="center" maw="1240px" gap="4.5em">
-              <Stack align="center" pt="9em" gap="3em">
+            <Stack align="center" maw="1240px" gap="4.5em" py="9em">
+              <Stack align="center" gap="3em">
                 <Text lh="1" size="2.1em" fs="italic">
                   Melbourne Art Natural presents:
                 </Text>
