@@ -45,6 +45,9 @@ createRoot(document.getElementById("root")!).render(
           <Route path="about-me" element={<AboutMe />} />
           <Route path="working-with-me" element={<WorkingWithMe />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="contact/man" element={<Contact />} />
+          <Route path="contact/myth" element={<Contact />} />
+          <Route path="contact/legend" element={<Contact />} />
           <Route path="faq" element={<FAQ />} />
 
           <Route path="packages">
