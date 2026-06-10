@@ -25,14 +25,18 @@ const info = [
     ],
   },
   {
-    title: "Where can we shoot?",
+    title: "Where we can shoot",
     text: [
       "I always love shooting outdoors, and I have stunning beach and forest locations I use regularly. I do charge a small additional fee for travel time 1hr+ from the CBD, but I also have a gorgeous studio in Fitzroy called XIXI Studio we can use for no additional fee. If you would feel more comfortable to have me come to you, I am completely happy and capable of bringing my studio lights and cameras to your house, hotel or Airbnb, and I’m also completely willing and able to travel interstate with additional costs covered.",
     ],
   },
   {
-    title: "Privacy + handling sensitive material",
-    text: ["Sensitive film can be scanned by me."],
+    title: "Privacy + handling of sensitive material",
+    text: [
+      "Your privacy, safety and security are very important to me. If you decide that you’d like to shoot images with me which may involve nudity or sexually suggestive/explicit content then I want to make sure you’re confident that they will be handled with care and discretion.",
+      "Digital images will be stored offline and you are in control of how long I retain this data. By default your RAW images are stored on twin hard drives for 12 months to account for redundancy and data loss, and your final edits are also stored on the cloud. If you would like this data to be stored for more or less time, or you would like to purchase your RAWs, all of these options are available to you.",
+      "In addition to digital images I also shoot 35mm film. If you would like sensitive images captured on the beauty of film I can assure you that I scan and digitally process all of the film myself, so no labs and no other eyes will have access to your images. You are also entitled to the roll of film negatives to keep if you wish, but I’m also capable and willing to archive these safely if you’d prefer.",
+    ],
   },
 ];
 
@@ -41,7 +45,7 @@ function WorkingWithMe() {
     <PageLayout label="Working With Me" image={aboutImage}>
       {info.map(({ title, text }, index) => (
         <>
-          {index !== 0 && <Divider />}
+          {index !== 0 && <Divider color="#b44655" />}
           <Stack key={title} gap="sm">
             <Text size="1.4em">{title.toUpperCase()}</Text>
             <Stack>
