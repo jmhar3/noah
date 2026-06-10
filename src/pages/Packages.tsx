@@ -1,27 +1,34 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { Stack, Divider, UnstyledButton } from "@mantine/core";
-import { preload } from "react-dom";
+import { Stack, Divider } from "@mantine/core";
 
 import PageLayout from "./PageLayout";
 import Package from "../components/Package";
+import LinkButton from "../components/LinkButton";
 
 import type { PackageType } from "../components/Package";
 
 import image from "../assets/images/m.a.n.png";
+import manImage from "../assets/images/beach_portrait.webp";
+import mythImage from "../assets/images/forest_portrait.webp";
+import legendImage from "../assets/images/lake_portrait.webp";
+
+import CameraIcon from "../assets/icons/CameraIcon.tsx";
+import ClockIcon from "../assets/icons/ClockIcon.tsx";
+import FilmIcon from "../assets/icons/FilmIcon.tsx";
+import PlusIcon from "../assets/icons/PlusIcon.tsx";
 
 const man = {
   label: "Man",
-  image:
-    "https://fmntylmftjjngcjtjbfa.supabase.co/storage/v1/object/public/images/portrait1.webp",
+  image: manImage,
   title: "Digital Photography",
   subtitle: "My best seller",
   description:
     "This package is for you if you need some high quality portraits looking your absolute best. Good for content creators, people wanting their first ever photoshoot, a fun and different present for your partner or just something to celebrate how amazing you look!",
   inclusions: [
-    { icon: "", label: "1.5 hours", description: "" },
+    { icon: <ClockIcon />, label: "1.5 hours", description: "" },
     {
-      icon: "",
+      icon: <CameraIcon />,
       label: "Digital Photography",
       description: "25 high resolution photos edits",
     },
@@ -31,25 +38,24 @@ const man = {
 
 const myth = {
   label: "Myth",
-  image:
-    "https://fmntylmftjjngcjtjbfa.supabase.co/storage/v1/object/public/images/portrait2.webp",
+  image: mythImage,
   title: "35mm Film + Social Reel",
   subtitle: "My personal favourite",
   description:
     "This package is my absolute favourite. It might take a little longer for you to receive your content, but isn’t the antici…pation half the fun? This package blends classical 35mm photography (the film stock will be tailored to you and your vision) with high quality 4k video to make something really special for you to cherish.",
   inclusions: [
     {
-      icon: "",
+      icon: <ClockIcon />,
       label: "2 hours",
       description: "Enough time for a 2 - 3 outfits",
     },
     {
-      icon: "",
+      icon: <CameraIcon />,
       label: "Film Photography",
       description: "includes 20 high res film scans",
     },
     {
-      icon: "",
+      icon: <FilmIcon />,
       label: "Social Reel",
       description: "1 x 10-20 second 4k reel for social media",
     },
@@ -59,31 +65,30 @@ const myth = {
 
 const legend = {
   label: "Legend",
-  image:
-    "https://fmntylmftjjngcjtjbfa.supabase.co/storage/v1/object/public/images/portrait3.webp",
+  image: legendImage,
   title: "Complete package",
   subtitle: "The ultimate treat yourself moment",
   description:
     "This package is half a day worth of shooting for you, and extra time dedicated to you in post production by me. This package has all the bells and whistles. The classical and almost impossible to replicate look and feel of 35mm film, combined with digital images for the more immediate and flexible purposes with a splash of video thrown in for good measure.",
   inclusions: [
     {
-      icon: "",
+      icon: <ClockIcon />,
       label: "4 hours",
       description: "Plenty of time for an outdoor shoot",
     },
     {
-      icon: "",
+      icon: <CameraIcon />,
       label: "Digital Photography",
       description: "20 high resolution photos edits",
     },
     {
-      icon: "",
+      icon: <PlusIcon />,
       label: "Additional Images",
       description:
-        "Your choice of either 20 digital edits or 20 35mm film scans",
+        "Your choice of an additional 20 digital edits or 35mm film scans",
     },
     {
-      icon: "",
+      icon: <FilmIcon />,
       label: "Social Reels",
       description: "2 x 10-30 second 4k reels for social media",
     },
@@ -97,8 +102,6 @@ function Packages() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  preload("https://example.com", { as: "image" });
-
   const isNotFocused =
     pathname === "/packages" || pathname === "/secret/packages";
 
@@ -111,21 +114,6 @@ function Packages() {
     setHighlightedPackage(myth);
   if (pathname.includes("legend") && highlightedPackage !== legend)
     setHighlightedPackage(legend);
-
-  useEffect(() => {
-    preload(
-      "https://fmntylmftjjngcjtjbfa.supabase.co/storage/v1/object/public/images/portrait1.webp",
-      { as: "image" },
-    );
-    preload(
-      "https://fmntylmftjjngcjtjbfa.supabase.co/storage/v1/object/public/images/portrait2.webp",
-      { as: "image" },
-    );
-    preload(
-      "https://fmntylmftjjngcjtjbfa.supabase.co/storage/v1/object/public/images/portrait3.webp",
-      { as: "image" },
-    );
-  }, []);
 
   return (
     <PageLayout
@@ -146,9 +134,10 @@ function Packages() {
         ))}
 
         {isNotFocused && (
-          <UnstyledButton onClick={() => navigate("/contact")} td="underline">
-            * Custom packages also available. Inquire for more info.
-          </UnstyledButton>
+          <LinkButton
+            label="* Custom packages also available. Inquire for more info."
+            onClick={() => navigate("/contact")}
+          />
         )}
       </Stack>
     </PageLayout>
