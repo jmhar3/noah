@@ -28,7 +28,7 @@ function InquiryDetails(props: InquiryDetailsProps) {
     "ROLL OF FILM",
     "30 MINS EXTENSION",
     "ADDITIONAL EDITS",
-    "SOCIAL MEDIA VIDEO",
+    "20-30 SECOND VIDEO",
   ];
 
   return (
@@ -39,6 +39,7 @@ function InquiryDetails(props: InquiryDetailsProps) {
           size="sm"
           fullWidth
           radius="md"
+          color="steelblue"
           value={contactForm.preferredPackage}
           data={preferredPackages}
           onChange={(value) =>
@@ -47,6 +48,12 @@ function InquiryDetails(props: InquiryDetailsProps) {
               preferredPackage: value as PreferredPackage,
             }))
           }
+          styles={{
+            root: {
+              background: "white",
+              border: "solid 1px lightsteelblue",
+            },
+          }}
         />
       </Stack>
 
@@ -60,7 +67,6 @@ function InquiryDetails(props: InquiryDetailsProps) {
           size="sm"
           radius="md"
           label="ADD-ONS"
-          variant="filled"
           value={contactForm.addOns}
           data={addOns}
           onChange={(value) =>
@@ -77,6 +83,7 @@ function InquiryDetails(props: InquiryDetailsProps) {
         radius="md"
         withAsterisk
         label="MESSAGE"
+        c="steelblue"
         value={contactForm.message}
         onChange={(event) =>
           setContactForm((prevForm) => ({

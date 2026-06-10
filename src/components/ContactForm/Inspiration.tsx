@@ -28,6 +28,12 @@ function Inspiration(props: InspirationProps) {
         label="MOOD BOARD"
         value={contactForm.moodboardLink}
         placeholder="eg. www.pinterest.com/moodboard"
+        onChange={(event) =>
+          setContactForm((prevForm) => ({
+            ...prevForm,
+            moodboardLink: event.target.value,
+          }))
+        }
       />
 
       <ImageDropzone
