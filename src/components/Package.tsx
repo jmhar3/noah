@@ -1,5 +1,7 @@
 import { useMemo } from "react";
 import { useLocation, useNavigate } from "react-router";
+import { useHover } from "@mantine/hooks";
+
 import {
   Flex,
   Text,
@@ -9,11 +11,11 @@ import {
   Divider,
   Accordion,
 } from "@mantine/core";
-import { useHover } from "@mantine/hooks";
-import AtIcon from "../assets/icons/AtIcon";
+
+import type { JSX } from "react";
 
 export interface Inclusion {
-  icon: string;
+  icon: JSX.Element;
   label: string;
   description: string;
 }
@@ -101,42 +103,58 @@ function Package(props: PackageProps) {
 
   if (isFocused) {
     return (
-      <Stack justify="space-around" h="100%" w="100%" align="center">
+      <Stack justify="space-between" h="100%" w="100%" align="center">
         <Stack>
           <Flex w="100%" align="center">
             {props.label === "Man" && (
-              <Button w="fit-content" onClick={() => onSelectPackage("legend")}>
-                Legend
+              <Button
+                w="9em"
+                fw="bold"
+                onClick={() => onSelectPackage("legend")}
+              >
+                LEGEND
               </Button>
             )}
             {props.label === "Myth" && (
-              <Button onClick={() => onSelectPackage("man")}>Man</Button>
+              <Button w="9em" fw="bold" onClick={() => onSelectPackage("man")}>
+                MAN
+              </Button>
             )}
             {props.label === "Legend" && (
-              <Button onClick={() => onSelectPackage("myth")}>Myth</Button>
+              <Button w="9em" fw="bold" onClick={() => onSelectPackage("myth")}>
+                MYTH
+              </Button>
             )}
 
             {title}
 
             {props.label === "Man" && (
-              <Button onClick={() => onSelectPackage("myth")}>Myth</Button>
+              <Button w="9em" fw="bold" onClick={() => onSelectPackage("myth")}>
+                MYTH
+              </Button>
             )}
             {props.label === "Myth" && (
-              <Button onClick={() => onSelectPackage("legend")}>Legend</Button>
+              <Button
+                w="9em"
+                fw="bold"
+                onClick={() => onSelectPackage("legend")}
+              >
+                LEGEND
+              </Button>
             )}
             {props.label === "Legend" && (
-              <Button onClick={() => onSelectPackage("man")}>Man</Button>
+              <Button w="9em" fw="bold" onClick={() => onSelectPackage("man")}>
+                MAN
+              </Button>
             )}
           </Flex>
 
-          <Divider w="100%" />
+          <Divider w="100%" color="#b44655" />
 
           <Text size="1.4em" ta="center">
             {props.description}
           </Text>
-        </Stack>
 
-        <Stack align="center" w="100%">
           <Stack gap="sm" align="center" w="100%">
             <Text size="1.4em" fs="italic">
               Choose this package is you want:
@@ -145,38 +163,46 @@ function Package(props: PackageProps) {
             <Stack gap="xs">
               {props.inclusions.map((inclusion) => (
                 <Flex key={inclusion.label} align="center" gap="md">
-                  <AtIcon />
+                  {inclusion.icon}
 
                   <Stack gap="0">
-                    <Text size="1.2em" c="#386890">
+                    <Text size="1.2em" fs="italic" c="#386890">
                       {inclusion.label}
                     </Text>
 
-                    <Text size=".9em">{inclusion.description}</Text>
+                    <Text size=".8em">{inclusion.description}</Text>
                   </Stack>
                 </Flex>
               ))}
             </Stack>
           </Stack>
+        </Stack>
 
+        <Stack align="center" w="100%">
           <Stack gap="0" w="100%">
-            <Divider w="100%" />
+            <Divider w="100%" color="#b44655" />
 
             <Accordion
               w="100%"
+              c="steelblue"
               color="steelblue"
               variant="unstyled"
               chevronIconSize={15}
               chevronPosition="left"
+              // styles={{
+              //   control: { color: "steelblue", background: "floralwhite" },
+              // }}
             >
               <Accordion.Item value="add-ons">
-                <Accordion.Control>Optional Add-ons</Accordion.Control>
+                <Accordion.Control className="add-on">
+                  Optional Add-ons
+                </Accordion.Control>
                 <Accordion.Panel>
                   <Stack>
                     {addOns.map((addOn) => (
                       <Flex key={addOn.label} w="100%" justify="space-between">
                         <Text>{addOn.label}</Text>
-                        <Text>{addOn.price}</Text>
+                        <Text fs="italic">{addOn.price}</Text>
                       </Flex>
                     ))}
                   </Stack>
@@ -184,10 +210,26 @@ function Package(props: PackageProps) {
               </Accordion.Item>
             </Accordion>
 
-            <Divider w="100%" />
+            <Divider w="100%" color="#b44655" />
           </Stack>
 
-          <Title>${props.rate}</Title>
+          <Flex
+            w="100%"
+            align="center"
+            justify="space-between"
+            px="3px"
+            pb="xl"
+          >
+            <Button
+              w="11em"
+              fw="bold"
+              onClick={() => navigate(`/contact/${props.label.toLowerCase()}`)}
+            >
+              BOOK PACKAGE
+            </Button>
+
+            <Title>${props.rate}</Title>
+          </Flex>
         </Stack>
       </Stack>
     );
