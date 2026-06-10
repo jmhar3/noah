@@ -13,6 +13,8 @@ import {
 
 import PasswordInput from "../components/PasswordInput";
 
+import lakeLandscape from "../assets/images/lake_landscape.webp";
+
 function Home() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -33,7 +35,7 @@ function Home() {
   const letters = Array.from(" ✦ TO ✦ ENTER ✦ CLICK");
 
   return (
-    <BackgroundImage src="https://fmntylmftjjngcjtjbfa.supabase.co/storage/v1/object/public/images/landscape3.webp">
+    <BackgroundImage src={lakeLandscape}>
       <Box
         pos="fixed"
         id="cursor-text"
