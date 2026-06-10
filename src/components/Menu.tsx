@@ -14,11 +14,11 @@ function Menu() {
   const [opened, { open, close }] = useDisclosure(false);
 
   const menu: MenuItem[] = [
-    { label: "Who am I?", path: "about-me" },
-    { label: "Working with me", path: "working-with-me" },
-    { label: "Explore My Work", path: "portfolio" },
+    { label: "Who am I?", path: "/about-me" },
+    { label: "Working with me", path: "/working-with-me" },
+    { label: "Explore My Work", path: "/portfolio" },
     { label: "Packages", path: "/packages" },
-    { label: "Frequently Asked Questions", path: "faq" },
+    { label: "Frequently Asked Questions", path: "/faq" },
     { label: "Get in touch", path: "/contact" },
     { label: "Studio Space", path: "www.studioxixi.com.au", isExternal: true },
   ];
