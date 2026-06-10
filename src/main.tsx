@@ -5,7 +5,6 @@ import { Button, createTheme, MantineProvider } from "@mantine/core";
 import { Analytics } from "@vercel/analytics/react";
 
 import ManKind from "./pages/ManKind.tsx";
-import Portal from "./pages/Portal.tsx";
 import Home from "./pages/Home.tsx";
 import AboutMe from "./pages/AboutMe.tsx";
 import Contact from "./pages/Contact.tsx";
