@@ -1,3 +1,5 @@
+import { useLocation } from "react-router";
+
 import {
   Text,
   Stack,
@@ -12,6 +14,7 @@ import {
   type ContactFormType,
 } from "../../helpers/contact";
 import CustomPackage from "./CustomPackage";
+import { useMemo } from "react";
 
 interface InquiryDetailsProps {
   contactForm: ContactFormType;
@@ -20,6 +23,14 @@ interface InquiryDetailsProps {
 
 function InquiryDetails(props: InquiryDetailsProps) {
   const { contactForm, setContactForm } = props;
+  const { pathname } = useLocation();
+
+  const preferredPackage = useMemo(() => {
+    if (pathname.includes("man")) return "DIGITAL";
+    if (pathname.includes("myth")) return "FILM";
+    if (pathname.includes("legend")) return "COMPLETE";
+    if (pathname.includes("custom")) return "CUSTOM";
+  }, [pathname]);
 
   const preferredPackages = ["DIGITAL", "FILM", "COMPLETE", "CUSTOM"];
 
@@ -40,7 +51,7 @@ function InquiryDetails(props: InquiryDetailsProps) {
           fullWidth
           radius="md"
           color="steelblue"
-          value={contactForm.preferredPackage}
+          value={preferredPackage || contactForm.preferredPackage}
           data={preferredPackages}
           onChange={(value) =>
             setContactForm((prevForm) => ({
