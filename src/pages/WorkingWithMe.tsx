@@ -10,9 +10,9 @@ const info = [
   {
     title: "What I’m like to work with*",
     text: [
-      "I understand that male photographers taking images of women in various states of undress has had a bad wrap, but I really do show up on set with the best of intentions and the utmost professionalism. I treat our photoshoots like a professional workplace and I expect that you do too.",
-      "This is not a place to make remarks about someone's body, age or appearance, or a place to be intoxicated. This is a space to have fun, to joke, laugh and praise each other's abilities and character.",
-      "When you’re on set with me you know you can expect my 15+ yrs of photography and lighting to be present, but above and beyond that the most important tool in my skillset is the ability to make anyone who steps in front of my camera feel comfortable and safe.",
+      "I understand that male photographers taking images of women in various states of undress has had a bad wrap (with good reason), but I really do show up on set with the best of intentions and the utmost professionalism. I treat our photoshoots like a professional workplace and I expect that you do too.",
+      "This is not a place to make remarks about someone's body, age or appearance, or a place to be intoxicated. This is a safe space to enjoy the process of making art together.",
+      "When you’re on set with me you know you can expect my 15+ yrs of photography and lighting experience to be present, but above and beyond that the most important tool in my skillset is the ability to make anyone who steps in front of my camera feel comfortable and confident.",
     ],
   },
   {
@@ -43,7 +43,7 @@ const info = [
     text: [
       "Your privacy, safety and security are very important to me. If you decide that you’d like to shoot images with me which may involve nudity or sexually suggestive/explicit content then I want to make sure you’re confident that they will be handled with care and discretion.",
       "Digital images will be stored offline and you are in control of how long I retain this data. By default your RAW images are stored on twin hard drives for 12 months to account for redundancy and data loss, and your final edits are also stored on the cloud. If you would like this data to be stored for more or less time, or you would like to purchase your RAWs, all of these options are available to you.",
-      "In addition to digital images I also shoot 35mm film. If you would like sensitive images captured on the beauty of film I can assure you that I scan and digitally process all of the film myself, so no labs and no other eyes will have access to your images. You are also entitled to the roll of film negatives to keep if you wish, but I’m also capable and willing to archive these safely if you’d prefer.",
+      "In addition to digital images, I also shoot 35mm film. If you would like sensitive images captured on the beauty of film I can assure you that I scan and digitally process all of the film myself, so no labs and no other eyes will have access to your images. You are also entitled to the roll of film negatives to keep if you wish, but I’m also capable and willing to archive these safely if you’d prefer.",
     ],
   },
 ];
