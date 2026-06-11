@@ -67,7 +67,7 @@ function Contact() {
 
   return (
     <PageLayout label="Get in touch" image={contactImage}>
-      <Text size="lg">
+      <Text size="xl">
         Choose your package, send through your inspiration (either visually or
         written) and then let’s discuss how to best bring your ideas to life
         either over the phone or in person.
