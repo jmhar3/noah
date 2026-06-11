@@ -69,7 +69,7 @@ function WorkingWithMe() {
               <LinkButton
                 label="* Don't just take it from me. View my testimonials."
                 onClick={() => navigate("/testimonials")}
-                size="lg"
+                size="xl"
               />
             )}
           </Stack>
