@@ -9,17 +9,17 @@ function AboutMe() {
     <PageLayout label="Who am I?" image={aboutImage}>
       <Text size="xl">
         So who is M.A.N? Prior to working under the branding of M.A.N I had many
-        years experience in both photography and film+tv. I picked up a camera
-        around 13yrs old when my dad got me into it as a hobby, just as his dad
-        and HIS dad before him. So you could say I’m a fourth generation
-        photographer, but I’m the only one who is stupid (stubborn?) enough to
-        make this their career and life’s work. Initially my hobby photography
-        started as travel photos while on holiday with my family, before
-        branching out into street photography and Urban Exploration or Urbex
-        photography. For my VCE Media project I created a documentary on Urbex
-        and this film made the top 3 of its category nationwide. This was my
-        first attempt at delving into the moving image, and not long after this
-        I began my career in Film and Television.
+        years experience in photography, film & TV. I picked up a camera around
+        13yrs old when my dad got me into it as a hobby, just as his dad and HIS
+        dad before him. So you could say I’m a fourth generation photographer,
+        but I’m the only one who is stupid (stubborn?) enough to make this their
+        career and life’s work. Initially my hobby photography started as travel
+        photos while on holiday with my family, before branching out into street
+        photography and Urban Exploration or Urbex photography. For my VCE Media
+        project I created a documentary on Urbex and this film made the top 3 of
+        its category nationwide. This was my first attempt at delving into the
+        moving image, and not long after this I began my career in Film and
+        Television.
       </Text>
       <Text size="xl">
         This career would take me through many pathways and allow me to wear
