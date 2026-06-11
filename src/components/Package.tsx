@@ -69,13 +69,13 @@ function Package(props: PackageProps) {
   const navButtons = useMemo(() => {
     switch (props.label) {
       case "Man":
-        return { prev: "Legend", next: "Myth" };
+        return { prev: "legend", next: "myth" };
       case "Myth":
-        return { prev: "Man", next: "Legend" };
+        return { prev: "man", next: "legend" };
       case "Legend":
-        return { prev: "Myth", next: "Man" };
+        return { prev: "myth", next: "man" };
       default:
-        return { prev: "Legend", next: "Myth" };
+        return { prev: "legend", next: "myth" };
     }
   }, [props]);
 
