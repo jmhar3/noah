@@ -13,7 +13,7 @@ import Summary from "../components/ContactForm/Summary";
 import contactImage from "../assets/images/m.a.n.png";
 import InfoCircleIcon from "../assets/icons/InfoCircleIcon";
 
-import { PreferredContactMethod } from "../helpers/contact";
+import { PreferredContactMethod, PreferredPackage } from "../helpers/contact";
 
 import type { ContactFormType } from "../helpers/contact";
 
@@ -27,6 +27,7 @@ function Contact() {
     name: "",
     preferredContactMethod: PreferredContactMethod.email,
     message: "",
+    preferredPackage: PreferredPackage.unknown,
     customPackage: {
       duration: "2 Hours",
       edits: "10 Edits",
