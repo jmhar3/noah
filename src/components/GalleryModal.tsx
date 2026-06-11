@@ -1,22 +1,26 @@
-import { Image, Modal, Stack, Title } from "@mantine/core";
-
-import type { GalleryType } from "../helpers/portfolio";
+import { Image, Modal } from "@mantine/core";
 
 interface GalleryModalProps {
   isOpen: boolean;
   onClose: () => void;
-  gallery: GalleryType;
+  image: string;
 }
 
 function GalleryModal(props: GalleryModalProps) {
-  const { isOpen, onClose, gallery } = props;
+  const { isOpen, onClose, image } = props;
 
   return (
-    <Modal opened={isOpen} onClose={onClose} size="100%">
-      <Stack>
-        <Title>{gallery.label}</Title>
-        <Image src={gallery.images[0]} />
-      </Stack>
+    <Modal
+      opened={isOpen}
+      onClose={onClose}
+      fullScreen
+      radius="0"
+      styles={{
+        header: { background: "black" },
+        content: { background: "black" },
+      }}
+    >
+      <Image src={image} mah="85vh" fit="contain" />
     </Modal>
   );
 }
