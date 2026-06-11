@@ -19,6 +19,7 @@ export enum PreferredContactMethod {
 
 // @ts-expect-error error with erasableSyntaxOnly
 export enum PreferredPackage {
+  unknown = "UNKNOWN",
   digital = "DIGITAL",
   film = "FILM",
   complete = "COMPLETE",
