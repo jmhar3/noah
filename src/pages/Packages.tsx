@@ -123,7 +123,9 @@ function Packages() {
       <Stack h="calc(100vh - 8em)" justify="space-between">
         {packages.map((rate, index) => (
           <>
-            {index !== 0 && isNotFocused && <Divider w="100%" />}
+            {index !== 0 && isNotFocused && (
+              <Divider w="100%" color="#b44655" />
+            )}
 
             <Package
               key={rate.title}
@@ -135,8 +137,9 @@ function Packages() {
 
         {isNotFocused && (
           <LinkButton
-            label="* Custom packages also available. Inquire for more info."
+            size="xl"
             onClick={() => navigate("/contact")}
+            label="* Custom packages also available. Inquire for more info."
           />
         )}
       </Stack>
