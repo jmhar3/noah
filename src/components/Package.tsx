@@ -66,6 +66,19 @@ function Package(props: PackageProps) {
     navigate(`${isSecret ? "/secret" : ""}/packages/${path}`);
   };
 
+  const navButtons = useMemo(() => {
+    switch (props.label) {
+      case "Man":
+        return { prev: "Legend", next: "Myth" };
+      case "Myth":
+        return { prev: "Man", next: "Legend" };
+      case "Legend":
+        return { prev: "Myth", next: "Man" };
+      default:
+        return { prev: "Legend", next: "Myth" };
+    }
+  }, [props]);
+
   const title = (
     <Stack
       w="100%"
@@ -110,47 +123,24 @@ function Package(props: PackageProps) {
       <Stack justify="space-between" h="100%" w="100%" align="center">
         <Stack>
           <Flex w="100%" align="center">
-            {props.label === "Man" && (
-              <Button
-                w="9em"
-                fw="bold"
-                onClick={() => onSelectPackage("legend")}
-              >
-                LEGEND
-              </Button>
-            )}
-            {props.label === "Myth" && (
-              <Button w="9em" fw="bold" onClick={() => onSelectPackage("man")}>
-                MAN
-              </Button>
-            )}
-            {props.label === "Legend" && (
-              <Button w="9em" fw="bold" onClick={() => onSelectPackage("myth")}>
-                MYTH
-              </Button>
-            )}
+            <Button
+              w="9em"
+              fw="bold"
+              justify="center"
+              onClick={() => onSelectPackage(navButtons.prev)}
+            >
+              LEGEND
+            </Button>
 
             {title}
 
-            {props.label === "Man" && (
-              <Button w="9em" fw="bold" onClick={() => onSelectPackage("myth")}>
-                MYTH
-              </Button>
-            )}
-            {props.label === "Myth" && (
-              <Button
-                w="9em"
-                fw="bold"
-                onClick={() => onSelectPackage("legend")}
-              >
-                LEGEND
-              </Button>
-            )}
-            {props.label === "Legend" && (
-              <Button w="9em" fw="bold" onClick={() => onSelectPackage("man")}>
-                MAN
-              </Button>
-            )}
+            <Button
+              w="9em"
+              fw="bold"
+              onClick={() => onSelectPackage(navButtons.next)}
+            >
+              MYTH
+            </Button>
           </Flex>
 
           <Divider w="100%" color="#b44655" />
