@@ -1,7 +1,20 @@
 import { useState } from "react";
 import { useHover } from "@mantine/hooks";
-import { Divider, Stack, Text } from "@mantine/core";
 
+import {
+  Flex,
+  Text,
+  Group,
+  Stack,
+  Title,
+  Button,
+  Divider,
+  Checkbox,
+  Textarea,
+  TextInput,
+} from "@mantine/core";
+
+import LinkButton from "../components/LinkButton";
 import PageLayout from "./PageLayout";
 
 import defaultImage from "../assets/images/m.a.n.png";
@@ -111,10 +124,160 @@ function Testimonial({
 
 function Testimonials() {
   const [image, setImage] = useState(defaultImage);
+  const [showTestimonial, setShowTestimonial] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [permission, setPermission] = useState(false);
+  const [successfulSubmission, setSuccessfulSubmission] = useState(false);
+
+  const [testimonialForm, setTestimonialForm] = useState({
+    name: "",
+    displayName: "",
+    contact: "",
+    testimonial: "",
+  });
+
+  const onSubmit = async () => {
+    setIsSubmitting(true);
+    const formData = new FormData();
+    formData.append("name", testimonialForm.name);
+    formData.append("display_name", testimonialForm.displayName);
+    formData.append("contact", testimonialForm.contact);
+    formData.append("testimonial", testimonialForm.testimonial);
+    formData.append(
+      "permission",
+      permission ? "Permission granted" : "Permission denied",
+    );
+    formData.append("access_key", "cd0c7928-bc7b-4c05-a40f-a0afa619602d");
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      setSuccessfulSubmission(true);
+    } else {
+      setShowError(true);
+    }
+
+    setIsSubmitting(false);
+  };
 
   return (
-    <PageLayout label="Testimonials" image={image}>
+    <PageLayout label="Testimonials*" image={image}>
+      {showTestimonial ? (
+        !successfulSubmission ? (
+          <Text size="lg" fs="italic">
+            Your testimonial has been successfully submitted.
+          </Text>
+        ) : (
+          <Stack gap="5px" pb="sm">
+            <Title>Submit Your Testimonial</Title>
+            <Group grow w="100%" gap="sm">
+              <TextInput
+                radius="md"
+                withAsterisk
+                label="NAME"
+                value={testimonialForm.name}
+                onChange={(event) =>
+                  setTestimonialForm((prevForm) => ({
+                    ...prevForm,
+                    name: event.target.value,
+                  }))
+                }
+              />
+
+              <TextInput
+                radius="md"
+                withAsterisk
+                label="DISPLAY NAME"
+                value={testimonialForm.displayName}
+                onChange={(event) =>
+                  setTestimonialForm((prevForm) => ({
+                    ...prevForm,
+                    displayName: event.target.value,
+                  }))
+                }
+              />
+            </Group>
+
+            <TextInput
+              radius="md"
+              withAsterisk
+              label="CONTACT"
+              value={testimonialForm.contact}
+              onChange={(event) =>
+                setTestimonialForm((prevForm) => ({
+                  ...prevForm,
+                  contact: event.target.value,
+                }))
+              }
+            />
+
+            <Textarea
+              size="sm"
+              radius="md"
+              withAsterisk
+              c="steelblue"
+              label="TESTIMONIAL"
+              value={testimonialForm.testimonial}
+              onChange={(event) =>
+                setTestimonialForm((prevForm) => ({
+                  ...prevForm,
+                  testimonial: event.target.value,
+                }))
+              }
+            />
+
+            <Flex
+              pt="xs"
+              pb="sm"
+              w="100%"
+              gap="sm"
+              justify="space-between"
+              align="center"
+            >
+              <Checkbox
+                size="md"
+                color="steelblue"
+                label="Permission to share image from your shoot alongside testimonial."
+                checked={permission}
+                onChange={(event) => setPermission(event.currentTarget.checked)}
+              />
+              <Button onClick={onSubmit} loading={isSubmitting}>
+                SUBMIT
+              </Button>
+            </Flex>
+
+            {showError && (
+              <Text c="crimson">
+                An error occured. Please send your testimonial direct to me at
+                melbourneartnude@gmail.com.
+              </Text>
+            )}
+
+            <Text fs="italic" size="lg">
+              Please note: Your display name is how you'll be credited in your
+              testimonial. Be as anonymous as you'd like. Your private name is
+              for M.A.N's reference only and your contact details won't be
+              shared publicly.
+            </Text>
+          </Stack>
+        )
+      ) : (
+        <LinkButton
+          size="xl"
+          onClick={() => setShowTestimonial(true)}
+          label="* Worked with me before? Leave your own testimonial."
+        />
+      )}
+
       <Stack gap="0">
+        <Divider color="#b44655" />
+
         {testimonials.map((testimonial, index) => (
           <Testimonial
             key={testimonial.name}
