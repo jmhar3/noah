@@ -4,20 +4,21 @@ import { useHover } from "@mantine/hooks";
 interface LinkButtonProps {
   label: string;
   onClick: () => void;
+  size: string;
 }
 
-function LinkButton(props: LinkButtonProps) {
+function LinkButton({ label, ...props }: LinkButtonProps) {
   const { hovered, ref } = useHover();
 
   return (
     <Text
       ref={ref}
       td="underline"
-      onClick={props.onClick}
       c={hovered ? "#b44655" : "steelblue"}
       style={{ cursor: "pointer" }}
+      {...props}
     >
-      {props.label}
+      {label}
     </Text>
   );
 }
