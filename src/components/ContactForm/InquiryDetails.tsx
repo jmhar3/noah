@@ -1,4 +1,5 @@
 import { useLocation } from "react-router";
+import { useMemo } from "react";
 
 import {
   Text,
@@ -8,13 +9,10 @@ import {
   SegmentedControl,
 } from "@mantine/core";
 
-import {
-  PreferredPackage,
-  type AddOn,
-  type ContactFormType,
-} from "../../helpers/contact";
 import CustomPackage from "./CustomPackage";
-import { useMemo } from "react";
+import { PreferredPackage } from "../../helpers/contact";
+
+import type { AddOn, ContactFormType } from "../../helpers/contact";
 
 interface InquiryDetailsProps {
   contactForm: ContactFormType;
@@ -32,14 +30,20 @@ function InquiryDetails(props: InquiryDetailsProps) {
     if (pathname.includes("custom")) return "CUSTOM";
   }, [pathname]);
 
-  const preferredPackages = ["DIGITAL", "FILM", "COMPLETE", "CUSTOM"];
+  const preferredPackages: PreferredPackage[] = [
+    PreferredPackage.unknown,
+    PreferredPackage.digital,
+    PreferredPackage.film,
+    PreferredPackage.complete,
+    PreferredPackage.custom,
+  ];
 
   const addOns = [
     "ALL RAWS",
     "ROLL OF FILM",
     "30 MINS EXTENSION",
     "ADDITIONAL EDITS",
-    "20-30 SECOND VIDEO",
+    "SOCIALS VIDEO",
   ];
 
   return (
@@ -68,25 +72,40 @@ function InquiryDetails(props: InquiryDetailsProps) {
         />
       </Stack>
 
+      {contactForm.preferredPackage !== PreferredPackage.unknown &&
+        contactForm.preferredPackage !== PreferredPackage.custom && (
+          <Text fs="italic">
+            Includes:{" "}
+            {contactForm.preferredPackage === PreferredPackage.digital &&
+              "1.5 hours & digital photography"}
+            {contactForm.preferredPackage === PreferredPackage.film &&
+              "2 hours, film photography & socials reel"}
+            {contactForm.preferredPackage === PreferredPackage.complete &&
+              "4 hours, digital photography, additional images of your choice & 2 x socials reel"}
+          </Text>
+        )}
+
       {contactForm.preferredPackage === PreferredPackage.custom ? (
         <CustomPackage
           contactForm={contactForm}
           setContactForm={setContactForm}
         />
       ) : (
-        <MultiSelect
-          size="sm"
-          radius="md"
-          label="ADD-ONS"
-          value={contactForm.addOns}
-          data={addOns}
-          onChange={(value) =>
-            setContactForm((prevForm) => ({
-              ...prevForm,
-              addOns: value as AddOn[],
-            }))
-          }
-        />
+        contactForm.preferredPackage !== PreferredPackage.unknown && (
+          <MultiSelect
+            size="sm"
+            radius="md"
+            label="ADD-ONS"
+            value={contactForm.addOns}
+            data={addOns}
+            onChange={(value) =>
+              setContactForm((prevForm) => ({
+                ...prevForm,
+                addOns: value as AddOn[],
+              }))
+            }
+          />
+        )
       )}
 
       <Textarea
@@ -95,6 +114,7 @@ function InquiryDetails(props: InquiryDetailsProps) {
         withAsterisk
         label="MESSAGE"
         c="steelblue"
+        placeholder="eg. inspiration, vibe, add-ons, etc."
         value={contactForm.message}
         onChange={(event) =>
           setContactForm((prevForm) => ({
