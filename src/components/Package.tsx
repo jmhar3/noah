@@ -84,6 +84,7 @@ function Package(props: PackageProps) {
   if (isNotFocused) {
     return (
       <Stack
+        gap="5px"
         w="100%"
         align="center"
         c={hovered && isNotFocused ? "#B44655" : "steelblue"}
@@ -94,9 +95,12 @@ function Package(props: PackageProps) {
       >
         {title}
 
-        <Text size="1.4em">
-          {props.title} | {props.subtitle}
-        </Text>
+        <Stack gap="0" align="center">
+          <Text size="xl">{props.title}</Text>
+          <Text size="xl" fs="italic">
+            {props.subtitle}
+          </Text>
+        </Stack>
       </Stack>
     );
   }
