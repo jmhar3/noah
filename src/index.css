@@ -53,11 +53,6 @@ button {
     background-color: floralwhite;
 }
 
-button:hover {
-    color: floralwhite;
-    background-color: #b44655;
-}
-
 .add-on {
     color: steelblue;
 }
