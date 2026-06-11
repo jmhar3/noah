@@ -14,11 +14,14 @@ import {
 import PasswordInput from "../components/PasswordInput";
 
 import lakeLandscape from "../assets/images/lake_landscape.webp";
+import MenuModal from "../components/MenuModal";
+import { useDisclosure } from "@mantine/hooks";
 
 function Home() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const isSecret = pathname.includes("secret");
+  const [opened, { open }] = useDisclosure(false);
 
   const correctPassword = "secret-password";
   const secretPassword = isSecret && Cookies.get("secretPassword");
@@ -36,6 +39,8 @@ function Home() {
 
   return (
     <BackgroundImage src={lakeLandscape}>
+      <MenuModal isOpen={opened} />
+
       <Box
         pos="fixed"
         id="cursor-text"
@@ -61,13 +66,7 @@ function Home() {
         })}
       </Box>
 
-      <Center
-        py="8.5em"
-        h="100vh"
-        w="100vw"
-        c="floralwhite"
-        onClick={() => navigate(isSecret ? "/secret/about-me" : "/about-me")}
-      >
+      <Center py="8.5em" h="100vh" w="100vw" c="floralwhite" onClick={open}>
         <Stack h="100%" align="center" justify="space-between">
           <Stack align="center" gap="3em">
             <Title size="9em" h=".6em">
