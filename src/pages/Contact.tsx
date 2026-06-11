@@ -74,9 +74,14 @@ function Contact() {
       </Text>
 
       <Stack gap="0">
-        <Divider />
+        <Divider color="#b44655" />
 
-        <Accordion w="100%" value={accordionState} onChange={setAccordionState}>
+        <Accordion
+          w="100%"
+          value={accordionState}
+          onChange={setAccordionState}
+          styles={{ item: { borderColor: "#b44655" } }}
+        >
           <AccordianItem
             panelNum="1"
             label="Contact Info"
@@ -118,7 +123,10 @@ function Contact() {
             setAccordionState={setAccordionState}
             isAccordionItemClickable={includesAllRequiredDetails}
           >
-            <Summary contactForm={contactForm} />
+            <Summary
+              contactForm={contactForm}
+              setContactForm={setContactForm}
+            />
           </AccordianItem>
         </Accordion>
       </Stack>
