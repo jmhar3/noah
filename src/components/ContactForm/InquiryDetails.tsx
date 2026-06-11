@@ -56,8 +56,9 @@ function InquiryDetails(props: InquiryDetailsProps) {
           fullWidth
           radius="md"
           color="steelblue"
-          value={preferredPackage || contactForm.preferredPackage}
           data={preferredPackages}
+          defaultValue="UNKNOWN"
+          value={preferredPackage || contactForm.preferredPackage}
           onChange={(value) =>
             setContactForm((prevForm) => ({
               ...prevForm,
