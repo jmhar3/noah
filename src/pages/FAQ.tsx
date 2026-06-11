@@ -1,5 +1,21 @@
-import { Accordion, Flex, Image, Stack, Text } from "@mantine/core";
+import { Accordion } from "@mantine/core";
 import PageLayout from "./PageLayout";
+import { useState } from "react";
+
+import defaultImage from "../assets/images/forest_portrait.webp";
+
+import hiddenIdentityImage1 from "../assets/images/lake_portrait.webp";
+import hiddenIdentityImage2 from "../assets/images/beach_portrait.webp";
+import hiddenIdentityImage3 from "../assets/images/forest_portrait.webp";
+
+import coupleImage1 from "../assets/images/beach_portrait.webp";
+import coupleImage2 from "../assets/images/lake_portrait.webp";
+import coupleImage3 from "../assets/images/forest_portrait.webp";
+
+import locationImage1 from "../assets/images/forest_portrait.webp";
+import locationImage2 from "../assets/images/beach_portrait.webp";
+import locationImage3 from "../assets/images/lake_portrait.webp";
+import FAQAccordionItem from "../components/FAQAccordionItem";
 
 const questions = [
   {
@@ -41,7 +57,7 @@ const questions = [
       "I've had lots of conversations with people who love the idea of having their photo taken, but because of work, family or general privacy they didn't want their face or identity shown. Your comfort and safety is of paramount importance to me. I am absolutely happy to accomodate any requests you have regarding your privacy. I am happy to compose my images and pose you in a manner which conceals your face, I can hide tattoos or marks in post production and if you don't wish the images to be posted online then they will remain yours to do with as you please. I only post images that my clients and models have given me permission to post, so you will always have the final say.",
       "Featured here are several images taken for people who wished to have their face or identity kept private.",
     ],
-    images: ["hidden-identity-image"],
+    images: [hiddenIdentityImage1, hiddenIdentityImage2, hiddenIdentityImage3],
   },
   {
     question: "Do you shoot with couples?",
@@ -49,7 +65,7 @@ const questions = [
       "Absolutely! Some of my favourite shoots have been taking capturing genuine and beautiful connections between people. It's something I love to photograph and it can be much easier to have your photograph taken when it's with someone you love and trust.",
       "Here's a few examples of some beautiful couples I've photographed:",
     ],
-    images: ["couple-image"],
+    images: [coupleImage1, coupleImage2, coupleImage3],
   },
   {
     question: "What locations are available to shoot?",
@@ -57,7 +73,7 @@ const questions = [
       "I always love shooting outdoors, and I have stunning beach and forest locations I use regularly. I charge a small additional fee for travel time 1hr+ from the CBD. If you'd prefer to stay central I also have a gorgeous studio in Fitzroy called XIXI Studio we can use for no additional fee. If you would feel more comfortable to have me come to you, I am completely happy and capable of bringing my studio lights and cameras to your house, hotel or Airbnb. I’m also completely willing and able to travel interstate with additional costs covered.",
       "Here are several images taken at XiXi studio:",
     ],
-    images: ["location-image"],
+    images: [locationImage1, locationImage2, locationImage3],
   },
   {
     question: "What happens if I have to cancel?",
@@ -68,31 +84,30 @@ const questions = [
 ];
 
 function FAQ() {
+  const [accordionState, setAccordionState] = useState<string | null>(null);
+
+  const [image, setImage] = useState(defaultImage);
+
+  const onSelectQuestion = (index: string, image?: string) => {
+    setAccordionState(index.toString());
+    setImage(image || defaultImage);
+  };
+
   return (
-    <PageLayout label="Frequently Asked Questions">
-      <Accordion defaultValue="Apples">
-        {questions.map(({ question, answer, images }) => (
-          <Accordion.Item key={question} value={question}>
-            <Accordion.Control>
-              <Text size="1.4em">{question.toUpperCase()}</Text>
-            </Accordion.Control>
-            <Accordion.Panel>
-              <Stack>
-                {answer.map((string) => (
-                  <Text key={string} size="lg">
-                    {string}
-                  </Text>
-                ))}
-                {images && (
-                  <Flex>
-                    {images.map((image) => (
-                      <Image key={image} src={image} />
-                    ))}
-                  </Flex>
-                )}
-              </Stack>
-            </Accordion.Panel>
-          </Accordion.Item>
+    <PageLayout label="Frequently Asked Questions" image={image}>
+      <Accordion
+        value={accordionState}
+        onChange={setAccordionState}
+        styles={{ item: { borderColor: "#b44655" } }}
+      >
+        {questions.map((faq, index) => (
+          <FAQAccordionItem
+            key={faq.question}
+            {...faq}
+            index={index.toString()}
+            onSelectQuestion={onSelectQuestion}
+            setImage={setImage}
+          />
         ))}
       </Accordion>
     </PageLayout>
