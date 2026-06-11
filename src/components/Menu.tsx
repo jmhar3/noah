@@ -1,8 +1,20 @@
-import { useDisclosure } from "@mantine/hooks";
-import { Modal, Stack, Title, ActionIcon, Center } from "@mantine/core";
+import { useNavigate } from "react-router";
+import { useDisclosure, useHover } from "@mantine/hooks";
+import {
+  Modal,
+  Stack,
+  Title,
+  ActionIcon,
+  Center,
+  Divider,
+} from "@mantine/core";
+
+import MenuButton from "./MenuButton";
 
 import MenuIcon from "../assets/icons/MenuIcon";
-import MenuButton from "./MenuButton";
+import BackArrowIcon from "../assets/icons/BackArrowIcon";
+
+import type { JSX } from "react";
 
 interface MenuItem {
   label: string;
@@ -10,7 +22,29 @@ interface MenuItem {
   isExternal?: boolean;
 }
 
+interface IconButtonProps {
+  onClick: () => void;
+  icon: JSX.Element;
+}
+
+function IconButton(props: IconButtonProps) {
+  const { hovered, ref } = useHover();
+
+  return (
+    <ActionIcon
+      color={hovered ? "#b44655" : "steelblue"}
+      variant="transparent"
+      onClick={props.onClick}
+      ref={ref}
+    >
+      {props.icon}
+    </ActionIcon>
+  );
+}
+
 function Menu() {
+  const navigate = useNavigate();
+  const { hovered, ref } = useHover();
   const [opened, { open, close }] = useDisclosure(false);
 
   const menu: MenuItem[] = [
@@ -18,9 +52,9 @@ function Menu() {
     { label: "Working with me", path: "/working-with-me" },
     { label: "Explore My Work", path: "/portfolio" },
     { label: "Packages", path: "/packages" },
+    { label: "Testimonials", path: "/testimonials" },
     { label: "Frequently Asked Questions", path: "/faq" },
     { label: "Get in touch", path: "/contact" },
-    { label: "Studio Space", path: "www.studioxixi.com.au", isExternal: true },
   ];
 
   return (
@@ -42,9 +76,17 @@ function Menu() {
             align="center"
             justify="space-around"
           >
-            <Title size="6em" h="1.5em">
+            <Title
+              h="1em"
+              size="6em"
+              ref={ref}
+              onClick={() => navigate("/")}
+              c={hovered ? "#b44655" : "steelblue"}
+              style={{ cursor: "pointer" }}
+            >
               Melbourne Art Natural
             </Title>
+            <Divider w="100%" color="#b44655" />
 
             {menu.map((buttonProps) => (
               <MenuButton key={buttonProps.label} {...buttonProps} />
@@ -53,14 +95,10 @@ function Menu() {
         </Center>
       </Modal>
 
-      <ActionIcon
-        size="lg"
-        color="steelblue"
-        variant="transparent"
-        onClick={open}
-      >
-        <MenuIcon />
-      </ActionIcon>
+      <Stack gap="xs" align="center">
+        <IconButton onClick={open} icon={<MenuIcon />} />
+        <IconButton onClick={() => navigate(-1)} icon={<BackArrowIcon />} />
+      </Stack>
     </>
   );
 }
