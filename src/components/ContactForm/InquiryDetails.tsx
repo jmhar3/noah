@@ -50,6 +50,7 @@ function InquiryDetails(props: InquiryDetailsProps) {
     <Stack gap="sm" py="sm">
       <Stack gap="0">
         <Text>PREFERRED PACKAGES</Text>
+
         <SegmentedControl
           size="sm"
           fullWidth
@@ -70,20 +71,20 @@ function InquiryDetails(props: InquiryDetailsProps) {
             },
           }}
         />
-      </Stack>
 
-      {contactForm.preferredPackage !== PreferredPackage.unknown &&
-        contactForm.preferredPackage !== PreferredPackage.custom && (
-          <Text fs="italic">
-            Includes:{" "}
-            {contactForm.preferredPackage === PreferredPackage.digital &&
-              "1.5 hours & digital photography"}
-            {contactForm.preferredPackage === PreferredPackage.film &&
-              "2 hours, film photography & socials reel"}
-            {contactForm.preferredPackage === PreferredPackage.complete &&
-              "4 hours, digital photography, additional images of your choice & 2 x socials reel"}
-          </Text>
-        )}
+        {contactForm.preferredPackage !== PreferredPackage.unknown &&
+          contactForm.preferredPackage !== PreferredPackage.custom && (
+            <Text fs="italic">
+              Includes:{" "}
+              {contactForm.preferredPackage === PreferredPackage.digital &&
+                "1.5 hours, digital photography & 20 edits"}
+              {contactForm.preferredPackage === PreferredPackage.film &&
+                "2 hours, 35mm film photography & socials reel"}
+              {contactForm.preferredPackage === PreferredPackage.complete &&
+                "4 hours, digital photography, 20 edits, 2 socials reels & additional 20 edits OR 35mm film"}
+            </Text>
+          )}
+      </Stack>
 
       {contactForm.preferredPackage === PreferredPackage.custom ? (
         <CustomPackage
