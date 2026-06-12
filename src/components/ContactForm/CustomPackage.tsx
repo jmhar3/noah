@@ -32,22 +32,39 @@ function CustomPackage(props: CustomPackageProps) {
   //   { name: "ROLL OF FILM", rate: 200 },
   // ];
 
+  // const onSetValue = (field: string, value: string) => {
+  //   setContactForm((prevForm) => ({
+  //     ...prevForm,
+  //     customPackage: {
+  //       ...prevForm.customPackage,
+  //       duration: event || "2 Hours",
+  //     },
+  //   }))
+  // }
+
   return (
     <Stack>
       <Select
         size="sm"
         radius="md"
         label="DURATION"
-        variant="filled"
         withAsterisk
         value={contactForm.customPackage.duration}
         data={duration.map(({ name }) => name)}
+        onChange={(event) =>
+          setContactForm((prevForm) => ({
+            ...prevForm,
+            customPackage: {
+              ...prevForm.customPackage,
+              duration: event || "2 Hours",
+            },
+          }))
+        }
       />
       <Select
         size="sm"
         radius="md"
         label="EDITS"
-        variant="filled"
         withAsterisk
         value={contactForm.customPackage.edits}
         data={edits.map(({ name }) => name)}
@@ -66,14 +83,12 @@ function CustomPackage(props: CustomPackageProps) {
         <NumberInput
           size="sm"
           radius="md"
-          variant="filled"
           label="20-30 SECOND VIDEO"
           value={contactForm.customPackage.video}
         />
         <NumberInput
           size="sm"
           radius="md"
-          variant="filled"
           label="ROLLS OF FILM"
           value={contactForm.customPackage.film}
         />
