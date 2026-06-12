@@ -1,10 +1,11 @@
-import { Divider, Stack, Text } from "@mantine/core";
+import { Accordion, Stack, Text } from "@mantine/core";
 import { useNavigate } from "react-router";
 
 import PageLayout from "./PageLayout";
 import LinkButton from "../components/LinkButton";
 
 import aboutImage from "../assets/images/m.a.n.png";
+import { useState } from "react";
 
 const info = [
   {
@@ -50,31 +51,47 @@ const info = [
 
 function WorkingWithMe() {
   const navigate = useNavigate();
+  const [accordionState, setAccordionState] = useState<string | null>("0");
 
   return (
     <PageLayout label="Working With Me" image={aboutImage}>
-      {info.map(({ title, text }, index) => (
-        <>
-          {index !== 0 && <Divider color="#b44655" />}
-          <Stack key={title} gap="sm">
-            <Text size="1.4em">{title.toUpperCase()}</Text>
-            <Stack>
-              {text.map((string) => (
-                <Text size="xl" key={string}>
-                  {string}
-                </Text>
-              ))}
-            </Stack>
-            {index === 0 && (
-              <LinkButton
-                label="* Don't just take it from me. View my testimonials."
-                onClick={() => navigate("/testimonials")}
-                size="xl"
-              />
-            )}
-          </Stack>
-        </>
-      ))}
+      <Accordion
+        value={accordionState}
+        onChange={setAccordionState}
+        styles={{ item: { borderColor: "#b44655" } }}
+      >
+        {info.map(({ title, text }, index) => (
+          <Accordion.Item key={title} value={index.toString()} w="100%">
+            <Text
+              py="md"
+              size="1.4em"
+              style={{ cursor: "pointer" }}
+              onClick={() => setAccordionState(index.toString())}
+            >
+              {title.toUpperCase()}
+            </Text>
+            <Accordion.Panel>
+              <Stack>
+                <Stack>
+                  {text.map((string) => (
+                    <Text size="xl" key={string}>
+                      {string}
+                    </Text>
+                  ))}
+                </Stack>
+
+                {index === 0 && (
+                  <LinkButton
+                    label="* Don't just take it from me. View my testimonials."
+                    onClick={() => navigate("/testimonials")}
+                    size="xl"
+                  />
+                )}
+              </Stack>
+            </Accordion.Panel>
+          </Accordion.Item>
+        ))}
+      </Accordion>
     </PageLayout>
   );
 }
