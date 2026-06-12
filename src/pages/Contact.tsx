@@ -1,6 +1,14 @@
 import { useMemo, useState } from "react";
 import { useLocation } from "react-router";
-import { Text, Stack, Divider, Accordion, Button, Flex } from "@mantine/core";
+import {
+  Text,
+  Stack,
+  Divider,
+  Accordion,
+  Button,
+  Flex,
+  ActionIcon,
+} from "@mantine/core";
 
 import PageLayout from "./PageLayout";
 import StepButtons from "../components/ContactForm/StepButtons";
@@ -12,6 +20,9 @@ import Summary from "../components/ContactForm/Summary";
 
 import contactImage from "../assets/images/m.a.n.png";
 import InfoCircleIcon from "../assets/icons/InfoCircleIcon";
+import MailIcon from "../assets/icons/MailIcon";
+import InstagramIcon from "../assets/icons/InstagramIcon";
+import TwitterIcon from "../assets/icons/TwitterIcon";
 
 import { PreferredContactMethod } from "../helpers/contact";
 
@@ -30,6 +41,9 @@ function Contact() {
   }, [pathname]);
 
   const [accordionState, setAccordionState] = useState<string | null>("1");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [successfulSubmission, setSuccessfulSubmission] = useState(false);
 
   const [contactForm, setContactForm] = useState<ContactFormType>({
     name: "",
@@ -46,7 +60,33 @@ function Contact() {
     },
   });
 
-  const handleContactFormSubmission = () => {};
+  const handleContactFormSubmission = async () => {
+    setIsSubmitting(true);
+    const formData = new FormData();
+    formData.append("name", contactForm.name);
+    formData.append(
+      "preferredContactMethod",
+      contactForm.preferredContactMethod,
+    );
+    formData.append("message", contactForm.message);
+    formData.append("preferredPackage", contactForm.preferredPackage || "");
+    formData.append("access_key", "cd0c7928-bc7b-4c05-a40f-a0afa619602d");
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      setSuccessfulSubmission(true);
+    } else {
+      setShowError(true);
+    }
+
+    setIsSubmitting(false);
+  };
 
   const includesPreferredContactMethod = () => {
     switch (contactForm.preferredContactMethod) {
@@ -74,73 +114,117 @@ function Contact() {
     if (accordionState !== "1" && !includesAllRequiredDetails) return true;
   }, [accordionState, includesContactDetails, includesAllRequiredDetails]);
 
+  const onSetAccordionState = (index: string | null) => {
+    if (isSubmitting) return;
+    setAccordionState(index);
+  };
+
   return (
     <PageLayout label="Get in touch" image={contactImage}>
-      <Text size="xl">
-        Choose your package, send through your inspiration (either visually or
-        written) and then let’s discuss how to best bring your ideas to life
-        either over the phone or in person.
-      </Text>
+      <Flex gap="md">
+        <Text size="xl">
+          Choose your package, send through your inspiration (either visually or
+          written) and then let’s discuss how to best bring your ideas to life
+          either over the phone or in person.
+        </Text>
+
+        <Stack gap="5px">
+          <ActionIcon
+            component="a"
+            color="steelblue"
+            variant="transparent"
+            href="mailto:melbourneartnude@gmail.com"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <MailIcon />
+          </ActionIcon>
+
+          <ActionIcon
+            component="a"
+            color="steelblue"
+            variant="transparent"
+            href="https://www.instagram.com/melbourneartnatural"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <InstagramIcon />
+          </ActionIcon>
+
+          <ActionIcon
+            component="a"
+            color="steelblue"
+            variant="transparent"
+            href="https://www.twitter.com/melbourneartnatural"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <TwitterIcon />
+          </ActionIcon>
+        </Stack>
+      </Flex>
 
       <Stack gap="0">
         <Divider color="#b44655" />
 
-        <Accordion
-          w="100%"
-          value={accordionState}
-          onChange={setAccordionState}
-          styles={{ item: { borderColor: "#b44655" } }}
-        >
-          <AccordianItem
-            panelNum="1"
-            label="Contact Info"
-            setAccordionState={setAccordionState}
+        {!successfulSubmission && (
+          <Accordion
+            w="100%"
+            value={accordionState}
+            onChange={onSetAccordionState}
+            styles={{ item: { borderColor: "#b44655" } }}
           >
-            <ContactInfo
-              contactForm={contactForm}
-              setContactForm={setContactForm}
-            />
-          </AccordianItem>
+            <AccordianItem
+              panelNum="1"
+              label="Contact Info"
+              setAccordionState={onSetAccordionState}
+            >
+              <ContactInfo
+                contactForm={contactForm}
+                setContactForm={setContactForm}
+              />
+            </AccordianItem>
 
-          <AccordianItem
-            panelNum="2"
-            label="Inquiry Details"
-            setAccordionState={setAccordionState}
-            isAccordionItemClickable={includesContactDetails}
-          >
-            <InquiryDetails
-              contactForm={contactForm}
-              setContactForm={setContactForm}
-            />
-          </AccordianItem>
+            <AccordianItem
+              panelNum="2"
+              label="Inquiry Details"
+              setAccordionState={onSetAccordionState}
+              isAccordionItemClickable={includesContactDetails}
+            >
+              <InquiryDetails
+                contactForm={contactForm}
+                setContactForm={setContactForm}
+              />
+            </AccordianItem>
 
-          <AccordianItem
-            panelNum="3"
-            label="Inspiration"
-            setAccordionState={setAccordionState}
-            isAccordionItemClickable={includesAllRequiredDetails}
-          >
-            <Inspiration
-              contactForm={contactForm}
-              setContactForm={setContactForm}
-            />
-          </AccordianItem>
+            <AccordianItem
+              panelNum="3"
+              label="Inspiration"
+              setAccordionState={onSetAccordionState}
+              isAccordionItemClickable={includesAllRequiredDetails}
+            >
+              <Inspiration
+                contactForm={contactForm}
+                setContactForm={setContactForm}
+              />
+            </AccordianItem>
 
-          <AccordianItem
-            panelNum="4"
-            label="Summary"
-            setAccordionState={setAccordionState}
-            isAccordionItemClickable={includesAllRequiredDetails}
-          >
-            <Summary
-              contactForm={contactForm}
-              setContactForm={setContactForm}
-            />
-          </AccordianItem>
-        </Accordion>
+            <AccordianItem
+              panelNum="4"
+              label="Summary"
+              setAccordionState={onSetAccordionState}
+              isAccordionItemClickable={includesAllRequiredDetails}
+            >
+              <Summary
+                contactForm={contactForm}
+                setContactForm={setContactForm}
+              />
+            </AccordianItem>
+          </Accordion>
+        )}
       </Stack>
 
-      <Flex justify="space-between">
+      <Flex justify="space-between" align="center">
         <Button
           size="sm"
           variant="outline"
@@ -151,13 +235,34 @@ function Contact() {
           BOOKING POLICY
         </Button>
 
-        <StepButtons
-          accordionState={accordionState}
-          setAccordionState={setAccordionState}
-          onSubmit={handleContactFormSubmission}
-          isNextButtonDisabled={isNextButtonDisabled}
-        />
+        {successfulSubmission ? (
+          <Text>Your inquiry has been sent. I'll be in touch shortly.</Text>
+        ) : (
+          <StepButtons
+            isSubmitting={isSubmitting}
+            accordionState={accordionState}
+            setAccordionState={onSetAccordionState}
+            onSubmit={handleContactFormSubmission}
+            isNextButtonDisabled={isNextButtonDisabled}
+          />
+        )}
       </Flex>
+
+      {showError && (
+        <Flex c="crimson">
+          An error occured. Please get in touch at
+          <Text
+            pl="3px"
+            c="crimson"
+            td="underline"
+            component="a"
+            href={"mailto:melbourneartnude@gmail.com"}
+          >
+            melbourneartnude@gmail.com
+          </Text>
+          .
+        </Flex>
+      )}
     </PageLayout>
   );
 }
