@@ -1,39 +1,47 @@
+import { useEffect, useState } from "react";
+import { useDisclosure } from "@mantine/hooks";
 import { useLocation, useNavigate } from "react-router";
 import Cookies from "js-cookie";
 
 import {
+  Box,
   Text,
   Stack,
   Title,
   Button,
   Center,
   BackgroundImage,
-  Box,
 } from "@mantine/core";
 
+import MenuModal from "../components/MenuModal";
 import PasswordInput from "../components/PasswordInput";
 
 import lakeLandscape from "../assets/images/lake_landscape.webp";
-import MenuModal from "../components/MenuModal";
-import { useDisclosure } from "@mantine/hooks";
+
+function useMousePosition() {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      setPosition({ x: event.clientX, y: event.clientY });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  return position;
+}
 
 function Home() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const isSecret = pathname.includes("secret");
   const [opened, { open }] = useDisclosure(false);
+  const { x, y } = useMousePosition();
 
   const correctPassword = "secret-password";
   const secretPassword = isSecret && Cookies.get("secretPassword");
-
-  const textFollower = document.getElementById("cursor-text");
-
-  document.addEventListener("mousemove", (e) => {
-    if (textFollower) {
-      textFollower.style.left = `${e.clientX}px`;
-      textFollower.style.top = `${e.clientY}px`;
-    }
-  });
 
   const letters = Array.from(" ✦ TO ✦ ENTER ✦ CLICK");
 
@@ -44,11 +52,10 @@ function Home() {
       {!opened && (
         <Box
           pos="fixed"
-          id="cursor-text"
           style={{
             zIndex: "9999",
             pointerEvents: "none",
-            transform: "translate(-50%, -50%)",
+            transform: `translate3d(${x - 10}px, ${y - 10}px, 0)`,
           }}
           className="circular-text"
         >
@@ -71,7 +78,16 @@ function Home() {
         </Box>
       )}
 
-      <Center py="8.5em" h="100vh" w="100vw" c="floralwhite" onClick={open}>
+      <Center
+        py="8.5em"
+        h="100vh"
+        w="100vw"
+        c="floralwhite"
+        onClick={open}
+        style={{
+          cursor: "none",
+        }}
+      >
         <Stack h="100%" align="center" justify="space-between">
           <Stack align="center" gap="3em">
             <Title size="9em" h=".6em">
