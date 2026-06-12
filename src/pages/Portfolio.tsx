@@ -5,7 +5,6 @@ import PageLayout from "./PageLayout";
 import GalleryModal from "../components/GalleryModal";
 
 import { portfolio } from "../helpers/portfolio";
-import { useHover } from "@mantine/hooks";
 
 function Portfolio() {
   const [showGalleryModal, setShowGalleryModal] = useState(false);
