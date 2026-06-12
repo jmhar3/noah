@@ -1,6 +1,3 @@
-import { useLocation } from "react-router";
-import { useMemo } from "react";
-
 import {
   Text,
   Stack,
@@ -10,6 +7,7 @@ import {
 } from "@mantine/core";
 
 import CustomPackage from "./CustomPackage";
+
 import { PreferredPackage } from "../../helpers/contact";
 
 import type { AddOn, ContactFormType } from "../../helpers/contact";
@@ -21,14 +19,6 @@ interface InquiryDetailsProps {
 
 function InquiryDetails(props: InquiryDetailsProps) {
   const { contactForm, setContactForm } = props;
-  const { pathname } = useLocation();
-
-  const preferredPackage = useMemo(() => {
-    if (pathname.includes("man")) return "DIGITAL";
-    if (pathname.includes("myth")) return "FILM";
-    if (pathname.includes("legend")) return "COMPLETE";
-    if (pathname.includes("custom")) return "CUSTOM";
-  }, [pathname]);
 
   const preferredPackages: PreferredPackage[] = [
     PreferredPackage.unknown,
@@ -58,7 +48,7 @@ function InquiryDetails(props: InquiryDetailsProps) {
           color="steelblue"
           data={preferredPackages}
           defaultValue="UNKNOWN"
-          value={preferredPackage || contactForm.preferredPackage}
+          value={contactForm.preferredPackage}
           onChange={(value) =>
             setContactForm((prevForm) => ({
               ...prevForm,

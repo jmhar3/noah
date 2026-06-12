@@ -13,13 +13,21 @@ import Summary from "../components/ContactForm/Summary";
 import contactImage from "../assets/images/m.a.n.png";
 import InfoCircleIcon from "../assets/icons/InfoCircleIcon";
 
-import { PreferredContactMethod, PreferredPackage } from "../helpers/contact";
+import { PreferredContactMethod } from "../helpers/contact";
 
+import type { PreferredPackage } from "../helpers/contact";
 import type { ContactFormType } from "../helpers/contact";
 
 function Contact() {
   const { pathname } = useLocation();
   const isSecret = pathname.includes("secret");
+
+  const preferredPackage = useMemo(() => {
+    if (pathname.includes("man")) return "DIGITAL";
+    if (pathname.includes("myth")) return "FILM";
+    if (pathname.includes("legend")) return "COMPLETE";
+    if (pathname.includes("custom")) return "CUSTOM";
+  }, [pathname]);
 
   const [accordionState, setAccordionState] = useState<string | null>("1");
 
@@ -27,7 +35,7 @@ function Contact() {
     name: "",
     preferredContactMethod: PreferredContactMethod.email,
     message: "",
-    preferredPackage: PreferredPackage.unknown,
+    preferredPackage: preferredPackage as PreferredPackage,
     customPackage: {
       duration: "2 Hours",
       edits: "10 Edits",
