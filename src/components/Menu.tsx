@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
 import { useDisclosure, useHover } from "@mantine/hooks";
-import { Stack, ActionIcon } from "@mantine/core";
+import { Flex, ActionIcon } from "@mantine/core";
+import { isMobile } from "react-device-detect";
 
 import MenuModal from "./MenuModal";
 
@@ -37,10 +38,10 @@ function Menu() {
     <>
       <MenuModal isOpen={opened} />
 
-      <Stack gap="xs" align="center">
+      <Flex gap="xs" align="center" direction={isMobile ? "row" : "column"}>
         <IconButton onClick={open} icon={<MenuIcon />} />
         <IconButton onClick={() => navigate(-1)} icon={<BackArrowIcon />} />
-      </Stack>
+      </Flex>
     </>
   );
 }
