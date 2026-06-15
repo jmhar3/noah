@@ -1,11 +1,13 @@
+import { isMobile } from "react-device-detect";
+
 import {
   Box,
   Flex,
   Group,
   Image,
-  ScrollArea,
   Stack,
   Title,
+  ScrollArea,
 } from "@mantine/core";
 
 import type { PropsWithChildren } from "react";
@@ -20,30 +22,43 @@ interface PageLayoutProps extends PropsWithChildren {
 function PageLayout({ label, image, children }: PageLayoutProps) {
   return (
     <>
-      <Box pos="fixed" top="4.2em" left="8em">
+      <Box
+        pos="fixed"
+        top={isMobile ? "1em" : "4.2em"}
+        left={isMobile ? "1em" : "8em"}
+      >
         <Menu />
       </Box>
 
       <Group grow>
-        <Flex pl="6em" justify="flex-start" gap="lg" pr="lg">
+        <Flex
+          pr="lg"
+          gap={isMobile ? "0" : "lg"}
+          justify="flex-start"
+          pl={isMobile ? "lg" : "6em"}
+          direction={isMobile ? "column" : "row"}
+        >
           {label && (
             <Title
-              pb="1.5em"
-              size="4.5em"
-              style={{ writingMode: "sideways-lr" }}
+              pb={isMobile ? "0" : "1.5em"}
+              ta={isMobile ? "right" : "left"}
+              size={isMobile ? "calc(1rem + 9vw)" : "4.5em"}
+              style={{
+                writingMode: isMobile ? "horizontal-tb" : "sideways-lr",
+              }}
             >
               {label}
             </Title>
           )}
 
           <ScrollArea scrollbars="y" h="100vh" w="100%" scrollbarSize="none">
-            <Stack gap="md" py="4em">
+            <Stack gap="md" py={isMobile ? "0" : "4em"}>
               {children}
             </Stack>
           </ScrollArea>
         </Flex>
 
-        {image && <Image h="100vh" fit="cover" src={image} />}
+        {!isMobile && image && <Image h="100vh" fit="cover" src={image} />}
       </Group>
     </>
   );
