@@ -23,6 +23,7 @@ function MenuModal({ isOpen }: { isOpen: boolean }) {
     { label: "Testimonials", path: "/testimonials" },
     { label: "Frequently Asked Questions", path: "/faq" },
     { label: "Get in touch", path: "/contact" },
+    { label: "Secret", path: "/secret/info" },
   ];
 
   return (
@@ -36,23 +37,18 @@ function MenuModal({ isOpen }: { isOpen: boolean }) {
       }}
     >
       <Center h="100vh">
-        <Stack
-          pt="4.5em"
-          pb="8em"
-          h="100%"
-          align="center"
-          justify="space-around"
-        >
+        <Stack pt="4.5em" pb="8em" h="100%" align="center" justify="center">
           <Title
             h="1em"
-            size="6em"
             ref={ref}
+            size="calc(1rem + 9vw)"
             onClick={() => navigate("/")}
             c={hovered ? "#b44655" : "steelblue"}
             style={{ cursor: "pointer" }}
           >
             Melbourne Art Natural
           </Title>
+
           <Divider w="100%" color="#b44655" />
 
           {menu.map((buttonProps) => (

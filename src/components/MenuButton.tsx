@@ -15,6 +15,8 @@ function MenuButton({ label, path, isExternal }: MenuButtonProps) {
       ref={ref}
       href={path}
       component="a"
+      ta="center"
+      size="calc(1rem + 6vw)"
       c={hovered ? "#B44655" : "steelblue"}
       target={isExternal ? "_blank" : undefined}
     >
