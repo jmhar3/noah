@@ -169,7 +169,7 @@ function Testimonials() {
   return (
     <PageLayout label="Testimonials*" image={image}>
       {showTestimonial ? (
-        !successfulSubmission ? (
+        successfulSubmission ? (
           <Text size="lg" fs="italic">
             Your testimonial has been successfully submitted.
           </Text>
