@@ -1,11 +1,17 @@
-import { Accordion, Stack, Text } from "@mantine/core";
+import { useState } from "react";
 import { useNavigate } from "react-router";
+import { Accordion, Stack, Text } from "@mantine/core";
+import { isMobile } from "react-device-detect";
 
 import PageLayout from "./PageLayout";
 import LinkButton from "../components/LinkButton";
 
-import aboutImage from "../assets/images/m.a.n.png";
-import { useState } from "react";
+import landscape from "../assets/images/working_with_me_landscape.jpg";
+import portrait1 from "../assets/images/working_with_me_portrait_1.jpg";
+import portrait2 from "../assets/images/working_with_me_portrait_2.jpg";
+
+const images = [portrait1, portrait2];
+const randomImageNumber = Math.floor(Math.random() * images.length);
 
 const info = [
   {
@@ -54,7 +60,10 @@ function WorkingWithMe() {
   const [accordionState, setAccordionState] = useState<string | null>("0");
 
   return (
-    <PageLayout label="Working With Me" image={aboutImage}>
+    <PageLayout
+      label="Working With Me"
+      image={isMobile ? landscape : images[randomImageNumber]}
+    >
       <Accordion
         value={accordionState}
         onChange={setAccordionState}
