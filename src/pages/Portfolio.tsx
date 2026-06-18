@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { Tabs, Text, Stack, Accordion, SegmentedControl } from "@mantine/core";
+
+import {
+  Tabs,
+  Text,
+  Stack,
+  Divider,
+  Accordion,
+  SegmentedControl,
+} from "@mantine/core";
 
 import PageLayout from "./PageLayout";
 import PortfolioImage from "../components/PortfolioImage";
@@ -11,7 +19,7 @@ function Portfolio() {
 
   return (
     <PageLayout
-      label="Explore My Work"
+      label={`Explore My ${portfolio[Number(activeTab)].label} Work`}
       image={portfolio[Number(activeTab)].images[0]}
     >
       <Tabs
@@ -60,6 +68,8 @@ function Portfolio() {
             >
               <Stack pt="lg">
                 <Text size="xl">{portfolioGallery.description}</Text>
+
+                <Divider color="#b44655" />
 
                 {portfolioGallery.images.map((image) => (
                   <PortfolioImage key={image} image={image} />
