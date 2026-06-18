@@ -3,8 +3,9 @@ import { useHover } from "@mantine/hooks";
 
 interface LinkButtonProps {
   label: string;
+  size?: string;
   onClick: () => void;
-  size: string;
+  c?: string;
 }
 
 function LinkButton({ label, ...props }: LinkButtonProps) {
