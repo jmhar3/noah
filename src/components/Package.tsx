@@ -151,7 +151,7 @@ function Package(props: PackageProps) {
 
           <Stack gap="sm" align="center" w="100%">
             <Text size="1.4em" fs="italic">
-              Choose this package is you want:
+              Choose this package if you want:
             </Text>
 
             <Stack gap="xs">
