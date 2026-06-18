@@ -41,7 +41,7 @@ function StepButtons(props: StepButtonsProps) {
             setAccordionState((Number(accordionState) + 1).toString())
           }
         >
-          {accordionState === "3" ? "VIEW SUMMARY" : "NEXT"}
+          NEXT
         </Button>
       )}
       {accordionState === "4" && (
