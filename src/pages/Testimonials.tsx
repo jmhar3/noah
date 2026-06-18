@@ -17,11 +17,11 @@ import {
 import LinkButton from "../components/LinkButton";
 import PageLayout from "./PageLayout";
 
-import defaultImage from "../assets/images/m.a.n.png";
+import defaultImage from "../assets/images/gypsy.jpg";
 import willowImage from "../assets/images/beach_portrait.webp";
 import polizziImage from "../assets/images/forest_portrait.webp";
 import rImage from "../assets/images/lake_portrait.webp";
-import gypsyImage from "../assets/images/beach_portrait.webp";
+import gypsyImage from "../assets/images/gypsy.jpg";
 import huntImage from "../assets/images/beach_portrait.webp";
 import korneykoImage from "../assets/images/beach_portrait.webp";
 
@@ -32,6 +32,16 @@ interface Testimonial {
 }
 
 const testimonials: Testimonial[] = [
+  {
+    name: "The Jungle Gypsy",
+    testimonial: [
+      "I’d only ever been photographed a handful of times previously and I feel like before I’d even gotten the chance to step in front of your lens you put whatever insecurities I had at ease. Though you’re well over a foot taller than me the space you hold has always felt safe and trusting and I believe part of that is from the relationship you helped build between us before ever meeting.You took the time to find out who I was and what past experiences I’d had when it came to photographers and showed me nothing but kindness and understanding.",
+      "Unlike me, you’re quite structured in the way you shoot. Setting up the exact moments and details you want to capture with a confidence that flowed from you to me without hesitation. Gosh, you could tell me to get into negative degree waters and I’d know that it would be worth it if not just for one amazing shot. Hahaha",
+      "You have these incredible visions that you bring to life but being a creative myself, I’ve loved that you’ve opened up the floor for me to voice how I’m craving to be captured and you find a way to collaborate our ideas and turn them into art. It’s never been just about what you want and you make it known.",
+      "I truly cannot wait to see what we can create in the future.",
+    ],
+    image: gypsyImage,
+  },
   {
     name: "Wilful.Willow",
     testimonial: [
@@ -55,16 +65,6 @@ const testimonials: Testimonial[] = [
       "A truely 10/10 experience in every aspect of his work and working with him. A true professional with genuine passion for his craft.",
     ],
     image: rImage,
-  },
-  {
-    name: "The Jungle Gypsy",
-    testimonial: [
-      "I’d only ever been photographed a handful of times previously and I feel like before I’d even gotten the chance to step in front of your lens you put whatever insecurities I had at ease. Though you’re well over a foot taller than me the space you hold has always felt safe and trusting and I believe part of that is from the relationship you helped build between us before ever meeting.You took the time to find out who I was and what past experiences I’d had when it came to photographers and showed me nothing but kindness and understanding.",
-      "Unlike me, you’re quite structured in the way you shoot. Setting up the exact moments and details you want to capture with a confidence that flowed from you to me without hesitation. Gosh, you could tell me to get into negative degree waters and I’d know that it would be worth it if not just for one amazing shot. Hahaha",
-      "You have these incredible visions that you bring to life but being a creative myself, I’ve loved that you’ve opened up the floor for me to voice how I’m craving to be captured and you find a way to collaborate our ideas and turn them into art. It’s never been just about what you want and you make it known.",
-      "I truly cannot wait to see what we can create in the future.",
-    ],
-    image: gypsyImage,
   },
   {
     name: "F0x Hunt",
@@ -167,7 +167,7 @@ function Testimonials() {
   };
 
   return (
-    <PageLayout label="Testimonials*" image={image}>
+    <PageLayout label="Testimonials*" image={defaultImage}>
       {showTestimonial ? (
         successfulSubmission ? (
           <Text size="lg" fs="italic">
