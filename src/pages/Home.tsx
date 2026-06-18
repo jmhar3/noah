@@ -82,7 +82,7 @@ function Home() {
       )}
 
       <Center
-        py="8.5em"
+        py="6em"
         h="100vh"
         w="100vw"
         c="floralwhite"
