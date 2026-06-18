@@ -46,7 +46,7 @@ const info = [
     ],
   },
   {
-    title: "Privacy + handling of sensitive material",
+    title: "Privacy & handling of sensitive material",
     text: [
       "Your privacy, safety and security are very important to me. If you decide that you’d like to shoot images with me which may involve nudity or sexually suggestive/explicit content then I want to make sure you’re confident that they will be handled with care and discretion.",
       "Digital images will be stored offline and you are in control of how long I retain this data. By default your RAW images are stored on twin hard drives for 12 months to account for redundancy and data loss, and your final edits are also stored on the cloud. If you would like this data to be stored for more or less time, or you would like to purchase your RAWs, all of these options are available to you.",
