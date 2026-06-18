@@ -8,6 +8,7 @@ import ManKind from "./pages/ManKind.tsx";
 import Home from "./pages/Home.tsx";
 import AboutMe from "./pages/AboutMe.tsx";
 import Contact from "./pages/Contact.tsx";
+import Secret from "./pages/Secret.tsx";
 import Testimonials from "./pages/Testimonials.tsx";
 import Packages from "./pages/Packages.tsx";
 import Portfolio from "./pages/Portfolio.tsx";
@@ -51,6 +52,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="contact/myth" element={<Contact />} />
           <Route path="contact/legend" element={<Contact />} />
           <Route path="faq" element={<FAQ />} />
+          <Route path="secret/info" element={<Secret />} />
 
           <Route path="packages">
             <Route index element={<Packages />} />
