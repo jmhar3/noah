@@ -1,50 +1,76 @@
-import {
-  Box,
-  Flex,
-  Group,
-  Image,
-  ScrollArea,
-  Stack,
-  Title,
-} from "@mantine/core";
+import { isMobile } from "react-device-detect";
+
+import { Flex, Image, Stack, Title } from "@mantine/core";
 
 import type { PropsWithChildren } from "react";
 
 import Menu from "../components/Menu";
 
 interface PageLayoutProps extends PropsWithChildren {
-  label?: string;
+  label: string;
   image?: string;
 }
 
 function PageLayout({ label, image, children }: PageLayoutProps) {
   return (
     <>
-      <Box pos="fixed" top="4.2em" left="8em">
+      <Flex
+        pos="fixed"
+        align="center"
+        justify="space-between"
+        left={isMobile ? "0" : "8em"}
+        top={isMobile ? "0" : "4.2em"}
+        px={isMobile ? "lg" : undefined}
+        bg={isMobile ? "floralwhite" : undefined}
+        w={isMobile ? "100%" : "fit-content"}
+      >
         <Menu />
-      </Box>
 
-      <Group grow>
-        <Flex pl="6em" justify="flex-start" gap="lg" pr="lg">
-          {label && (
-            <Title
-              pb="1.5em"
-              size="4.5em"
-              style={{ writingMode: "sideways-lr" }}
-            >
-              {label}
-            </Title>
-          )}
+        {isMobile && (
+          <Title ta="right" size="calc(1rem + 9vw)">
+            {label}
+          </Title>
+        )}
+      </Flex>
 
-          <ScrollArea scrollbars="y" h="100vh" w="100%" scrollbarSize="none">
-            <Stack gap="md" py="4em">
-              {children}
-            </Stack>
-          </ScrollArea>
-        </Flex>
+      {!isMobile && (
+        <Title
+          ta="left"
+          left="1.8em"
+          pos="fixed"
+          size="3.6em"
+          bottom="1.5em"
+          style={{
+            writingMode: "sideways-lr",
+          }}
+        >
+          {label}
+        </Title>
+      )}
 
-        {image && <Image h="100vh" fit="cover" src={image} />}
-      </Group>
+      <Stack
+        pr={isMobile ? undefined : "52vw"}
+        pl={isMobile ? undefined : "11em"}
+        pt={isMobile ? "3em" : undefined}
+      >
+        {isMobile && image && <Image src={image} mah="30vh" />}
+
+        <Stack gap="md" py={isMobile ? "0" : "4em"} px={isMobile ? "lg" : "0"}>
+          {children}
+        </Stack>
+      </Stack>
+
+      {!isMobile && image && (
+        <Image
+          w="50vw"
+          h="100vh"
+          pos="fixed"
+          top="0"
+          right="0"
+          fit="cover"
+          src={image}
+        />
+      )}
     </>
   );
 }

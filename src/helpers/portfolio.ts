@@ -1,3 +1,36 @@
+import digitalImage1 from "../assets/images/faqs.jpg";
+import digitalImage2 from "../assets/images/legend.jpg";
+import digitalImage3 from "../assets/images/digital1.jpg";
+import digitalImage4 from "../assets/images/digital2.jpg";
+import digitalImage5 from "../assets/images/digital3.jpg";
+import digitalImage6 from "../assets/images/digital4.jpg";
+import digitalImage7 from "../assets/images/digital5.jpg";
+import digitalImage8 from "../assets/images/digital6.jpg";
+import digitalImage9 from "../assets/images/digital7.jpg";
+import digitalImage10 from "../assets/images/digital8.jpg";
+
+import filmImage1 from "../assets/images/myth.jpg";
+import filmImage2 from "../assets/images/film1.jpg";
+import filmImage3 from "../assets/images/film2.jpg";
+import filmImage4 from "../assets/images/film3.jpg";
+import filmImage5 from "../assets/images/film4.jpg";
+import filmImage6 from "../assets/images/film5.jpg";
+import filmImage7 from "../assets/images/film6.jpg";
+import filmImage8 from "../assets/images/film7.jpg";
+import filmImage9 from "../assets/images/film8.jpg";
+import filmImage10 from "../assets/images/film9.jpg";
+
+import kinkImage1 from "../assets/images/forest_landscape.webp";
+import kinkImage2 from "../assets/images/kink1.jpg";
+import kinkImage3 from "../assets/images/kink2.jpg";
+import kinkImage4 from "../assets/images/kink3.jpg";
+import kinkImage5 from "../assets/images/kink4.jpg";
+import kinkImage6 from "../assets/images/kink5.jpg";
+import kinkImage7 from "../assets/images/kink6.jpg";
+import kinkImage8 from "../assets/images/kink7.jpg";
+import kinkImage9 from "../assets/images/kink8.jpg";
+import kinkImage10 from "../assets/images/kink9.jpg";
+
 export interface GalleryType {
   pathname: string;
   label: string;
@@ -13,147 +46,53 @@ export const portfolio: GalleryType[] = [
     description:
       "A showcase of some of my favourite images shot on digital medium across a range of Nikon camera bodies dating back to circa 2019.",
     images: [
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3D0gIztuV_7sysh9m6dHnt5gmbyTwBPqxJQ&s",
-      "https://www.adobe.com/la/creativecloud/file-types/image/raster/media_13f659e708c031c519b546ba716f2cdc0d34c90ec.jpeg?width=1200&format=pjpg&optimize=medium",
-      "https://kenchris.github.io/wasm-webp/test3.webp",
-      "https://www.widerangegalleries.com/images/xl/20191028-Giau-Glow.jpg",
-      "https://i.sstatic.net/3xDTD.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3D0gIztuV_7sysh9m6dHnt5gmbyTwBPqxJQ&s",
+      digitalImage4,
+      digitalImage1,
+      digitalImage2,
+      digitalImage3,
+      digitalImage5,
+      digitalImage6,
+      digitalImage7,
+      digitalImage8,
+      digitalImage9,
+      digitalImage10,
     ],
   },
   {
     pathname: "/film",
     label: "Film",
     description:
-      "A beautiful but not yet forgotten medium. This format taught me the foundational skills I needed to become the artist I am today, and these images date back as far as 2017.",
+      "A beautiful but not yet forgotten medium. This format taught me the foundational skills I needed to become the artist I am today.",
     images: [
-      "https://i.sstatic.net/3xDTD.jpg",
-      "https://www.adobe.com/la/creativecloud/file-types/image/raster/media_13f659e708c031c519b546ba716f2cdc0d34c90ec.jpeg?width=1200&format=pjpg&optimize=medium",
-      "https://kenchris.github.io/wasm-webp/test3.webp",
-      "https://www.widerangegalleries.com/images/xl/20191028-Giau-Glow.jpg",
-      "https://i.sstatic.net/3xDTD.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3D0gIztuV_7sysh9m6dHnt5gmbyTwBPqxJQ&s",
+      filmImage3,
+      filmImage1,
+      filmImage2,
+      filmImage4,
+      filmImage5,
+      filmImage6,
+      filmImage7,
+      filmImage8,
+      filmImage9,
+      filmImage10,
     ],
-  },
-  {
-    pathname: "/group",
-    label: "Group / Couples",
-    description: "",
-    images: [
-      "https://www.widerangegalleries.com/images/xl/20191028-Giau-Glow.jpg",
-      "https://www.adobe.com/la/creativecloud/file-types/image/raster/media_13f659e708c031c519b546ba716f2cdc0d34c90ec.jpeg?width=1200&format=pjpg&optimize=medium",
-      "https://kenchris.github.io/wasm-webp/test3.webp",
-      "https://www.widerangegalleries.com/images/xl/20191028-Giau-Glow.jpg",
-      "https://i.sstatic.net/3xDTD.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3D0gIztuV_7sysh9m6dHnt5gmbyTwBPqxJQ&s",
-    ],
-  },
-  {
-    pathname: "/inside",
-    label: "Inside",
-    description:
-      "A collection of images from studios, subjects homes, my own home studios and other miscellaneous indoor locations.",
-    images: [
-      "https://kenchris.github.io/wasm-webp/test3.webp",
-      "https://www.adobe.com/la/creativecloud/file-types/image/raster/media_13f659e708c031c519b546ba716f2cdc0d34c90ec.jpeg?width=1200&format=pjpg&optimize=medium",
-      "https://kenchris.github.io/wasm-webp/test3.webp",
-      "https://www.widerangegalleries.com/images/xl/20191028-Giau-Glow.jpg",
-      "https://i.sstatic.net/3xDTD.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3D0gIztuV_7sysh9m6dHnt5gmbyTwBPqxJQ&s",
-    ],
-  },
-  {
-    pathname: "/outdoors",
-    label: "Outdoors",
-    description:
-      "Where I really found my vision and refined my skills and my aesthetic as Melbourne Art Natural. I began this journey as Melbourne Art Nude because I wanted to take mostly Fine Art and Art Nude images in nature. My repertoire has expanded since its conception, but this is still a fine collection of images taken in the wider world.",
-    images: [
-      "https://www.adobe.com/la/creativecloud/file-types/image/raster/media_13f659e708c031c519b546ba716f2cdc0d34c90ec.jpeg?width=1200&format=pjpg&optimize=medium",
-      "https://kenchris.github.io/wasm-webp/test3.webp",
-      "https://www.widerangegalleries.com/images/xl/20191028-Giau-Glow.jpg",
-      "https://i.sstatic.net/3xDTD.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3D0gIztuV_7sysh9m6dHnt5gmbyTwBPqxJQ&s",
-    ],
-  },
-  {
-    pathname: "/masc",
-    label: "Masc",
-    images: [
-      "https://www.adobe.com/la/creativecloud/file-types/image/raster/media_13f659e708c031c519b546ba716f2cdc0d34c90ec.jpeg?width=1200&format=pjpg&optimize=medium",
-      "https://kenchris.github.io/wasm-webp/test3.webp",
-      "https://www.widerangegalleries.com/images/xl/20191028-Giau-Glow.jpg",
-      "https://i.sstatic.net/3xDTD.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3D0gIztuV_7sysh9m6dHnt5gmbyTwBPqxJQ&s",
-    ],
-  },
-  {
-    pathname: "/product",
-    label: "Product / Brand",
-    images: [
-      "https://www.adobe.com/la/creativecloud/file-types/image/raster/media_13f659e708c031c519b546ba716f2cdc0d34c90ec.jpeg?width=1200&format=pjpg&optimize=medium",
-      "https://kenchris.github.io/wasm-webp/test3.webp",
-      "https://www.widerangegalleries.com/images/xl/20191028-Giau-Glow.jpg",
-      "https://i.sstatic.net/3xDTD.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3D0gIztuV_7sysh9m6dHnt5gmbyTwBPqxJQ&s",
-    ],
-  },
-  {
-    pathname: "/erotic",
-    label: "Erotic",
-    images: [
-      "https://www.adobe.com/la/creativecloud/file-types/image/raster/media_13f659e708c031c519b546ba716f2cdc0d34c90ec.jpeg?width=1200&format=pjpg&optimize=medium",
-      "https://kenchris.github.io/wasm-webp/test3.webp",
-      "https://www.widerangegalleries.com/images/xl/20191028-Giau-Glow.jpg",
-      "https://i.sstatic.net/3xDTD.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3D0gIztuV_7sysh9m6dHnt5gmbyTwBPqxJQ&s",
-    ],
-    isSecret: true,
   },
   {
     pathname: "/over18",
-    label: "Shibari / Kink / 18+",
+    label: "Kink",
     description:
       "My drive to photograph and document real authentic human beings continues to fuel my eagerness to capture the people and lifestyle that surrounds BDSM, Kink and Shibari. These are just some of my favourites.",
 
     images: [
-      "https://www.adobe.com/la/creativecloud/file-types/image/raster/media_13f659e708c031c519b546ba716f2cdc0d34c90ec.jpeg?width=1200&format=pjpg&optimize=medium",
-      "https://kenchris.github.io/wasm-webp/test3.webp",
-      "https://www.widerangegalleries.com/images/xl/20191028-Giau-Glow.jpg",
-      "https://i.sstatic.net/3xDTD.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3D0gIztuV_7sysh9m6dHnt5gmbyTwBPqxJQ&s",
-    ],
-  },
-  {
-    pathname: "/themed",
-    label: "Themed / Holiday",
-    images: [
-      "https://www.adobe.com/la/creativecloud/file-types/image/raster/media_13f659e708c031c519b546ba716f2cdc0d34c90ec.jpeg?width=1200&format=pjpg&optimize=medium",
-      "https://kenchris.github.io/wasm-webp/test3.webp",
-      "https://www.widerangegalleries.com/images/xl/20191028-Giau-Glow.jpg",
-      "https://i.sstatic.net/3xDTD.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3D0gIztuV_7sysh9m6dHnt5gmbyTwBPqxJQ&s",
-    ],
-  },
-  {
-    pathname: "/travel",
-    label: "Travel / Street",
-    images: [
-      "https://www.adobe.com/la/creativecloud/file-types/image/raster/media_13f659e708c031c519b546ba716f2cdc0d34c90ec.jpeg?width=1200&format=pjpg&optimize=medium",
-      "https://kenchris.github.io/wasm-webp/test3.webp",
-      "https://www.widerangegalleries.com/images/xl/20191028-Giau-Glow.jpg",
-      "https://i.sstatic.net/3xDTD.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3D0gIztuV_7sysh9m6dHnt5gmbyTwBPqxJQ&s",
-    ],
-  },
-  {
-    pathname: "/video",
-    label: "Video",
-    images: [
-      "https://www.adobe.com/la/creativecloud/file-types/image/raster/media_13f659e708c031c519b546ba716f2cdc0d34c90ec.jpeg?width=1200&format=pjpg&optimize=medium",
-      "https://kenchris.github.io/wasm-webp/test3.webp",
-      "https://www.widerangegalleries.com/images/xl/20191028-Giau-Glow.jpg",
-      "https://i.sstatic.net/3xDTD.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3D0gIztuV_7sysh9m6dHnt5gmbyTwBPqxJQ&s",
+      kinkImage2,
+      kinkImage1,
+      kinkImage3,
+      kinkImage4,
+      kinkImage5,
+      kinkImage6,
+      kinkImage7,
+      kinkImage8,
+      kinkImage9,
+      kinkImage10,
     ],
   },
 ];

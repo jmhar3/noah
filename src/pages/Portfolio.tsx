@@ -1,103 +1,89 @@
-import { Divider, Stack, Text } from "@mantine/core";
-import { useLocation, useNavigate } from "react-router";
 import { useState } from "react";
 
+import {
+  Tabs,
+  Text,
+  Stack,
+  Divider,
+  Accordion,
+  SegmentedControl,
+} from "@mantine/core";
+
 import PageLayout from "./PageLayout";
-import GalleryModal from "../components/GalleryModal";
+import PortfolioImage from "../components/PortfolioImage";
 
 import { portfolio } from "../helpers/portfolio";
-import type { GalleryType } from "../helpers/portfolio";
 
 function Portfolio() {
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
-  const isSecret = pathname.includes("secret");
-
-  const [focusedGallery, setFocusedGallery] = useState<GalleryType | undefined>(
-    portfolio[0],
-  );
-  const [showGalleryModal, setShowGalleryModal] = useState(
-    pathname.includes("portfolio/"),
-  );
-
-  const [selectedGallery, setSelectedGallery] = useState(
-    portfolio.find((galleryItem) => {
-      return pathname.includes(galleryItem.pathname);
-    }),
-  );
-
-  const onSelectGallery = (gallery: GalleryType) => {
-    setSelectedGallery(gallery);
-    setShowGalleryModal(true);
-    navigate(`${isSecret ? "/secret" : ""}/portfolio${gallery.pathname}`);
-  };
-
-  const onCloseGallery = () => {
-    setShowGalleryModal(false);
-    navigate(`${isSecret ? "/secret" : ""}/portfolio`);
-  };
+  const [activeTab, setActiveTab] = useState<string | null>("0");
 
   return (
-    <PageLayout label="Explore My Work" image={focusedGallery?.images[0]}>
-      <Stack>
-        {portfolio.map((portfolioGallery, index) => {
-          return (
-            <>
-              {index !== 0 && <Divider />}
-              <Stack
-                pt="3px"
-                key={portfolioGallery.pathname}
-                onMouseEnter={() => setFocusedGallery(portfolioGallery)}
-                onClick={() => onSelectGallery(portfolioGallery)}
-                style={{
-                  cursor: "pointer",
-                  gap:
-                    portfolioGallery === focusedGallery &&
-                    portfolioGallery.description
-                      ? undefined
-                      : 0,
-                  transition:
-                    portfolioGallery === focusedGallery
-                      ? "gap 0.15s ease-in"
-                      : "gap 0.15s ease-out",
-                }}
-              >
+    <PageLayout
+      label={`Explore My ${portfolio[Number(activeTab)].label} Work`}
+      image={portfolio[Number(activeTab)].images[0]}
+    >
+      <Tabs
+        variant="unstyled"
+        color="#b44655"
+        value={activeTab}
+        onChange={setActiveTab}
+      >
+        <SegmentedControl
+          fullWidth
+          radius="sm"
+          bg="floralwhite"
+          color="#b44655"
+          bd="solid 1px steelblue"
+          value={activeTab || "0"}
+          onChange={(value: string) => setActiveTab(value)}
+          data={[
+            { label: "DIGITAL", value: "0" },
+            { label: "FILM", value: "1" },
+            { label: "KINK", value: "2" },
+          ]}
+        />
+        {/*<Tabs.List grow>
+          {portfolio.map((portfolioGallery, index) => {
+            return (
+              <Tabs.Tab key={portfolioGallery.label} value={index.toString()}>
                 <Text
+                  py="md"
                   size="1.4em"
-                  c={
-                    portfolioGallery === focusedGallery
-                      ? "firebrick"
-                      : undefined
-                  }
+                  style={{ cursor: "pointer" }}
+                  onClick={() => setActiveTab(index.toString())}
                 >
                   {portfolioGallery.label.toUpperCase()}
                 </Text>
-                <Text
-                  style={{
-                    maxHeight:
-                      portfolioGallery === focusedGallery ? "500px" : 0,
-                    transition:
-                      portfolioGallery === focusedGallery
-                        ? "max-height 0.35s ease-in"
-                        : "max-height 0.15s ease-out",
-                    overflow: "hidden",
-                  }}
-                >
-                  {portfolioGallery.description}
-                </Text>
+              </Tabs.Tab>
+            );
+          })}
+        </Tabs.List>*/}
+
+        {portfolio.map((portfolioGallery, index) => {
+          return (
+            <Tabs.Panel
+              w="100%"
+              value={index.toString()}
+              key={portfolioGallery.pathname}
+            >
+              <Stack pt="lg">
+                <Text size="xl">{portfolioGallery.description}</Text>
+
+                <Divider color="#b44655" />
+
+                {portfolioGallery.images.map((image) => (
+                  <PortfolioImage key={image} image={image} />
+                ))}
               </Stack>
-            </>
+            </Tabs.Panel>
           );
         })}
-      </Stack>
-
-      {selectedGallery && (
-        <GalleryModal
-          isOpen={showGalleryModal}
-          onClose={onCloseGallery}
-          gallery={selectedGallery}
-        />
-      )}
+      </Tabs>
+      <Accordion
+        value={activeTab}
+        onChange={(index) => setActiveTab(index || "0")}
+        styles={{ item: { borderColor: "#b44655" } }}
+      ></Accordion>
     </PageLayout>
   );
 }

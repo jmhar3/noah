@@ -1,50 +1,47 @@
-import { useDisclosure } from "@mantine/hooks";
-import { Modal, Button, Stack, Title, ActionIcon } from "@mantine/core";
+import { useNavigate } from "react-router";
+import { useDisclosure, useHover } from "@mantine/hooks";
+import { Flex, ActionIcon } from "@mantine/core";
+import { isMobile } from "react-device-detect";
+
+import MenuModal from "./MenuModal";
 
 import MenuIcon from "../assets/icons/MenuIcon";
+import BackArrowIcon from "../assets/icons/BackArrowIcon";
 
-interface MenuItem {
-  label: string;
-  path: string;
-  isExternal?: boolean;
+import type { JSX } from "react";
+
+interface IconButtonProps {
+  onClick: () => void;
+  icon: JSX.Element;
+}
+
+function IconButton(props: IconButtonProps) {
+  const { hovered, ref } = useHover();
+
+  return (
+    <ActionIcon
+      color={hovered ? "#b44655" : "steelblue"}
+      variant="transparent"
+      onClick={props.onClick}
+      ref={ref}
+    >
+      {props.icon}
+    </ActionIcon>
+  );
 }
 
 function Menu() {
-  const [opened, { open, close }] = useDisclosure(false);
-
-  const menu: MenuItem[] = [
-    { label: "Who am I?", path: "about-me" },
-    { label: "Working with me", path: "working-with-me" },
-    { label: "Explore My Work", path: "portfolio" },
-    { label: "Packages", path: "/packages" },
-    { label: "Frequently Asked Questions", path: "faq" },
-    { label: "Get in touch", path: "/contact" },
-    { label: "Studio Space", path: "www.studioxixi.com.au", isExternal: true },
-  ];
+  const navigate = useNavigate();
+  const [opened, { open }] = useDisclosure(false);
 
   return (
     <>
-      <Modal fullScreen opened={opened} onClose={close} withCloseButton={false}>
-        <Stack align="center">
-          <Title size="6em">Melbourne Art Natural</Title>
+      <MenuModal isOpen={opened} />
 
-          {menu.map(({ label, path, isExternal }) => (
-            <Button
-              key="label"
-              component="a"
-              variant="transparent"
-              target={isExternal ? "_blank" : undefined}
-              href={path}
-            >
-              {label.toUpperCase()}
-            </Button>
-          ))}
-        </Stack>
-      </Modal>
-
-      <ActionIcon size="lg" color="cadetblue" variant="filled" onClick={open}>
-        <MenuIcon />
-      </ActionIcon>
+      <Flex gap="xs" align="center" direction={isMobile ? "row" : "column"}>
+        <IconButton onClick={open} icon={<MenuIcon />} />
+        <IconButton onClick={() => navigate(-1)} icon={<BackArrowIcon />} />
+      </Flex>
     </>
   );
 }

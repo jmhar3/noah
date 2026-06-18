@@ -1,5 +1,26 @@
-import { Accordion, Flex, Image, Stack, Text } from "@mantine/core";
+import { useState } from "react";
+import { Accordion } from "@mantine/core";
+import { isMobile } from "react-device-detect";
+
 import PageLayout from "./PageLayout";
+import FAQAccordionItem from "../components/FAQAccordionItem";
+
+import defaultImage from "../assets/images/faqs.jpg";
+
+import hiddenIdentityImage1 from "../assets/images/hidden1.jpg";
+import hiddenIdentityImage2 from "../assets/images/hidden2.jpg";
+import hiddenIdentityImage3 from "../assets/images/hidden3.jpg";
+import hiddenIdentityImage4 from "../assets/images/hidden4.jpg";
+import hiddenIdentityImage5 from "../assets/images/hidden5.jpg";
+
+import coupleImage1 from "../assets/images/couples1.jpg";
+import coupleImage2 from "../assets/images/couples2.jpg";
+import coupleImage3 from "../assets/images/couples3.jpg";
+
+import locationImage1 from "../assets/images/xixi1.jpg";
+import locationImage2 from "../assets/images/xixi2.jpg";
+import locationImage3 from "../assets/images/xixi3.jpg";
+import locationImage4 from "../assets/images/xixi4.jpg";
 
 const questions = [
   {
@@ -41,7 +62,13 @@ const questions = [
       "I've had lots of conversations with people who love the idea of having their photo taken, but because of work, family or general privacy they didn't want their face or identity shown. Your comfort and safety is of paramount importance to me. I am absolutely happy to accomodate any requests you have regarding your privacy. I am happy to compose my images and pose you in a manner which conceals your face, I can hide tattoos or marks in post production and if you don't wish the images to be posted online then they will remain yours to do with as you please. I only post images that my clients and models have given me permission to post, so you will always have the final say.",
       "Featured here are several images taken for people who wished to have their face or identity kept private.",
     ],
-    images: ["hidden-identity-image"],
+    images: [
+      hiddenIdentityImage1,
+      hiddenIdentityImage2,
+      hiddenIdentityImage3,
+      hiddenIdentityImage4,
+      hiddenIdentityImage5,
+    ],
   },
   {
     question: "Do you shoot with couples?",
@@ -49,50 +76,52 @@ const questions = [
       "Absolutely! Some of my favourite shoots have been taking capturing genuine and beautiful connections between people. It's something I love to photograph and it can be much easier to have your photograph taken when it's with someone you love and trust.",
       "Here's a few examples of some beautiful couples I've photographed:",
     ],
-    images: ["couple-image"],
+    images: [coupleImage1, coupleImage2, coupleImage3],
   },
   {
     question: "What locations are available to shoot?",
     answer: [
       "I always love shooting outdoors, and I have stunning beach and forest locations I use regularly. I charge a small additional fee for travel time 1hr+ from the CBD. If you'd prefer to stay central I also have a gorgeous studio in Fitzroy called XIXI Studio we can use for no additional fee. If you would feel more comfortable to have me come to you, I am completely happy and capable of bringing my studio lights and cameras to your house, hotel or Airbnb. I’m also completely willing and able to travel interstate with additional costs covered.",
-      "Here are several images taken at XiXi studio:",
+      "Here are several images taken at XIXI studio:",
     ],
-    images: ["location-image"],
+    images: [locationImage1, locationImage2, locationImage3, locationImage4],
   },
   {
     question: "What happens if I have to cancel?",
     answer: [
-      "To cancel any shoot and receive a full refund you must allow at least 48hrs. This will allow us to fill an empty booking slot or arrange other work. If you cancel with less than 48hrs then your deposit will be deducted from anyone else's booking cost who may be filling your appointment.",
+      "To cancel any shoot and receive a full refund you must allow at least 48hrs. This will allow us to fill an empty booking slot or arrange other work. If you cancel with less than 48hrs then your deposit will be deducted from anyone else's booking cost who may be filling your session.",
     ],
   },
 ];
 
 function FAQ() {
+  const [accordionState, setAccordionState] = useState<string | null>(null);
+
+  const [image, setImage] = useState(defaultImage);
+
+  const onSelectQuestion = (index: string, image?: string) => {
+    setAccordionState(index.toString());
+    setImage(image || defaultImage);
+  };
+
   return (
-    <PageLayout label="Frequently Asked Questions">
-      <Accordion defaultValue="Apples">
-        {questions.map(({ question, answer, images }) => (
-          <Accordion.Item key={question} value={question}>
-            <Accordion.Control>
-              <Text size="1.4em">{question.toUpperCase()}</Text>
-            </Accordion.Control>
-            <Accordion.Panel>
-              <Stack>
-                {answer.map((string) => (
-                  <Text key={string} size="lg">
-                    {string}
-                  </Text>
-                ))}
-                {images && (
-                  <Flex>
-                    {images.map((image) => (
-                      <Image key={image} src={image} />
-                    ))}
-                  </Flex>
-                )}
-              </Stack>
-            </Accordion.Panel>
-          </Accordion.Item>
+    <PageLayout
+      label={isMobile ? "FAQs" : "Frequently Asked Questions"}
+      image={image}
+    >
+      <Accordion
+        value={accordionState}
+        onChange={setAccordionState}
+        styles={{ item: { borderColor: "#b44655" } }}
+      >
+        {questions.map((faq, index) => (
+          <FAQAccordionItem
+            key={faq.question}
+            {...faq}
+            index={index.toString()}
+            onSelectQuestion={onSelectQuestion}
+            setImage={setImage}
+          />
         ))}
       </Accordion>
     </PageLayout>

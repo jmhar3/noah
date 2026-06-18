@@ -79,6 +79,7 @@ function ContactInfo(props: ContactInfoProps) {
         <SegmentedControl
           fullWidth
           radius="md"
+          color="steelblue"
           value={contactForm.preferredContactMethod}
           data={["EMAIL", "TEXT", "CALL", "INSTAGRAM"]}
           onChange={(value) =>
@@ -87,6 +88,12 @@ function ContactInfo(props: ContactInfoProps) {
               preferredContactMethod: value as PreferredContactMethod,
             }))
           }
+          styles={{
+            root: {
+              background: "white",
+              border: "solid 1px lightsteelblue",
+            },
+          }}
         />
       </Stack>
     </Stack>

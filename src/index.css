@@ -30,7 +30,7 @@ html {
 body {
     margin: 0;
     padding: 0;
-    color: cadetblue;
+    color: steelblue;
     background-color: floralwhite;
 }
 
@@ -48,12 +48,40 @@ button {
     font-size: 1em;
     cursor: pointer;
     font-weight: 500;
-    color: cadetblue;
     font-family: inherit;
     transition: color 0.25s;
     background-color: floralwhite;
 }
 
+.add-on {
+    color: steelblue;
+}
+
 .input {
     outline: 0px;
+}
+
+.circular-text {
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: relative;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+}
+
+.circular-text span {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    font-size: 15px;
+    position: absolute;
+    display: inline-block;
+    transition: all 0.5s cubic-bezier(0, 0, 0, 1);
 }

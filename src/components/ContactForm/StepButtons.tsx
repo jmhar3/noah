@@ -4,20 +4,27 @@ import MailFastIcon from "../../assets/icons/MailFastIcon";
 
 interface StepButtonsProps {
   onSubmit: () => void;
+  isSubmitting: boolean;
   accordionState: string | null;
-  setAccordionState: React.Dispatch<React.SetStateAction<string | null>>;
+  setAccordionState: (index: string | null) => void;
   isNextButtonDisabled?: boolean;
 }
 
 function StepButtons(props: StepButtonsProps) {
-  const { onSubmit, accordionState, setAccordionState, isNextButtonDisabled } =
-    props;
+  const {
+    onSubmit,
+    isSubmitting,
+    accordionState,
+    setAccordionState,
+    isNextButtonDisabled,
+  } = props;
 
   return (
     <Flex gap="sm">
       {accordionState !== "1" && (
         <Button
           size="sm"
+          loading={isSubmitting}
           onClick={() =>
             setAccordionState((Number(accordionState) - 1).toString())
           }
@@ -28,16 +35,22 @@ function StepButtons(props: StepButtonsProps) {
       {accordionState !== "4" && (
         <Button
           size="sm"
+          loading={isSubmitting}
           disabled={isNextButtonDisabled}
           onClick={() =>
             setAccordionState((Number(accordionState) + 1).toString())
           }
         >
-          {accordionState === "3" ? "VIEW SUMMARY" : "NEXT"}
+          NEXT
         </Button>
       )}
       {accordionState === "4" && (
-        <Button size="sm" leftSection={<MailFastIcon />} onClick={onSubmit}>
+        <Button
+          size="sm"
+          onClick={onSubmit}
+          loading={isSubmitting}
+          leftSection={<MailFastIcon />}
+        >
           SEND INQUIRY
         </Button>
       )}

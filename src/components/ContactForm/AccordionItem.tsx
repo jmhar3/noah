@@ -6,7 +6,7 @@ interface AccordianItemProps extends PropsWithChildren {
   label: string;
   panelNum: string;
   isAccordionItemClickable?: boolean;
-  setAccordionState: React.Dispatch<React.SetStateAction<string | null>>;
+  setAccordionState: (index: string | null) => void;
 }
 
 function AccordianItem(props: AccordianItemProps) {

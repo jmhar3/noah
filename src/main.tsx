@@ -5,14 +5,15 @@ import { Button, createTheme, MantineProvider } from "@mantine/core";
 import { Analytics } from "@vercel/analytics/react";
 
 import ManKind from "./pages/ManKind.tsx";
-// import Home from "./pages/Home.tsx";
-// import AboutMe from "./pages/AboutMe.tsx";
-// import Contact from "./pages/Contact.tsx";
-// import Packages from "./pages/Packages.tsx";
-// import Portfolio from "./pages/Portfolio.tsx";
-// import WorkingWithMe from "./pages/WorkingWithMe.tsx";
-// import PasswordProtected from "./pages/PasswordProtected.tsx";
-// import FAQ from "./pages/FAQ.tsx";
+import Home from "./pages/Home.tsx";
+import AboutMe from "./pages/AboutMe.tsx";
+import Contact from "./pages/Contact.tsx";
+// import Secret from "./pages/Secret.tsx";
+import Testimonials from "./pages/Testimonials.tsx";
+import Packages from "./pages/Packages.tsx";
+import Portfolio from "./pages/Portfolio.tsx";
+import WorkingWithMe from "./pages/WorkingWithMe.tsx";
+import FAQ from "./pages/FAQ.tsx";
 
 import "@mantine/core/styles.css";
 import "@mantine/dropzone/styles.css";
@@ -25,7 +26,7 @@ const theme = createTheme({
   components: {
     Button: Button.extend({
       defaultProps: {
-        color: "cadetblue",
+        color: "steelblue",
       },
     }),
   },
@@ -37,99 +38,32 @@ createRoot(document.getElementById("root")!).render(
       <Analytics />
       <BrowserRouter>
         <Routes>
-          <Route path="*" element={<Navigate to="/man-kind" replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
 
           <Route path="man-kind" element={<ManKind />} />
 
-          {/*<Route index element={<Home />} />
+          <Route index element={<Home />} />
           <Route path="about-me" element={<AboutMe />} />
           <Route path="working-with-me" element={<WorkingWithMe />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="faq" element={<FAQ />} />
-
-          <Route path="packages">
-            <Route index element={<Packages />} />
-            <Route path=":rate" element={<Packages />} />
-          </Route>
 
           <Route path="portfolio">
             <Route index element={<Portfolio />} />
             <Route path=":gallery" element={<Portfolio />} />
           </Route>
 
-          <Route path="secret">
-            <Route index element={<Home />} />
-            <Route
-              path="about-me"
-              element={
-                <PasswordProtected>
-                  <AboutMe />
-                </PasswordProtected>
-              }
-            />
-            <Route
-              path="working-with-me"
-              element={
-                <PasswordProtected>
-                  <WorkingWithMe />
-                </PasswordProtected>
-              }
-            />
-            <Route
-              path="contact"
-              element={
-                <PasswordProtected>
-                  <Contact />
-                </PasswordProtected>
-              }
-            />
-            <Route
-              path="faq"
-              element={
-                <PasswordProtected>
-                  <FAQ />
-                </PasswordProtected>
-              }
-            />
+          <Route path="packages">
+            <Route index element={<Packages />} />
+            <Route path=":rate" element={<Packages />} />
+          </Route>
 
-            <Route path="packages">
-              <Route
-                index
-                element={
-                  <PasswordProtected>
-                    <Packages />
-                  </PasswordProtected>
-                }
-              />
-              <Route
-                path=":rate"
-                element={
-                  <PasswordProtected>
-                    <Packages />
-                  </PasswordProtected>
-                }
-              />
-            </Route>
+          <Route path="testimonials" element={<Testimonials />} />
+          <Route path="faq" element={<FAQ />} />
+          {/*<Route path="secret" element={<Secret />} />*/}
 
-            <Route path="portfolio">
-              <Route
-                index
-                element={
-                  <PasswordProtected>
-                    <Portfolio />
-                  </PasswordProtected>
-                }
-              />
-              <Route
-                path=":gallery"
-                element={
-                  <PasswordProtected>
-                    <Portfolio />
-                  </PasswordProtected>
-                }
-              />
-            </Route>
-          </Route>*/}
+          <Route path="contact" element={<Contact />} />
+          <Route path="contact/man" element={<Contact />} />
+          <Route path="contact/myth" element={<Contact />} />
+          <Route path="contact/legend" element={<Contact />} />
         </Routes>
       </BrowserRouter>
     </MantineProvider>

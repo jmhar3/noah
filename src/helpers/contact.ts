@@ -19,6 +19,7 @@ export enum PreferredContactMethod {
 
 // @ts-expect-error error with erasableSyntaxOnly
 export enum PreferredPackage {
+  unknown = "UNKNOWN",
   digital = "DIGITAL",
   film = "FILM",
   complete = "COMPLETE",
@@ -45,7 +46,7 @@ export interface ContactFormType {
   phone?: string;
   instagram?: string;
   preferredContactMethod: PreferredContactMethod;
-  preferredPackage?: PreferredPackage;
+  preferredPackage: PreferredPackage;
   message: string;
   addOns?: AddOn[];
   moodboardLink?: string;
