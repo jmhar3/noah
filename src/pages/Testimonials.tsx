@@ -123,7 +123,7 @@ function Testimonial({
 }
 
 function Testimonials() {
-  const [image, setImage] = useState(defaultImage);
+  // const [image, setImage] = useState(defaultImage);
   const [showTestimonial, setShowTestimonial] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -282,7 +282,7 @@ function Testimonials() {
           <Testimonial
             key={testimonial.name}
             {...testimonial}
-            setImage={setImage}
+            setImage={() => {}}
             showDivider={index !== 0}
           />
         ))}
