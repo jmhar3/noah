@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { Stack, Divider } from "@mantine/core";
+import { isMobile } from "react-device-detect";
 
 import PageLayout from "./PageLayout";
 import Package from "../components/Package";
@@ -8,10 +9,10 @@ import LinkButton from "../components/LinkButton";
 
 import type { PackageType } from "../components/Package";
 
-import image from "../assets/images/m.a.n.png";
-import manImage from "../assets/images/beach_portrait.webp";
-import mythImage from "../assets/images/forest_portrait.webp";
-import legendImage from "../assets/images/lake_portrait.webp";
+import image from "../assets/images/packages.jpg";
+import manImage from "../assets/images/lake_portrait.webp";
+import mythImage from "../assets/images/myth.jpg";
+import legendImage from "../assets/images/legend.jpg";
 
 import CameraIcon from "../assets/icons/CameraIcon.tsx";
 import ClockIcon from "../assets/icons/ClockIcon.tsx";
@@ -118,7 +119,7 @@ function Packages() {
   return (
     <PageLayout
       label={isNotFocused ? "Packages*" : "Packages"}
-      image={highlightedPackage?.image || image}
+      image={isMobile ? undefined : highlightedPackage?.image || image}
     >
       <Stack h="calc(100vh - 8em)" justify="space-between">
         {packages.map((rate, index) => (
