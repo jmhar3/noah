@@ -74,7 +74,7 @@ function Summary(props: SummaryProps) {
             onChange={(event) =>
               setContactForm((prevForm) => ({
                 ...prevForm,
-                name: event.target.value,
+                email: event.target.value,
               }))
             }
           />
@@ -181,7 +181,13 @@ function Summary(props: SummaryProps) {
           radius="md"
           label="MOOD BOARD"
           value={contactForm.moodboardLink}
-          placeholder="eg. www.pinterest.com/moodboard"
+          placeholder="eg. https://www.pinterest.com/moodboard"
+          onChange={(event) =>
+            setContactForm((prevForm) => ({
+              ...prevForm,
+              moodboardLink: event.target.value,
+            }))
+          }
         />
       )}
 
