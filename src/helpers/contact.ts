@@ -46,7 +46,7 @@ export interface ContactFormType {
   phone?: string;
   instagram?: string;
   preferredContactMethod: PreferredContactMethod;
-  preferredPackage?: PreferredPackage;
+  preferredPackage: PreferredPackage;
   message: string;
   addOns?: AddOn[];
   moodboardLink?: string;
