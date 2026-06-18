@@ -18,6 +18,7 @@ import locationImage1 from "../assets/images/xixi1.jpg";
 import locationImage2 from "../assets/images/xixi2.jpg";
 import locationImage3 from "../assets/images/xixi3.jpg";
 import locationImage4 from "../assets/images/xixi4.jpg";
+import { isMobile } from "react-device-detect";
 
 const questions = [
   {
@@ -96,7 +97,10 @@ function FAQ() {
   };
 
   return (
-    <PageLayout label="Frequently Asked Questions" image={image}>
+    <PageLayout
+      label={isMobile ? "FAQs" : "Frequently Asked Questions"}
+      image={image}
+    >
       <Accordion
         value={accordionState}
         onChange={setAccordionState}
