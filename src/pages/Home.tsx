@@ -93,7 +93,9 @@ function Home() {
       >
         <Stack h="100%" align="center" justify="space-between">
           <Stack align="center" gap="0" pt={isMobile ? ".6vh" : "0"}>
-            <Title size="calc(1rem + 9vw)">Melbourne Art Natural</Title>
+            <Title size="calc(1rem + 9vw)" mb={isNarrow ? "-1.5vh" : "-3.6vh"}>
+              Melbourne Art Natural
+            </Title>
 
             <Text
               size={isNarrow ? "calc(.3rem + 3vw)" : "calc(.1rem + 2vw)"}
