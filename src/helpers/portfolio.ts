@@ -78,7 +78,7 @@ export const portfolio: GalleryType[] = [
   },
   {
     pathname: "/over18",
-    label: "Shibari / Kink / 18+",
+    label: "Kink",
     description:
       "My drive to photograph and document real authentic human beings continues to fuel my eagerness to capture the people and lifestyle that surrounds BDSM, Kink and Shibari. These are just some of my favourites.",
 
