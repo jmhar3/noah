@@ -1,21 +1,23 @@
 import { Accordion } from "@mantine/core";
-import PageLayout from "./PageLayout";
 import { useState } from "react";
 
-import defaultImage from "../assets/images/forest_portrait.webp";
+import PageLayout from "./PageLayout";
+import FAQAccordionItem from "../components/FAQAccordionItem";
+
+import defaultImage from "../assets/images/faqs.jpg";
 
 import hiddenIdentityImage1 from "../assets/images/lake_portrait.webp";
 import hiddenIdentityImage2 from "../assets/images/beach_portrait.webp";
 import hiddenIdentityImage3 from "../assets/images/forest_portrait.webp";
 
-import coupleImage1 from "../assets/images/beach_portrait.webp";
-import coupleImage2 from "../assets/images/lake_portrait.webp";
-import coupleImage3 from "../assets/images/forest_portrait.webp";
+import coupleImage1 from "../assets/images/couples1.jpg";
+import coupleImage2 from "../assets/images/couples2.jpg";
+import coupleImage3 from "../assets/images/couples3.jpg";
 
-import locationImage1 from "../assets/images/forest_portrait.webp";
-import locationImage2 from "../assets/images/beach_portrait.webp";
-import locationImage3 from "../assets/images/lake_portrait.webp";
-import FAQAccordionItem from "../components/FAQAccordionItem";
+import locationImage1 from "../assets/images/xixi1.jpg";
+import locationImage2 from "../assets/images/xixi2.jpg";
+import locationImage3 from "../assets/images/xixi3.jpg";
+import locationImage4 from "../assets/images/xixi4.jpg";
 
 const questions = [
   {
@@ -71,14 +73,14 @@ const questions = [
     question: "What locations are available to shoot?",
     answer: [
       "I always love shooting outdoors, and I have stunning beach and forest locations I use regularly. I charge a small additional fee for travel time 1hr+ from the CBD. If you'd prefer to stay central I also have a gorgeous studio in Fitzroy called XIXI Studio we can use for no additional fee. If you would feel more comfortable to have me come to you, I am completely happy and capable of bringing my studio lights and cameras to your house, hotel or Airbnb. I’m also completely willing and able to travel interstate with additional costs covered.",
-      "Here are several images taken at XiXi studio:",
+      "Here are several images taken at XIXI studio:",
     ],
-    images: [locationImage1, locationImage2, locationImage3],
+    images: [locationImage1, locationImage2, locationImage3, locationImage4],
   },
   {
     question: "What happens if I have to cancel?",
     answer: [
-      "To cancel any shoot and receive a full refund you must allow at least 48hrs. This will allow us to fill an empty booking slot or arrange other work. If you cancel with less than 48hrs then your deposit will be deducted from anyone else's booking cost who may be filling your appointment.",
+      "To cancel any shoot and receive a full refund you must allow at least 48hrs. This will allow us to fill an empty booking slot or arrange other work. If you cancel with less than 48hrs then your deposit will be deducted from anyone else's booking cost who may be filling your session.",
     ],
   },
 ];
