@@ -1,72 +1,76 @@
 import { isMobile } from "react-device-detect";
 
-import {
-  Box,
-  Flex,
-  Group,
-  Image,
-  Stack,
-  Title,
-  ScrollArea,
-} from "@mantine/core";
+import { Flex, Image, Stack, Title } from "@mantine/core";
 
 import type { PropsWithChildren } from "react";
 
 import Menu from "../components/Menu";
 
 interface PageLayoutProps extends PropsWithChildren {
-  label?: string;
+  label: string;
   image?: string;
 }
 
 function PageLayout({ label, image, children }: PageLayoutProps) {
   return (
     <>
-      <Box
+      <Flex
         pos="fixed"
-        top={isMobile ? "1em" : "4.2em"}
-        left={isMobile ? "1em" : "8em"}
+        align="center"
+        justify="space-between"
+        left={isMobile ? "0" : "8em"}
+        top={isMobile ? "0" : "4.2em"}
+        px={isMobile ? "lg" : undefined}
+        bg={isMobile ? "floralwhite" : undefined}
+        w={isMobile ? "100%" : "fit-content"}
       >
         <Menu />
-      </Box>
 
-      <Group grow>
-        <Flex
-          pr={isMobile ? "0" : "lg"}
-          gap={isMobile ? "0" : "lg"}
-          justify="flex-start"
-          pl={isMobile ? "0" : "6em"}
-          direction={isMobile ? "column" : "row"}
+        {isMobile && (
+          <Title ta="right" size="calc(1rem + 9vw)">
+            {label}
+          </Title>
+        )}
+      </Flex>
+
+      {!isMobile && (
+        <Title
+          ta="left"
+          left="1.8em"
+          pos="fixed"
+          size="3.6em"
+          bottom="1.5em"
+          style={{
+            writingMode: "sideways-lr",
+          }}
         >
-          {label && (
-            <Title
-              pr={isMobile ? "lg" : "0"}
-              pb={isMobile ? "0" : "1.5em"}
-              ta={isMobile ? "right" : "left"}
-              size={isMobile ? "calc(1rem + 9vw)" : "4.5em"}
-              style={{
-                writingMode: isMobile ? "horizontal-tb" : "sideways-lr",
-              }}
-            >
-              {label}
-            </Title>
-          )}
+          {label}
+        </Title>
+      )}
 
-          <ScrollArea scrollbars="y" h="90vh" w="100%" scrollbarSize="none">
-            {isMobile && <Image src={image} />}
+      <Stack
+        pr={isMobile ? undefined : "52vw"}
+        pl={isMobile ? undefined : "11em"}
+        pt={isMobile ? "3em" : undefined}
+      >
+        {isMobile && image && <Image src={image} mah="30vh" />}
 
-            <Stack
-              gap="md"
-              py={isMobile ? "0" : "4em"}
-              px={isMobile ? "lg" : "0"}
-            >
-              {children}
-            </Stack>
-          </ScrollArea>
-        </Flex>
+        <Stack gap="md" py={isMobile ? "0" : "4em"} px={isMobile ? "lg" : "0"}>
+          {children}
+        </Stack>
+      </Stack>
 
-        {!isMobile && image && <Image h="100vh" fit="cover" src={image} />}
-      </Group>
+      {!isMobile && image && (
+        <Image
+          w="50vw"
+          h="100vh"
+          pos="fixed"
+          top="0"
+          right="0"
+          fit="cover"
+          src={image}
+        />
+      )}
     </>
   );
 }
