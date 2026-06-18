@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { useLocation } from "react-router";
+
 import {
   Text,
   Stack,
@@ -25,8 +26,8 @@ import InstagramIcon from "../assets/icons/InstagramIcon";
 import TwitterIcon from "../assets/icons/TwitterIcon";
 
 import { PreferredContactMethod } from "../helpers/contact";
+import { PreferredPackage } from "../helpers/contact";
 
-import type { PreferredPackage } from "../helpers/contact";
 import type { ContactFormType } from "../helpers/contact";
 
 function Contact() {
@@ -49,7 +50,8 @@ function Contact() {
     name: "",
     preferredContactMethod: PreferredContactMethod.email,
     message: "",
-    preferredPackage: preferredPackage as PreferredPackage,
+    preferredPackage:
+      (preferredPackage as PreferredPackage) || PreferredPackage.unknown,
     customPackage: {
       duration: "2 Hours",
       edits: "10 Edits",
@@ -62,15 +64,27 @@ function Contact() {
 
   const handleContactFormSubmission = async () => {
     setIsSubmitting(true);
+
     const formData = new FormData();
+
+    formData.append("access_key", "cd0c7928-bc7b-4c05-a40f-a0afa619602d");
+
     formData.append("name", contactForm.name);
     formData.append(
       "preferredContactMethod",
       contactForm.preferredContactMethod,
     );
+
+    if (contactForm.email) formData.append("email", contactForm.email);
+    if (contactForm.phone) formData.append("phone", contactForm.phone);
+    if (contactForm.instagram)
+      formData.append("instagram", contactForm.instagram);
+
+    if (contactForm.addOns?.length && contactForm.addOns?.length > 0)
+      formData.append("instagram", contactForm.addOns.join(", "));
+
+    formData.append("preferredPackage", contactForm.preferredPackage);
     formData.append("message", contactForm.message);
-    formData.append("preferredPackage", contactForm.preferredPackage || "");
-    formData.append("access_key", "cd0c7928-bc7b-4c05-a40f-a0afa619602d");
 
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
@@ -167,7 +181,7 @@ function Contact() {
       <Stack gap="0">
         <Divider color="#b44655" />
 
-        {!successfulSubmission && (
+        {!successfulSubmission ? (
           <Accordion
             w="100%"
             value={accordionState}
@@ -221,6 +235,14 @@ function Contact() {
               />
             </AccordianItem>
           </Accordion>
+        ) : (
+          <>
+            <Text py="sm" size="xl" ta="center">
+              Your inquiry has been sent. I'll be in touch soon.
+            </Text>
+
+            <Divider color="#b44655" />
+          </>
         )}
       </Stack>
 
@@ -235,9 +257,7 @@ function Contact() {
           BOOKING POLICY
         </Button>
 
-        {successfulSubmission ? (
-          <Text>Your inquiry has been sent. I'll be in touch shortly.</Text>
-        ) : (
+        {!successfulSubmission && (
           <StepButtons
             isSubmitting={isSubmitting}
             accordionState={accordionState}
