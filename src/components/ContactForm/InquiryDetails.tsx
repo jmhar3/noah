@@ -25,7 +25,7 @@ function InquiryDetails(props: InquiryDetailsProps) {
     PreferredPackage.digital,
     PreferredPackage.film,
     PreferredPackage.complete,
-    PreferredPackage.custom,
+    // PreferredPackage.custom,
   ];
 
   const addOns = [
@@ -47,7 +47,6 @@ function InquiryDetails(props: InquiryDetailsProps) {
           radius="md"
           color="steelblue"
           data={preferredPackages}
-          defaultValue={PreferredPackage.unknown}
           value={contactForm.preferredPackage}
           onChange={(value) =>
             setContactForm((prevForm) => ({
