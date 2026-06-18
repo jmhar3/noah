@@ -1,14 +1,17 @@
-import { Accordion } from "@mantine/core";
 import { useState } from "react";
+import { Accordion } from "@mantine/core";
+import { isMobile } from "react-device-detect";
 
 import PageLayout from "./PageLayout";
 import FAQAccordionItem from "../components/FAQAccordionItem";
 
 import defaultImage from "../assets/images/faqs.jpg";
 
-import hiddenIdentityImage1 from "../assets/images/lake_portrait.webp";
-import hiddenIdentityImage2 from "../assets/images/beach_portrait.webp";
-import hiddenIdentityImage3 from "../assets/images/forest_portrait.webp";
+import hiddenIdentityImage1 from "../assets/images/hidden1.jpg";
+import hiddenIdentityImage2 from "../assets/images/hidden2.jpg";
+import hiddenIdentityImage3 from "../assets/images/hidden3.jpg";
+import hiddenIdentityImage4 from "../assets/images/hidden4.jpg";
+import hiddenIdentityImage5 from "../assets/images/hidden5.jpg";
 
 import coupleImage1 from "../assets/images/couples1.jpg";
 import coupleImage2 from "../assets/images/couples2.jpg";
@@ -18,7 +21,6 @@ import locationImage1 from "../assets/images/xixi1.jpg";
 import locationImage2 from "../assets/images/xixi2.jpg";
 import locationImage3 from "../assets/images/xixi3.jpg";
 import locationImage4 from "../assets/images/xixi4.jpg";
-import { isMobile } from "react-device-detect";
 
 const questions = [
   {
@@ -60,7 +62,13 @@ const questions = [
       "I've had lots of conversations with people who love the idea of having their photo taken, but because of work, family or general privacy they didn't want their face or identity shown. Your comfort and safety is of paramount importance to me. I am absolutely happy to accomodate any requests you have regarding your privacy. I am happy to compose my images and pose you in a manner which conceals your face, I can hide tattoos or marks in post production and if you don't wish the images to be posted online then they will remain yours to do with as you please. I only post images that my clients and models have given me permission to post, so you will always have the final say.",
       "Featured here are several images taken for people who wished to have their face or identity kept private.",
     ],
-    images: [hiddenIdentityImage1, hiddenIdentityImage2, hiddenIdentityImage3],
+    images: [
+      hiddenIdentityImage1,
+      hiddenIdentityImage2,
+      hiddenIdentityImage3,
+      hiddenIdentityImage4,
+      hiddenIdentityImage5,
+    ],
   },
   {
     question: "Do you shoot with couples?",
