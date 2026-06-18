@@ -18,7 +18,7 @@ import InquiryDetails from "../components/ContactForm/InquiryDetails";
 import Inspiration from "../components/ContactForm/Inspiration";
 import Summary from "../components/ContactForm/Summary";
 
-import contactImage from "../assets/images/m.a.n.png";
+import contactImage from "../assets/images/contact.jpg";
 import InfoCircleIcon from "../assets/icons/InfoCircleIcon";
 import MailIcon from "../assets/icons/MailIcon";
 import InstagramIcon from "../assets/icons/InstagramIcon";
