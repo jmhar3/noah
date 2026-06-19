@@ -192,9 +192,6 @@ function Package(props: PackageProps) {
               variant="unstyled"
               chevronIconSize={15}
               chevronPosition="left"
-              // styles={{
-              //   control: { color: "steelblue", background: "floralwhite" },
-              // }}
             >
               <Accordion.Item value="add-ons">
                 <Accordion.Control className="add-on">
@@ -206,7 +203,7 @@ function Package(props: PackageProps) {
                     {addOns.map((addOn) => (
                       <Flex key={addOn.label} w="100%" justify="space-between">
                         <Text size="lg">{addOn.label}</Text>
-                        <Text fs="italic" size="lg">
+                        <Text fs="italic" size="lg" ta="right">
                           {addOn.price}
                         </Text>
                       </Flex>
