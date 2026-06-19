@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useHover } from "@mantine/hooks";
 
 import {
   Flex,
@@ -14,8 +13,9 @@ import {
   TextInput,
 } from "@mantine/core";
 
-import LinkButton from "../components/LinkButton";
 import PageLayout from "./PageLayout";
+import LinkButton from "../components/LinkButton";
+import Testimonial from "../components/Testimonial";
 
 import defaultImage from "../assets/images/gypsy.jpg";
 import willowImage from "../assets/images/beach_portrait.webp";
@@ -25,13 +25,9 @@ import gypsyImage from "../assets/images/gypsy.jpg";
 import huntImage from "../assets/images/beach_portrait.webp";
 import korneykoImage from "../assets/images/beach_portrait.webp";
 
-interface Testimonial {
-  name: string;
-  testimonial: string[];
-  image: string;
-}
+import type { TestimonialType } from "../components/Testimonial";
 
-const testimonials: Testimonial[] = [
+const testimonials: TestimonialType[] = [
   {
     name: "The Jungle Gypsy",
     testimonial: [
@@ -83,44 +79,6 @@ const testimonials: Testimonial[] = [
     image: korneykoImage,
   },
 ];
-
-interface TestimonialProps extends Testimonial {
-  setImage: (image: string) => void;
-  showDivider: boolean;
-}
-
-function Testimonial({
-  name,
-  image,
-  setImage,
-  showDivider,
-  testimonial,
-}: TestimonialProps) {
-  const { hovered, ref } = useHover();
-
-  return (
-    <Stack
-      pt="sm"
-      gap="sm"
-      ref={ref}
-      key={name}
-      onMouseEnter={() => setImage(image)}
-      onMouseLeave={() => setImage(defaultImage)}
-    >
-      {showDivider && <Divider color="#b44655" />}
-      <Stack>
-        {testimonial.map((string) => (
-          <Text size="xl" key={string}>
-            {string}
-          </Text>
-        ))}
-      </Stack>
-      <Text size="1.4em" ta="right" c={hovered ? "#b44655" : "steelblue"}>
-        - {name.toUpperCase()}
-      </Text>
-    </Stack>
-  );
-}
 
 function Testimonials() {
   // const [image, setImage] = useState(defaultImage);
