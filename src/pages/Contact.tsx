@@ -158,7 +158,7 @@ function Contact() {
             component="a"
             color="steelblue"
             variant="transparent"
-            href="https://www.instagram.com/melbourneartnatural"
+            href="https://www.instagram.com/nelbourne_art_matural"
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -169,7 +169,7 @@ function Contact() {
             component="a"
             color="steelblue"
             variant="transparent"
-            href="https://www.twitter.com/melbourneartnatural"
+            href="https://www.twitter.com/melbourneartnude"
             rel="noopener noreferrer"
             target="_blank"
           >
