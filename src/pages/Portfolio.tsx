@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { isMobile } from "react-device-detect";
 
 import {
   Tabs,
@@ -19,8 +20,12 @@ function Portfolio() {
 
   return (
     <PageLayout
-      label={`Explore My ${portfolio[Number(activeTab)].label} Work`}
-      image={portfolio[Number(activeTab)].images[0]}
+      label={
+        isMobile
+          ? "Portfolio"
+          : `Explore My ${portfolio[Number(activeTab)].label} Work`
+      }
+      image={isMobile ? undefined : portfolio[Number(activeTab)].images[0]}
     >
       <Tabs
         variant="unstyled"
