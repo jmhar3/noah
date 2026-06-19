@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { isMobile } from "react-device-detect";
 import { useLocation, useNavigate } from "react-router";
 import { useHover } from "@mantine/hooks";
 
@@ -81,11 +82,16 @@ function Package(props: PackageProps) {
 
   const title = (
     <Stack
+      ml={pathname.includes("legend") ? "-1em" : "-.5em"}
       w="100%"
       align="center"
       c={hovered && isNotFocused ? "#B44655" : "steelblue"}
     >
-      <Title h="0" pr="1.2em" size="2em">
+      <Title
+        h="0"
+        pr={pathname.includes("legend") ? "3em" : "1.5em"}
+        size="2em"
+      >
         The
       </Title>
       <Title h=".1em" pl=".3em" pb="1.2em" size="4em">
@@ -122,35 +128,36 @@ function Package(props: PackageProps) {
     return (
       <Stack justify="space-between" h="100%" w="100%" align="center">
         <Stack>
-          <Flex w="100%" align="center">
+          <Flex align="center">
             <Button
-              w="9em"
               fw="bold"
-              justify="center"
+              p={isMobile ? "0" : "xs"}
+              w={isMobile ? "8em" : "9.5em"}
               onClick={() => onSelectPackage(navButtons.prev)}
             >
-              LEGEND
+              {navButtons.prev.toUpperCase()}
             </Button>
 
             {title}
 
             <Button
-              w="9em"
               fw="bold"
+              p={isMobile ? "0" : "xs"}
+              w={isMobile ? "8em" : "9.5em"}
               onClick={() => onSelectPackage(navButtons.next)}
             >
-              MYTH
+              {navButtons.next.toUpperCase()}
             </Button>
           </Flex>
 
           <Divider w="100%" color="#b44655" />
 
-          <Text size="1.4em" ta="center">
+          <Text size="lg" ta="center">
             {props.description}
           </Text>
 
           <Stack gap="sm" align="center" w="100%">
-            <Text size="1.4em" fs="italic">
+            <Text size="lg" fs="italic">
               Choose this package if you want:
             </Text>
 
@@ -160,11 +167,13 @@ function Package(props: PackageProps) {
                   {inclusion.icon}
 
                   <Stack gap="0">
-                    <Text size="1.2em" fs="italic" c="#386890">
+                    <Text size="lg" c="#386890">
                       {inclusion.label}
                     </Text>
 
-                    <Text size=".8em">{inclusion.description}</Text>
+                    <Text size="sm" fs="italic">
+                      {inclusion.description}
+                    </Text>
                   </Stack>
                 </Flex>
               ))}
@@ -191,12 +200,15 @@ function Package(props: PackageProps) {
                 <Accordion.Control className="add-on">
                   Optional Add-ons
                 </Accordion.Control>
+
                 <Accordion.Panel>
                   <Stack>
                     {addOns.map((addOn) => (
                       <Flex key={addOn.label} w="100%" justify="space-between">
-                        <Text>{addOn.label}</Text>
-                        <Text fs="italic">{addOn.price}</Text>
+                        <Text size="lg">{addOn.label}</Text>
+                        <Text fs="italic" size="lg">
+                          {addOn.price}
+                        </Text>
                       </Flex>
                     ))}
                   </Stack>
