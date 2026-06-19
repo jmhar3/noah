@@ -19,6 +19,7 @@ import "@mantine/core/styles.css";
 import "@mantine/dropzone/styles.css";
 import "@mantine/carousel/styles.css";
 import "./index.css";
+import ScrollToTop from "./ScrollToTop.ts";
 
 const theme = createTheme({
   fontFamily: "Cormorant Infant, serif",
@@ -37,6 +38,7 @@ createRoot(document.getElementById("root")!).render(
     <MantineProvider theme={theme}>
       <Analytics />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="*" element={<Navigate to="/" replace />} />
 
