@@ -18,7 +18,6 @@ import lakeLandscape from "../assets/images/lake_landscape.webp";
 import beachPortrait from "../assets/images/beach_portrait.webp";
 import forestPortrait from "../assets/images/forest_portrait.webp";
 import lakePortrait from "../assets/images/lake_portrait.webp";
-import Menu from "../components/Menu";
 
 const images = [
   {
