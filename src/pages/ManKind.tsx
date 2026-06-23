@@ -18,6 +18,7 @@ import lakeLandscape from "../assets/images/lake_landscape.webp";
 import beachPortrait from "../assets/images/beach_portrait.webp";
 import forestPortrait from "../assets/images/forest_portrait.webp";
 import lakePortrait from "../assets/images/lake_portrait.webp";
+import Menu from "../components/Menu";
 
 const images = [
   {
@@ -77,23 +78,27 @@ function ManKind() {
               </Flex>
             </Stack>
 
-            <Stack>
-              <Text ta="center" lh="1.1" size="1.8em" fs="italic">
-                Friday June 20th
-                <br />
-                7pm onwards
-              </Text>
+            <Stack align="center">
+              <Stack gap="xs">
+                <Text ta="center" lh="1.1" size="1.8em" fs="italic">
+                  June 25th to July 18th
+                </Text>
+                <Text ta="center" lh="1.1" size="1.5em" fs="italic">
+                  Open from 12pm, Thursday to Sunday
+                </Text>
+              </Stack>
 
               <Button
                 size="md"
                 radius="md"
+                w="fit-content"
                 variant="outline"
                 color="floralwhite"
-                href="https://events.humanitix.com/man-kind"
+                href="https://events.humanitix.com/m-a-n-kind-exhibit"
                 target="_blank"
                 component="a"
               >
-                BUY TICKETS HERE
+                FIND OUT MORE
               </Button>
             </Stack>
 
@@ -217,26 +222,29 @@ function ManKind() {
               </Stack>
 
               <Stack align="center" p="6em" gap="xl">
-                <Text ta="center" lh="1" size="2.1em" fs="italic">
-                  Friday June 20th
-                  <br />
-                  7pm onwards
-                </Text>
+                <Stack gap="xs">
+                  <Text ta="center" lh="1" size="2.1em" fs="italic">
+                    June 25th to July 18th
+                  </Text>
+                  <Text ta="center" lh="1" size="1.8em" fs="italic">
+                    Open from 12pm, Thursday to Sunday
+                  </Text>
+                </Stack>
 
                 <Button
                   size="md"
                   radius="md"
                   variant="outline"
                   color="floralwhite"
-                  href="https://events.humanitix.com/man-kind"
+                  href="https://events.humanitix.com/m-a-n-kind-exhibit"
                   target="_blank"
                   component="a"
                 >
-                  GET TICKETS
+                  FIND OUT MORE
                 </Button>
               </Stack>
 
-              <Stack>
+              <Stack px="lg">
                 <Text lh="1" size="1.8em">
                   What is M.A.N-Kind?
                 </Text>
