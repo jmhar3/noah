@@ -23,6 +23,7 @@ function MenuModal({ isOpen }: { isOpen: boolean }) {
     { label: "Testimonials", path: "/testimonials" },
     { label: "Frequently Asked Questions", path: "/faq" },
     { label: "Get in touch", path: "/contact" },
+    { label: "M.A.N-Kind Exhibition", path: "/man-kind" },
     // { label: "Secret", path: "/secret" },
   ];
 
