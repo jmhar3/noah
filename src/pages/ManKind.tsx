@@ -82,9 +82,30 @@ function ManKind() {
                 <Text ta="center" lh="1.1" size="1.8em" fs="italic">
                   June 25th to July 18th
                 </Text>
-                <Text ta="center" lh="1.1" size="1.5em" fs="italic">
-                  Open from 12pm, Thursday to Sunday
-                </Text>
+                <Flex justify="space-between">
+                  <Text ta="center" lh="1" size="xl" fs="italic">
+                    Thursday:
+                  </Text>
+                  <Text ta="center" lh="1" size="xl" fs="italic">
+                    12pm - 8pm
+                  </Text>
+                </Flex>
+                <Flex justify="space-between">
+                  <Text ta="center" lh="1" size="xl" fs="italic">
+                    Friday:
+                  </Text>
+                  <Text ta="center" lh="1" size="xl" fs="italic">
+                    12pm - 6pm
+                  </Text>
+                </Flex>
+                <Flex justify="space-between">
+                  <Text ta="center" lh="1" size="xl" fs="italic">
+                    Saturday/Sunday:
+                  </Text>
+                  <Text ta="center" lh="1" size="xl" fs="italic">
+                    10am - 3pm
+                  </Text>
+                </Flex>
               </Stack>
 
               <Button
@@ -225,9 +246,30 @@ function ManKind() {
                   <Text ta="center" lh="1" size="2.1em" fs="italic">
                     June 25th to July 18th
                   </Text>
-                  <Text ta="center" lh="1" size="1.8em" fs="italic">
-                    Open from 12pm, Thursday to Sunday
-                  </Text>
+                  <Flex justify="space-between">
+                    <Text ta="center" lh="1" size="lg" fs="italic">
+                      Thursday:
+                    </Text>
+                    <Text ta="center" lh="1" size="lg" fs="italic">
+                      12pm - 8pm
+                    </Text>
+                  </Flex>
+                  <Flex justify="space-between">
+                    <Text ta="center" lh="1" size="lg" fs="italic">
+                      Friday:
+                    </Text>
+                    <Text ta="center" lh="1" size="lg" fs="italic">
+                      12pm - 6pm
+                    </Text>
+                  </Flex>
+                  <Flex justify="space-between">
+                    <Text ta="center" lh="1" size="lg" fs="italic">
+                      Saturday/Sunday:
+                    </Text>
+                    <Text ta="center" lh="1" size="lg" fs="italic">
+                      10am - 3pm
+                    </Text>
+                  </Flex>
                 </Stack>
 
                 <Button
