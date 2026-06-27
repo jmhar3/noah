@@ -80,7 +80,7 @@ function ManKind() {
             <Stack align="center">
               <Stack gap="xs">
                 <Text ta="center" lh="1.1" size="1.8em" fs="italic">
-                  June 25th to July 18th
+                  June 25th to July 19th
                 </Text>
                 <Flex justify="space-between">
                   <Text ta="center" lh="1" size="xl" fs="italic">
@@ -244,7 +244,7 @@ function ManKind() {
               <Stack align="center" p="6em" gap="xl">
                 <Stack gap="xs">
                   <Text ta="center" lh="1" size="2.1em" fs="italic">
-                    June 25th to July 18th
+                    June 25th to July 19th
                   </Text>
                   <Flex justify="space-between">
                     <Text ta="center" lh="1" size="lg" fs="italic">
